@@ -1,3 +1,4 @@
+using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -7,22 +8,22 @@ using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Driver;
 
-public class DriverFactory
+public static class DriverFactory
 {
-    private static IWebDriver? _driver;
-
+    private const string EdgeBrowser = "edge";
+    private const string FirefoxBrowser = "firefox";
+    
     public static IWebDriver GetDriver()
     {
-        string currentBrowser = DataReader.GetConfig().Browser;
-        if (_driver != null) return _driver;
-        _driver = currentBrowser switch
+        var currentBrowser = DataReader.GetConfig().Browser;
+        IWebDriver driver = currentBrowser switch
         {
-            "chrome" => new ChromeDriver(),
-            "firefox" => new FirefoxDriver(),
-            _ => new EdgeDriver()
+            EdgeBrowser => new EdgeDriver(),
+            FirefoxBrowser => new FirefoxDriver(),
+            _ => new ChromeDriver()
         };
-        _driver.Manage().Window.Maximize();
+        driver.Manage().Window.Maximize();
 
-        return _driver;
+        return driver;
     }
 }

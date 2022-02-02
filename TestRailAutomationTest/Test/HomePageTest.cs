@@ -12,7 +12,7 @@ public class HomePageTest
     private IWebDriver driver;
 
     [SetUp]
-    public void Start()
+    public void Init()
     {
         driver = DriverFactory.GetDriver();
     }

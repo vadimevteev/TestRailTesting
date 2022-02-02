@@ -8,12 +8,13 @@ namespace TestRailAutomationTest.Service;
 
 public static class DataReader
 {
-    private static readonly string SettingsPath = @"resources\appsettings.json";
+    private const string SettingsPath = @"resources\appsettings.json";
+    
     public static Config GetConfig()
     {
-        StreamReader stream = new StreamReader(SettingsPath);
-        string json = stream.ReadToEnd();
-        Config config = JsonConvert.DeserializeObject<Config>(json);
+        var stream = new StreamReader(SettingsPath);
+        var json = stream.ReadToEnd();
+        var config = JsonConvert.DeserializeObject<Config>(json);
         return config;
     }
 }
