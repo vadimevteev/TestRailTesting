@@ -17,4 +17,10 @@
         <PackageReference Include="WebDriverManager" Version="2.12.3" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="resources\appsettings.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>
