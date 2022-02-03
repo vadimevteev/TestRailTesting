@@ -23,7 +23,7 @@ public static class DataReader
         }
         catch (JsonException exception)
         {
-            Debug.WriteLine(exception.StackTrace);
+            Debug.WriteLine(exception.Message);
         }
 
         return config;
