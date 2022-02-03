@@ -20,7 +20,7 @@ public class HomePageTest
     [Test]
     public void Test()
     {
-        string homePageUrl = DataReader.GetConfig().HomePageUrl;
+        var homePageUrl = DataReader.GetConfig().HomePageUrl;
         driver.Url = homePageUrl;
         Assert.True(driver.Url.Contains(homePageUrl));
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
 using TestRailAutomationTest.Model;
@@ -12,9 +13,19 @@ public static class DataReader
     
     public static Config GetConfig()
     {
+        var config = new Config();
         var stream = new StreamReader(SettingsPath);
         var json = stream.ReadToEnd();
-        var config = JsonConvert.DeserializeObject<Config>(json);
+
+        try
+        {
+            config = JsonConvert.DeserializeObject<Config>(json);
+        }
+        catch (JsonException exception)
+        {
+            Debug.WriteLine(exception.StackTrace);
+        }
+
         return config;
     }
 }
