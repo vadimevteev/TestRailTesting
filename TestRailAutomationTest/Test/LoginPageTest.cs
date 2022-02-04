@@ -1,13 +1,13 @@
-using System;
+using FluentAssertions;
 using NUnit.Framework;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using TestRailAutomationTest.Driver;
+using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test;
 
-public class HomePageTest
+public class LoginPageTest
 {
     private IWebDriver driver;
 
@@ -18,11 +18,15 @@ public class HomePageTest
     }
     
     [Test]
-    public void Test()
+    public void LoginTest()
     {
-        var homePageUrl = DataReader.GetConfig().HomePageUrl;
-        driver.Url = homePageUrl;
-        Assert.True(driver.Url.Contains(homePageUrl));
+        var user = UserCreator.CreateUser();
+        new LoginPage(driver)
+            .OpenPage()
+            .FillLoginForm(user)
+            .PressFindButton();
+        var homePage = new HomePage(driver);
+        homePage.IsPageOpened().Should().BeTrue();
     }
 
     [TearDown]

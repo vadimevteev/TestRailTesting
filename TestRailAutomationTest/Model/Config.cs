@@ -2,7 +2,11 @@ namespace TestRailAutomationTest.Model;
 
 public class Config
 { 
-    public string HomePageUrl { get; set; }
+    public string HomePageUrl { get; }
     
-    public string Browser { get; set; }
+    public string Browser { get; }
+    
+    public string Email { get; }
+    
+    public string Password { get; }
 }
