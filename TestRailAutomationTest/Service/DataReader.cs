@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using Newtonsoft.Json;
@@ -7,7 +9,7 @@ namespace TestRailAutomationTest.Service;
 
 public static class DataReader
 {
-    private const string SettingsPath = @"resources\appsettings.json";
+    private const string SettingsPath = @"Resources\appsettings.json";
     
     public static Config GetConfig()
     {

@@ -1,3 +1,4 @@
+using System;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Service;
@@ -7,14 +8,13 @@ namespace TestRailAutomationTest.Page;
 
 public class LoginPage : BasePage
 {
-    private readonly string _pageUrl = DataReader.GetConfig().HomePageUrl;
+    private readonly string _pageUrl = DataReader.GetConfig().AppUrl;
     private readonly By _emailInputLocation = By.XPath("//*[@id=\"name\"]");
     private readonly By _passwordInputLocation = By.XPath("//*[@id=\"password\"]");
     private readonly By _searchButtonLocation = By.XPath("//button[contains(@class,\"loginpage-button\")]");
     
     public LoginPage(IWebDriver driver) : base(driver)
     {
-        
     }
 
     public LoginPage OpenPage()

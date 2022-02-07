@@ -1,12 +1,17 @@
+using System;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
 namespace TestRailAutomationTest.Model;
 
 public class Config
-{ 
-    public string HomePageUrl { get; }
+{
+    public string AppUrl { get; set; }
     
-    public string Browser { get; }
+    public string Browser { get; set; }
     
-    public string Email { get; }
+    public int DefaultTimeoutSeconds { get; set; }
     
-    public string Password { get; }
+    public List<User> Users { get; set; }
+    
 }
