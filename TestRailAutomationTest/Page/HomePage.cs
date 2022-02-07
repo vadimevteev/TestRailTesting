@@ -1,6 +1,4 @@
-using System;
 using OpenQA.Selenium;
-using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page;
 

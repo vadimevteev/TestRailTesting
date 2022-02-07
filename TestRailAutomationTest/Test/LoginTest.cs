@@ -1,10 +1,6 @@
-using System;
 using FluentAssertions;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using TestRailAutomationTest.Driver;
 using TestRailAutomationTest.Page;
-using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test;
 
