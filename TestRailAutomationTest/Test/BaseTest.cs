@@ -9,19 +9,19 @@ namespace TestRailAutomationTest.Test;
 
 public abstract class BaseTest
 {
-    protected IWebDriver driver;
-    protected List<User> users;
+    protected IWebDriver? Driver;
+    protected List<User?> Users;
 
     [SetUp]
     public void Init()
     {
-        driver = DriverFactory.GetDriver();
-        users = DataReader.GetConfig().Users;
+        Driver = DriverFactory.GetDriver();
+        Users = DataReader.GetConfig().Users;
     }
 
     [TearDown]
     public void Close()
     {
-        driver.Quit();
+        Driver?.Quit();
     }
 }

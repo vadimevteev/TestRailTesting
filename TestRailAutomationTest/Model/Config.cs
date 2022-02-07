@@ -10,6 +10,6 @@ public class Config
     
     public int DefaultTimeoutSeconds { get; set; }
     
-    public List<User> Users { get; set; }
+    public List<User?> Users { get; set; }
     
 }

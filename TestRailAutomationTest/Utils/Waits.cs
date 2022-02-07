@@ -10,7 +10,7 @@ public static class Waits
 {
     private static readonly TimeSpan DefaultWaitSeconds = TimeSpan.FromSeconds(DataReader.GetConfig().DefaultTimeoutSeconds);
     
-    public static IWebElement WaitElementExistence(IWebDriver driver, By elementPath)
+    public static IWebElement WaitElementExistence(IWebDriver? driver, By elementPath)
     {
         return new WebDriverWait(driver, DefaultWaitSeconds)
             .Until(ExpectedConditions.ElementExists(elementPath));
