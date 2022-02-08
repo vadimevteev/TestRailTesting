@@ -5,23 +5,25 @@ using TestRailAutomationTest.Driver;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Service;
 
-namespace TestRailAutomationTest.Test;
-
-public abstract class BaseTest
+namespace TestRailAutomationTest.Test
 {
-    protected IWebDriver? Driver;
-    protected List<User?> Users;
 
-    [SetUp]
-    public void Init()
+    public abstract class BaseTest
     {
-        Driver = DriverFactory.GetDriver();
-        Users = DataReader.GetConfig().Users;
-    }
+        protected IWebDriver? Driver;
+        protected List<User?> Users;
 
-    [TearDown]
-    public void Close()
-    {
-        Driver?.Quit();
+        [SetUp]
+        public void Init()
+        {
+            Driver = DriverFactory.GetDriver();
+            Users = DataReader.GetConfig().Users;
+        }
+
+        [TearDown]
+        public void Close()
+        {
+            Driver?.Quit();
+        }
     }
 }

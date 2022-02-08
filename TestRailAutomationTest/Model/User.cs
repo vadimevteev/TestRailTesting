@@ -1,10 +1,12 @@
-namespace TestRailAutomationTest.Model;
-
-public class User
+namespace TestRailAutomationTest.Model
 {
-    public string Email { get; set; }
-    
-    public string Password { get; set; }
-    
-    public string Name { get; set; }
+
+    public class User
+    {
+        public string Email { get; set; }
+
+        public string Password { get; set; }
+
+        public string Name { get; set; }
+    }
 }

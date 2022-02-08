@@ -3,27 +3,29 @@ using System.IO;
 using Newtonsoft.Json;
 using TestRailAutomationTest.Model;
 
-namespace TestRailAutomationTest.Service;
-
-public static class DataReader
+namespace TestRailAutomationTest.Service
 {
-    private const string SettingsPath = @"Resources\appsettings.json";
-    
-    public static Config GetConfig()
+
+    public static class DataReader
     {
-        var config = new Config();
-        var stream = new StreamReader(SettingsPath);
-        var json = stream.ReadToEnd();
+        private const string SettingsPath = @"Resources\appsettings.json";
 
-        try
+        public static Config GetConfig()
         {
-            config = JsonConvert.DeserializeObject<Config>(json);
-        }
-        catch (JsonException exception)
-        {
-            Debug.WriteLine(exception.Message);
-        }
+            var config = new Config();
+            var stream = new StreamReader(SettingsPath);
+            var json = stream.ReadToEnd();
 
-        return config;
+            try
+            {
+                config = JsonConvert.DeserializeObject<Config>(json);
+            }
+            catch (JsonException exception)
+            {
+                Debug.WriteLine(exception.Message);
+            }
+
+            return config;
+        }
     }
 }
