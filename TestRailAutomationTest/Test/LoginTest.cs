@@ -11,36 +11,33 @@ namespace TestRailAutomationTest.Test
 
     public class LoginPageTest : BaseTest
     {
+        
         [Test]
         public void Login_WithValidCredentials_ShouldBeSuccessful()
         {
-            var loginPage = new LoginPage(Driver);
-            loginPage.OpenStartPage();
-            loginPage
+            LoginPage.OpenStartPage();
+            LoginPage
                 .FillLoginForm(Users.FirstOrDefault()!)
                 .PressFindButton();
-            var homePage = new HomePage(Driver);
             using (new AssertionScope())
             {
-                homePage.IsPageOpened(HomePage.HeaderTitleLocation).Should().BeTrue();
-                homePage.GetCurrentUserName().Should().Be(Users.FirstOrDefault()!.Name);
+                HomePage.IsPageOpened(HomePage.HeaderTitleLocation).Should().BeTrue();
+                HomePage.GetCurrentUserName().Should().Be(Users.FirstOrDefault()!.Name);
             }
         }
 
         [Test]
         public void Login_WithInvalidCredentials_ShouldBeFailed()
         {
-            var loginPage = new LoginPage(Driver);
-            var user = UserCreator.CreateRandomUser();
-            loginPage.OpenStartPage();
-            string actualErrorMessage = loginPage
+            var user = UserCreator.CreateRandom();
+            LoginPage.OpenStartPage();
+            var actualErrorMessage = LoginPage
                 .FillLoginForm(user)
                 .PressFindButton()
                 .GetErrorMessageText();
-            var homePage = new HomePage(Driver);
             using (new AssertionScope())
             {
-                homePage.IsPageOpened(HomePage.HeaderTitleLocation).Should().BeFalse();
+                HomePage.IsPageOpened(HomePage.HeaderTitleLocation).Should().BeFalse();
                 actualErrorMessage.Should().Be(ErrorMessages.InvalidPassword);
             }
         }

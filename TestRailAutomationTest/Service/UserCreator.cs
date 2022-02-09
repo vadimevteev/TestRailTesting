@@ -5,7 +5,7 @@ namespace TestRailAutomationTest.Service
 {
     public static class UserCreator
     {
-        public static User CreateRandomUser()
+        public static User CreateRandom()
         {
             return new User()
             {
