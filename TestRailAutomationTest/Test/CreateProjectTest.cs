@@ -1,4 +1,5 @@
 using System.Linq;
+using FluentAssertions;
 using NUnit.Framework;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Service;
@@ -23,7 +24,7 @@ public class CreateProjectTest : BaseTest
         AddProjectPage
             .FillAddProjectForm(projectRequiredFields)
             .PressAcceptButton();
-        OverviewPage.IsProjectExists(projectRequiredFields.Name);
+        OverviewPage.IsProjectExists(projectRequiredFields.Name).Should().BeTrue();
     }
 
     [Test]
@@ -41,6 +42,6 @@ public class CreateProjectTest : BaseTest
         AddProjectPage
             .FillAddProjectForm(projectRequiredFields)
             .PressAcceptButton();
-        OverviewPage.IsProjectExists(projectRequiredFields.Name);
+        OverviewPage.IsProjectExists(projectRequiredFields.Name).Should().BeTrue();
     }
 }
