@@ -20,7 +20,7 @@ namespace TestRailAutomationTest.Test
                 .PressFindButton();
             using (new AssertionScope())
             {
-                HomePage.IsPageOpened(HomePage.HeaderTitleLocation).Should().BeTrue();
+                HomePage.IsElementExistOnPage(HomePage.HeaderTitleLocation).Should().BeTrue();
                 HomePage.GetCurrentUserName().Should().Be(Users.FirstOrDefault()!.Name);
             }
         }
@@ -36,7 +36,7 @@ namespace TestRailAutomationTest.Test
                 .GetErrorMessageText();
             using (new AssertionScope())
             {
-                HomePage.IsPageOpened(HomePage.HeaderTitleLocation).Should().BeFalse();
+                HomePage.IsElementExistOnPage(HomePage.HeaderTitleLocation).Should().BeFalse();
                 actualErrorMessage.Should().Be(ErrorMessages.InvalidPassword);
             }
         }

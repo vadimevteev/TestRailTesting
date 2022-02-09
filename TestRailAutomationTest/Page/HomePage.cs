@@ -30,11 +30,5 @@ namespace TestRailAutomationTest.Page
         {
             return Waits.WaitElementExistence(Driver, UserNameLocation).Text;
         }
-
-        public List<string> GetAllProjectsName()
-        {
-            //TODO: Get lists of all projects from table //*[@id="content-inner"]/table/tbody
-            return null;
-        }
     }
 }

@@ -23,5 +23,24 @@ public class CreateProjectTest : BaseTest
         AddProjectPage
             .FillAddProjectForm(projectRequiredFields)
             .PressAcceptButton();
+        OverviewPage.IsProjectExists(projectRequiredFields.Name);
+    }
+
+    [Test]
+    public void CreateProject_WithAllFields_ShouldBeSuccessful()
+    {
+        LoginPage.OpenStartPage();
+        LoginPage
+            .FillLoginForm(Users.FirstOrDefault()!)
+            .PressFindButton()
+            .WaitForOpen(Page.HomePage.HeaderTitleLocation);
+        HomePage
+            .ClickAddProjectButton()
+            .WaitForOpen(Page.AddProjectPage.HeaderTitleLocation);
+        var projectRequiredFields = ProjectCreator.CreateRandomWithAllFields();
+        AddProjectPage
+            .FillAddProjectForm(projectRequiredFields)
+            .PressAcceptButton();
+        OverviewPage.IsProjectExists(projectRequiredFields.Name);
     }
 }

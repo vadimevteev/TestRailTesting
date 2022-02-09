@@ -3,9 +3,9 @@ using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Service;
 
-public class ProjectCreator
+public static class ProjectCreator
 {
-    public static Project CreateRandom()
+    public static Project CreateRandomWithAllFields()
     {
         return new Project()
         {

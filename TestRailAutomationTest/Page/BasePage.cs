@@ -35,17 +35,17 @@ namespace TestRailAutomationTest.Page
 
         public void WaitForOpen(By uniqueElementLocation)
         {
-            if (!IsPageOpened(uniqueElementLocation))
+            if (!IsElementExistOnPage(uniqueElementLocation))
             {
                 throw new PageNotOpenedException("Current page was not opened");
             }
         }
 
-        public bool IsPageOpened(By uniqueElementLocation)
+        public bool IsElementExistOnPage(By elementLocation)
         {
             try
             {
-                Waits.WaitElementExistence(Driver, uniqueElementLocation);
+                Waits.WaitElementExistence(Driver, elementLocation);
                 return true;
             }
             catch (WebDriverTimeoutException)
