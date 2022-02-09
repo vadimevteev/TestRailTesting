@@ -15,6 +15,7 @@ namespace TestRailAutomationTest.Test
         protected List<User?> Users;
         protected LoginPage LoginPage;
         protected HomePage HomePage;
+        protected AddProjectPage AddProjectPage;
 
         [SetUp]
         public void Init()
@@ -23,6 +24,7 @@ namespace TestRailAutomationTest.Test
             Users = DataReader.GetConfig().Users;
             LoginPage = new LoginPage(Driver);
             HomePage = new HomePage(Driver);
+            AddProjectPage = new AddProjectPage(Driver);
         }
 
         [TearDown]

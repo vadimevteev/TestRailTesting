@@ -7,9 +7,9 @@ namespace TestRailAutomationTest.Page
 
     public class LoginPage : BasePage
     {
-        private readonly By _emailInputLocation = By.XPath("//*[@id=\"name\"]");
-        private readonly By _passwordInputLocation = By.XPath("//*[@id=\"password\"]");
-        private readonly By _errorMessageLocation = By.XPath("//*[@id=\"content\"]//div[@class=\"error-text\"]");
+        private static readonly By EmailInputLocation = By.XPath("//*[@id=\"name\"]");
+        private static readonly By PasswordInputLocation = By.XPath("//*[@id=\"password\"]");
+        private static readonly By ErrorMessageLocation = By.XPath("//*[@id=\"content\"]//div[@class=\"error-text\"]");
 
         public LoginPage(IWebDriver? driver) : base(driver)
         {
@@ -17,25 +17,20 @@ namespace TestRailAutomationTest.Page
 
         public LoginPage FillLoginForm(User user)
         {
-            FillInput(_emailInputLocation, user.Email);
-            FillInput(_passwordInputLocation, user.Password);
+            FillInput(EmailInputLocation, user.Email);
+            FillInput(PasswordInputLocation, user.Password);
             return this;
-        }
-
-        private void FillInput(By inputLocation, string? data)
-        {
-            Waits.WaitElementExistence(Driver, inputLocation).SendKeys(data);
         }
 
         public LoginPage PressFindButton()
         {
-            Waits.WaitElementExistence(Driver, SearchButtonLocation).Click();
+            ClickButton(SearchButtonLocation);
             return this;
         }
 
         public string GetErrorMessageText()
         {
-            return Waits.WaitElementExistence(Driver, _errorMessageLocation).Text;
+            return Waits.WaitElementExistence(Driver, ErrorMessageLocation).Text;
         }
     }
 }

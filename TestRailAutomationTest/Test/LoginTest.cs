@@ -8,7 +8,6 @@ using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
 {
-
     public class LoginPageTest : BaseTest
     {
         

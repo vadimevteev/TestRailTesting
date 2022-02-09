@@ -9,9 +9,9 @@ namespace TestRailAutomationTest.Service
         {
             return new User()
             {
-                Email = RandomData.GetRandomEmail(),
-                Name = RandomData.GetRandomName(),
-                Password = RandomData.GetRandomPassword()
+                Email = RandomData.GetEmail(),
+                Name = RandomData.GetName(),
+                Password = RandomData.GetPassword()
             };
         }
     }
