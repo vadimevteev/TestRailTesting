@@ -9,8 +9,10 @@ public static class ProjectCreator
     {
         return new Project()
         {
-            Name = RandomData.GetName(),
-            Announcement = RandomData.GetRandomText()
+            Name = RandomData.GetCompanyName(),
+            Announcement = RandomData.GetText(),
+            IsShowAnnouncement = RandomData.GetBool(),
+            ProjectType = RandomData.GetProjectType()
         };
     }
 
@@ -18,8 +20,10 @@ public static class ProjectCreator
     {
         return new Project()
         {
-            Name = RandomData.GetName(),
-            Announcement = ""
+            Name = RandomData.GetCompanyName(),
+            Announcement = "",
+            IsShowAnnouncement = false,
+            ProjectType = ProjectType.SingleRepositoryForAllCases
         };
     }
 }

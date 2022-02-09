@@ -10,6 +10,8 @@ public class AddProjectPage : BasePage
     private static readonly By NameInputLocation = By.XPath("//input[@id=\"name\"]");
     private static readonly By AnnouncementLocation = By.XPath("//textarea[@id=\"announcement\"]");
     private static readonly By AcceptButtonLocation = By.XPath("//button[@id=\"accept\"]");
+    private static readonly By ShowAnnouncementCheckMarkLocation = By.XPath("//input[@id=\"show_announcement\"]");
+    
     
     public AddProjectPage(IWebDriver? driver) : base(driver)
     {

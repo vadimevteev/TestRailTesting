@@ -1,4 +1,5 @@
 using Bogus;
+using TestRailAutomationTest.Model;
 
 namespace TestRailAutomationTest.Utils
 {
@@ -26,9 +27,21 @@ namespace TestRailAutomationTest.Utils
             return _faker.Company.CompanyName();
         }
 
-        public static string GetRandomText()
+        public static string GetText()
         {
             return _faker.Lorem.Paragraph();
+        }
+
+        public static bool GetBool()
+        {
+            return _faker.Random.Bool();
+        }
+
+        public static ProjectType GetProjectType()
+        {
+            return _faker.Random.Enum(ProjectType.MultipleTestSuites,
+                ProjectType.SingleRepositoryForAllCases,
+                ProjectType.SingleRepositoryWithBaselineSupport);
         }
     }
 }
