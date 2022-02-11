@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
@@ -8,40 +9,43 @@ namespace TestRailAutomationTest.Test;
 
 public class CreateProjectTest : BaseTest
 {
+    private static IEnumerable<Project> Projects => new[] {ProjectCreator.CreateRandomRequiredFields(), ProjectCreator.CreateRandomWithAllFields()};
 
-    [Test]
-    public void CreateProject_WithRequiredFields_ShouldBeSuccessful()
+    [TestCaseSource(nameof(Projects))]
+    public void CreateProject_ShouldBeSuccessful(Project expectedProject)
     {
+        //TODO: Waits for opening all pages
+        
         LoginPage.OpenStartPage();
         LoginPage
             .FillLoginForm(Users.FirstOrDefault()!)
-            .PressFindButton()
-            .WaitForOpen(Page.HomePage.HeaderTitleLocation);
+            .PressFindButton();
+        HomePage.WaitForOpen(Page.HomePage.HeaderTitleLocation);
         HomePage
-            .ClickAddProjectButton()
-            .WaitForOpen(Page.AddProjectPage.HeaderTitleLocation);
-        var projectRequiredFields = ProjectCreator.CreateRandomRequiredFields();
+            .ClickAddProjectButton();
+        AddProjectPage.WaitForOpen(Page.AddProjectPage.HeaderTitleLocation);
         AddProjectPage
-            .FillAddProjectForm(projectRequiredFields)
+            .FillAddProjectForm(expectedProject)
             .PressAcceptButton();
-        OverviewPage.IsProjectExists(projectRequiredFields.Name).Should().BeTrue();
-    }
-
-    [Test]
-    public void CreateProject_WithAllFields_ShouldBeSuccessful()
-    {
-        LoginPage.OpenStartPage();
-        LoginPage
-            .FillLoginForm(Users.FirstOrDefault()!)
-            .PressFindButton()
-            .WaitForOpen(Page.HomePage.HeaderTitleLocation);
-        HomePage
-            .ClickAddProjectButton()
-            .WaitForOpen(Page.AddProjectPage.HeaderTitleLocation);
-        var projectRequiredFields = ProjectCreator.CreateRandomWithAllFields();
-        AddProjectPage
-            .FillAddProjectForm(projectRequiredFields)
-            .PressAcceptButton();
-        OverviewPage.IsProjectExists(projectRequiredFields.Name).Should().BeTrue();
+        OverviewPage.GoToHomePage();
+        HomePage.WaitForOpen(Page.HomePage.HeaderTitleLocation);
+        HomePage.GoToProjectPage(expectedProject.Name);
+        var actualProject = new Project()
+        {
+            Name = ProjectPage.GetProjectName(),
+            Announcement = ProjectPage.GetProjectAnnouncement(),
+            IsShowAnnouncement = ProjectPage.IsShownAnnouncement()
+        };
+        //TODO: IF(exp.IsShow == act.IsShow == false) -> always equals
+        // TODO: if(exp.IsShow == act.IsShow == true) -> compare announcements
+        // TODO: if(exp.IsShow == true, act.IsShow == false) -> compare exp.announcemet with empty string
+        // expectedProject.Should().BeEquivalentTo(actualProject,
+        //     options => options
+        //         .Including(o => o.Name)
+        //         .Including(o => o.IsShowAnnouncement));
+        // if (actualProject.IsShowAnnouncement)
+        // {
+        //     
+        // }
     }
 }

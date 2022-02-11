@@ -17,6 +17,7 @@ namespace TestRailAutomationTest.Test
         protected HomePage HomePage;
         protected AddProjectPage AddProjectPage;
         protected OverviewPage OverviewPage;
+        protected ProjectPage ProjectPage;
 
         [SetUp]
         public void Init()
@@ -27,6 +28,7 @@ namespace TestRailAutomationTest.Test
             HomePage = new HomePage(Driver);
             AddProjectPage = new AddProjectPage(Driver);
             OverviewPage = new OverviewPage(Driver);
+            ProjectPage = new ProjectPage(Driver);
         }
 
         [TearDown]

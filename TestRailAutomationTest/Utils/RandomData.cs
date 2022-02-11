@@ -39,9 +39,7 @@ namespace TestRailAutomationTest.Utils
 
         public static ProjectType GetProjectType()
         {
-            return _faker.Random.Enum(ProjectType.MultipleTestSuites,
-                ProjectType.SingleRepositoryForAllCases,
-                ProjectType.SingleRepositoryWithBaselineSupport);
+            return _faker.PickRandom<ProjectType>();
         }
     }
 }

@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Model;
 
 namespace TestRailAutomationTest.Page;
@@ -11,7 +12,10 @@ public class AddProjectPage : BasePage
     private static readonly By AnnouncementLocation = By.XPath("//textarea[@id=\"announcement\"]");
     private static readonly By AcceptButtonLocation = By.XPath("//button[@id=\"accept\"]");
     private static readonly By ShowAnnouncementCheckMarkLocation = By.XPath("//input[@id=\"show_announcement\"]");
-    
+    private static readonly By SingleSuiteModeLocation = By.XPath("//input[@id=\"suite_mode_single\"]");
+    private static readonly By SingleBaseLineSuiteModeLocation =
+        By.XPath("//input[@id=\"suite_mode_single_baseline\"]");
+    private static readonly By MultipleModeLocation = By.XPath("//input[@id=\"suite_mode_multi\"]");
     
     public AddProjectPage(IWebDriver? driver) : base(driver)
     {
@@ -21,7 +25,33 @@ public class AddProjectPage : BasePage
     {
         FillInput(NameInputLocation, project.Name);
         FillInput(AnnouncementLocation, project.Announcement);
+        FillShowAnnouncementCheckMark(project.IsShowAnnouncement);
+        SelectProjectType(project.ProjectType);
         return this;
+    }
+
+    private void FillShowAnnouncementCheckMark(bool isTickTheCheckMark)
+    {
+        if(isTickTheCheckMark)
+            ClickButton(ShowAnnouncementCheckMarkLocation);
+    }
+
+    private void SelectProjectType(ProjectType projectType)
+    {
+        switch (projectType)
+        {
+            case ProjectType.SingleRepositoryForAllCases:
+                ClickButton(SingleSuiteModeLocation);
+                break;
+            case ProjectType.SingleRepositoryWithBaselineSupport:
+                ClickButton(SingleBaseLineSuiteModeLocation);
+                break;
+            case ProjectType.MultipleTestSuites:
+                ClickButton(MultipleModeLocation);
+                break;
+            default:
+                throw new IncorrectDataException("Incorrect project type");
+        }
     }
 
     public AddProjectPage PressAcceptButton()

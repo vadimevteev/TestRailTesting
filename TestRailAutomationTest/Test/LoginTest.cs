@@ -8,7 +8,7 @@ using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
 {
-    public class LoginPageTest : BaseTest
+    public class LoginTest : BaseTest
     {
         
         [Test]

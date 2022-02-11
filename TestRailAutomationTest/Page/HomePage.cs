@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using OpenQA.Selenium;
+using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page
@@ -10,11 +11,10 @@ namespace TestRailAutomationTest.Page
 
         public static readonly By HeaderTitleLocation =
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'All Projects')]");
-
         private static readonly By UserNameLocation =
             By.XPath("//*[@id=\"navigation-user\"]/span[@class=\"navigation-username\"]");
-
         private static readonly By AddProjectButtonLocation = By.XPath("//a[@id=\"sidebar-projects-add\"]");
+        private const string ProjectLocation = "//table[@class=\"grid\"]//a[text()='ProjectName']";
 
         public HomePage(IWebDriver? driver) : base(driver)
         {
@@ -24,6 +24,18 @@ namespace TestRailAutomationTest.Page
         {
             ClickButton(AddProjectButtonLocation);
             return this;
+        }
+
+        public void GoToProjectPage(string projectName)
+        {
+            try
+            {
+                ClickButton(By.XPath(ProjectLocation.Replace("ProjectName", projectName)));
+            }
+            catch (WebDriverTimeoutException)
+            {
+                throw new IncorrectDataException($"Project {projectName} doesn't exist");
+            }
         }
 
         public string GetCurrentUserName()
