@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Utils;
@@ -19,7 +18,7 @@ namespace TestRailAutomationTest.Page
         public HomePage(IWebDriver? driver) : base(driver)
         {
         }
-
+        
         public HomePage ClickAddProjectButton()
         {
             ClickButton(AddProjectButtonLocation);

@@ -6,7 +6,9 @@ public class OverviewPage : BasePage
 {
     private const string ProjectNameLocation = "//div[@id=\"content-inner\"]//a[text()='ProjectName']";
     private static readonly By HomePageLinkLocation = By.XPath("//a[@id=\"navigation-dashboard\"]");
-
+    public static readonly By MenuProjectItemSelected =
+        By.XPath("//a[@id=\"navigation-sub-projects\"]/ancestor::li[contains(@class,\"menu-item-selected\")]");
+    
     public OverviewPage(IWebDriver? driver) : base(driver)
     {
     }

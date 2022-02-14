@@ -25,7 +25,7 @@ public class AddProjectPage : BasePage
     {
         FillInput(NameInputLocation, project.Name);
         FillInput(AnnouncementLocation, project.Announcement);
-        FillShowAnnouncementCheckMark(project.IsShowAnnouncement);
+        FillShowAnnouncementCheckMark(project.IsAnnouncementVisible);
         SelectProjectType(project.ProjectType);
         return this;
     }
