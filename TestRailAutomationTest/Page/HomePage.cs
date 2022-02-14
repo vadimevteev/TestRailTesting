@@ -13,7 +13,7 @@ namespace TestRailAutomationTest.Page
         private static readonly By UserNameLocation =
             By.XPath("//*[@id=\"navigation-user\"]/span[@class=\"navigation-username\"]");
         private static readonly By AddProjectButtonLocation = By.XPath("//a[@id=\"sidebar-projects-add\"]");
-        private const string ProjectLocation = "//table[@class=\"grid\"]//a[text()='ProjectName']";
+        private const string ProjectLocation = "//a[text()='ProjectName']";
 
         public HomePage(IWebDriver? driver) : base(driver)
         {
