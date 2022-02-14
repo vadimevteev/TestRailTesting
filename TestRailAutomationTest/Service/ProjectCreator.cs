@@ -11,7 +11,7 @@ public static class ProjectCreator
         {
             Name = RandomData.GetCompanyName(),
             Announcement = RandomData.GetText(),
-            IsShowAnnouncement = RandomData.GetBool(),
+            IsAnnouncementVisible = RandomData.GetBool(),
             ProjectType = RandomData.GetProjectType()
         };
     }
@@ -22,7 +22,7 @@ public static class ProjectCreator
         {
             Name = RandomData.GetCompanyName(),
             Announcement = "",
-            IsShowAnnouncement = false,
+            IsAnnouncementVisible = false,
             ProjectType = ProjectType.SingleRepositoryForAllCases
         };
     }

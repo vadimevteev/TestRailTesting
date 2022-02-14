@@ -6,7 +6,7 @@ public class Project
     
     public string Announcement { get; set; }
     
-    public bool IsShowAnnouncement { get; set; }
+    public bool IsAnnouncementVisible { get; set; }
     
     public ProjectType ProjectType { get; set; }
 }
