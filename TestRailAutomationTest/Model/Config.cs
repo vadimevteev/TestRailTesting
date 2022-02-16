@@ -10,6 +10,8 @@ namespace TestRailAutomationTest.Model
         public string Browser { get; set; }
         
         public int DefaultTimeoutSeconds { get; set; }
+        
+        public int ReducedTimeoutSeconds { get; set; }
 
         public List<User?> Users { get; set; }
 

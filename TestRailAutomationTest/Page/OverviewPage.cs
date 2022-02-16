@@ -4,6 +4,7 @@ namespace TestRailAutomationTest.Page;
 
 public class OverviewPage : BasePage
 {
+    public const string PageName = "Projects overview page";
     private const string ProjectNameLocation = "//div[@id=\"content-inner\"]//a[text()='ProjectName']";
     private static readonly By HomePageLinkLocation = By.XPath("//a[@id=\"navigation-dashboard\"]");
     public static readonly By MenuProjectItemSelected =

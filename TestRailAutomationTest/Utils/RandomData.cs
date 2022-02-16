@@ -1,45 +1,40 @@
 using Bogus;
-using TestRailAutomationTest.Model;
+using TestRailAutomationTest.Model.Project.Enum;
 
 namespace TestRailAutomationTest.Utils
 {
     public static class RandomData
     {
-        private static readonly Faker _faker = new Faker();
+        public static readonly Faker Faker = new();
 
         public static string GetEmail()
         {
-            return _faker.Person.Email;
+            return Faker.Person.Email;
         }
 
         public static string GetName()
         {
-            return _faker.Person.FullName;
+            return Faker.Person.FullName;
         }
 
         public static string GetPassword()
         {
-            return _faker.Internet.Password();
+            return Faker.Internet.Password();
         }
 
         public static string GetCompanyName()
         {
-            return _faker.Company.CompanyName();
+            return Faker.Company.CompanyName();
         }
 
         public static string GetText()
         {
-            return _faker.Lorem.Paragraph();
+            return Faker.Lorem.Paragraph();
         }
 
         public static bool GetBool()
         {
-            return _faker.Random.Bool();
-        }
-
-        public static ProjectType GetProjectType()
-        {
-            return _faker.PickRandom<ProjectType>();
+            return Faker.Random.Bool();
         }
     }
 }

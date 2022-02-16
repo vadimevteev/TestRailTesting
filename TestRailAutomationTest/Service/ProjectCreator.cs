@@ -1,4 +1,6 @@
 using TestRailAutomationTest.Model;
+using TestRailAutomationTest.Model.Project;
+using TestRailAutomationTest.Model.Project.Enum;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Service;
@@ -12,7 +14,7 @@ public static class ProjectCreator
             Name = RandomData.GetCompanyName(),
             Announcement = RandomData.GetText(),
             IsAnnouncementVisible = RandomData.GetBool(),
-            ProjectType = RandomData.GetProjectType()
+            ProjectType = ProjectData.GetRandomProjectType()
         };
     }
 

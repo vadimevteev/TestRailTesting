@@ -11,6 +11,7 @@ namespace TestRailAutomationTest.Test
 
     public abstract class BaseTest
     {
+        public static readonly string LoginPageUrl = DataReader.GetConfig().AppUrl;
         protected IWebDriver? Driver;
         protected List<User?> Users;
         protected LoginPage LoginPage;

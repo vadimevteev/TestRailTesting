@@ -2,6 +2,7 @@ using System;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Utils
@@ -9,12 +10,14 @@ namespace TestRailAutomationTest.Utils
 
     public static class Waits
     {
-        private static readonly TimeSpan DefaultWaitSeconds =
-            TimeSpan.FromSeconds(DataReader.GetConfig().DefaultTimeoutSeconds);
-
         public static IWebElement WaitElementExistence(IWebDriver? driver, By elementPath)
         {
-            return new WebDriverWait(driver, DefaultWaitSeconds)
+            return WaitElementExistence(driver, elementPath, BasePage.DefaultTimeout);
+        }
+        
+        public static IWebElement WaitElementExistence(IWebDriver? driver, By elementPath, TimeSpan waitSeconds)
+        {
+            return new WebDriverWait(driver, waitSeconds)
                 .Until(ExpectedConditions.ElementExists(elementPath));
         }
     }

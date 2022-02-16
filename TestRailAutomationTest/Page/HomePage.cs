@@ -7,7 +7,7 @@ namespace TestRailAutomationTest.Page
 
     public class HomePage : BasePage
     {
-
+        public const string PageName = "Home page";
         public static readonly By HeaderTitleLocation =
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'All Projects')]");
         private static readonly By UserNameLocation =
@@ -25,7 +25,7 @@ namespace TestRailAutomationTest.Page
             return this;
         }
 
-        public void GoToProjectPage(string projectName)
+        public void OpenProject(string projectName)
         {
             try
             {

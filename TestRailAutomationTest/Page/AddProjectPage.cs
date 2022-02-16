@@ -1,11 +1,13 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
-using TestRailAutomationTest.Model;
+using TestRailAutomationTest.Model.Project;
+using TestRailAutomationTest.Model.Project.Enum;
 
 namespace TestRailAutomationTest.Page;
 
 public class AddProjectPage : BasePage
 {
+    public const string PageName = "Add project page";
     public static readonly By HeaderTitleLocation =
         By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'Add Project')]");
     private static readonly By NameInputLocation = By.XPath("//input[@id=\"name\"]");
@@ -32,8 +34,10 @@ public class AddProjectPage : BasePage
 
     private void FillShowAnnouncementCheckMark(bool isTickTheCheckMark)
     {
-        if(isTickTheCheckMark)
+        if (isTickTheCheckMark)
+        {
             ClickButton(ShowAnnouncementCheckMarkLocation);
+        }
     }
 
     private void SelectProjectType(ProjectType projectType)

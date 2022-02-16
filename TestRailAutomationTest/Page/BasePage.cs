@@ -1,6 +1,8 @@
+using System;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Service;
+using TestRailAutomationTest.Test;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page
@@ -9,9 +11,10 @@ namespace TestRailAutomationTest.Page
     public abstract class BasePage
     {
         protected readonly IWebDriver? Driver;
-        private static readonly string LoginPageUrl = DataReader.GetConfig().AppUrl;
+        public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().DefaultTimeoutSeconds);
+        protected static readonly TimeSpan ReducedTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().ReducedTimeoutSeconds);
         protected static readonly By SearchButtonLocation = By.XPath("//button[contains(@class,\"loginpage-button\")]");
-
+        
         protected BasePage(IWebDriver? driver)
         {
             Driver = driver;
@@ -19,8 +22,8 @@ namespace TestRailAutomationTest.Page
 
         public void OpenStartPage()
         {
-            Driver!.Url = LoginPageUrl;
-            WaitForOpen(SearchButtonLocation);
+            Driver!.Url = BaseTest.LoginPageUrl;
+            WaitForOpen(LoginPage.PageName, SearchButtonLocation);
         }
 
         protected void FillInput(By inputLocation, string? data)
@@ -33,19 +36,24 @@ namespace TestRailAutomationTest.Page
             Waits.WaitElementExistence(Driver,buttonLocation).Click();
         }
 
-        public void WaitForOpen(By uniqueElementLocation)
+        public void WaitForOpen(string pageName, By uniqueElementLocation)
         {
             if (!IsElementExistOnPage(uniqueElementLocation))
             {
-                throw new PageNotOpenedException("Current page was not opened");
+                throw new PageNotOpenedException($"{pageName} was not opened");
             }
         }
 
         public bool IsElementExistOnPage(By elementLocation)
         {
+            return IsElementExistOnPage(elementLocation, DefaultTimeout);
+        }
+
+        protected bool IsElementExistOnPage(By elementLocation, TimeSpan waitSeconds)
+        {
             try
             {
-                Waits.WaitElementExistence(Driver, elementLocation);
+                Waits.WaitElementExistence(Driver, elementLocation, waitSeconds);
                 return true;
             }
             catch (WebDriverTimeoutException)
@@ -53,5 +61,6 @@ namespace TestRailAutomationTest.Page
                 return false;
             }
         }
+
     }
 }
