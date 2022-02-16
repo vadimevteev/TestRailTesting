@@ -11,7 +11,7 @@ namespace TestRailAutomationTest.Test
     public class LoginTest : BaseTest
     {
         
-        [Test, Description("Login with valid credentials, " +
+        [Test, Description("Login with valid credentials should be successful, " +
                            "home page should be opened with correct user account")]
         public void Login_WithValidCredentials_ShouldBeSuccessful()
         {
@@ -26,7 +26,7 @@ namespace TestRailAutomationTest.Test
             }
         }
 
-        [Test, Description("Login with invalid credentials," 
+        [Test, Description("Login with invalid credentials should be failed," 
                            + "home page shouldn`t be opened and error message should be shown")]
         public void Login_WithInvalidCredentials_ShouldBeFailed()
         {
