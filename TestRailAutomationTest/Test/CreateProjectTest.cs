@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
-using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Model.Project;
 using TestRailAutomationTest.Page;
+using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test;
@@ -31,14 +31,14 @@ public class CreateProjectTest : BaseTest
             .FillAddProjectForm(expectedProject)
             .PressAcceptButton();
         
-        OverviewPage.WaitForOpen(OverviewPage.PageName, OverviewPage.MenuProjectItemSelected);
-        OverviewPage.GoToHomePage();
+        ProjectsMenuPage.WaitForOpen(ProjectsMenuPage.PageName, ProjectsMenuPage.MenuProjectItemSelected);
+        ProjectsMenuPage.OpenHomePage();
         
         HomePage.WaitForOpen(HomePage.PageName, HomePage.HeaderTitleLocation);
         HomePage.OpenProject(expectedProject.Name);
         
-        ProjectPage.WaitForOpen(ProjectPage.PageName, ProjectPage.ChartLineLocation);
-        var actualProject = ProjectPage.GetProject();
+        OverviewPage.WaitForOpen(OverviewPage.PageName, OverviewPage.ChartLineLocation);
+        var actualProject = OverviewPage.GetProject();
         
         expectedProject.Name.Should().Be(actualProject.Name);
         ValidateAnnouncement(expectedProject, actualProject);

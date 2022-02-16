@@ -3,7 +3,7 @@ using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Model.Project;
 using TestRailAutomationTest.Model.Project.Enum;
 
-namespace TestRailAutomationTest.Page;
+namespace TestRailAutomationTest.Page.Project;
 
 public class AddProjectPage : BasePage
 {
@@ -23,7 +23,7 @@ public class AddProjectPage : BasePage
     {
     }
 
-    public AddProjectPage FillAddProjectForm(Project project)
+    public AddProjectPage FillAddProjectForm(Model.Project.Project project)
     {
         FillInput(NameInputLocation, project.Name);
         FillInput(AnnouncementLocation, project.Announcement);

@@ -1,5 +1,4 @@
 using Bogus;
-using TestRailAutomationTest.Model.Project.Enum;
 
 namespace TestRailAutomationTest.Utils
 {

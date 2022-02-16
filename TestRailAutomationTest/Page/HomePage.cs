@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Utils;
 
-namespace TestRailAutomationTest.Page
+namespace TestRailAutomationTest.Page.Project
 {
 
     public class HomePage : BasePage

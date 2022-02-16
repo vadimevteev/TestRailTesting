@@ -3,7 +3,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 using TestRailAutomationTest.Page;
-using TestRailAutomationTest.Service;
+using TestRailAutomationTest.Page.Project;
 
 namespace TestRailAutomationTest.Utils
 {

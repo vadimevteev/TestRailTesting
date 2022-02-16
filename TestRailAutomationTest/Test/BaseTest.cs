@@ -4,6 +4,7 @@ using OpenQA.Selenium;
 using TestRailAutomationTest.Driver;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Page;
+using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
@@ -17,8 +18,9 @@ namespace TestRailAutomationTest.Test
         protected LoginPage LoginPage;
         protected HomePage HomePage;
         protected AddProjectPage AddProjectPage;
+        protected ProjectsMenuPage ProjectsMenuPage;
         protected OverviewPage OverviewPage;
-        protected ProjectPage ProjectPage;
+        protected TestCasesPage TestCasesPage;
 
         [SetUp]
         public void Init()
@@ -28,8 +30,9 @@ namespace TestRailAutomationTest.Test
             LoginPage = new LoginPage(Driver);
             HomePage = new HomePage(Driver);
             AddProjectPage = new AddProjectPage(Driver);
+            ProjectsMenuPage = new ProjectsMenuPage(Driver);
             OverviewPage = new OverviewPage(Driver);
-            ProjectPage = new ProjectPage(Driver);
+            TestCasesPage = new TestCasesPage(Driver);
         }
 
         [TearDown]
