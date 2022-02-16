@@ -11,7 +11,8 @@ namespace TestRailAutomationTest.Test
     public class LoginTest : BaseTest
     {
         
-        [Test, Description("Checks that user with correct data can log in")]
+        [Test, Description("Login with valid credentials, " +
+                           "home page should be opened with correct user account")]
         public void Login_WithValidCredentials_ShouldBeSuccessful()
         {
             LoginPage.OpenStartPage();
@@ -25,7 +26,8 @@ namespace TestRailAutomationTest.Test
             }
         }
 
-        [Test, Description("Checks that user with invalid data can`t log in")]
+        [Test, Description("Login with invalid credentials," 
+                           + "home page shouldn`t be opened and error message should be shown")]
         public void Login_WithInvalidCredentials_ShouldBeFailed()
         {
             var user = UserCreator.CreateRandom();

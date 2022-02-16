@@ -13,8 +13,9 @@ public class CreateProjectTest : BaseTest
 {
     private static IEnumerable<Project> Projects => new[] {ProjectCreator.CreateRandomRequiredFields(), ProjectCreator.CreateRandomWithAllFields()};
 
-    [TestCaseSource(nameof(Projects)), Description("This test checks ability to create project with all and only required fields")]
-    public void CreateProject_WithAllAndOnlyRequiredFields_ShouldBeSuccessful(Project expectedProject)
+    [TestCaseSource(nameof(Projects)), Description("Create project with requried/all fields should be successful, " +
+                                                   "project with with requried/all fields should be created")]
+    public void CreateProject_WithRequiredAndAllFields_ShouldBeSuccessful(Project expectedProject)
     {
         LoginPage.OpenStartPage();
         LoginPage
