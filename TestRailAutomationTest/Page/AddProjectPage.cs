@@ -1,9 +1,8 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
-using TestRailAutomationTest.Model.Project;
 using TestRailAutomationTest.Model.Project.Enum;
 
-namespace TestRailAutomationTest.Page.Project;
+namespace TestRailAutomationTest.Page;
 
 public class AddProjectPage : BasePage
 {

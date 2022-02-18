@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using NUnit.Framework;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
@@ -26,7 +29,6 @@ public class CreateTestCase : BaseTest
         AddProjectPage
             .FillAddProjectForm(project)
             .PressAcceptButton();
-        
         ProjectsMenuPage.WaitForOpen(ProjectsMenuPage.PageName, ProjectsMenuPage.MenuProjectItemSelected);
         ProjectsMenuPage.OpenHomePage();
         
@@ -38,5 +40,8 @@ public class CreateTestCase : BaseTest
 
         TestCasesPage.WaitForOpen(TestCasesPage.PageName, TestCasesPage.HeaderTitleLocation);
         TestCasesPage.AddTestCase();
+        
+        AddTestCasePage.WaitForOpen(AddTestCasePage.PageName, AddTestCasePage.HeaderTitleLocation);
+        
     }
 }
