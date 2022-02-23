@@ -4,45 +4,45 @@ namespace TestRailAutomationTest.Model.TestCase;
 
 public static class TestCaseData
 {
-    public static readonly Dictionary<int, string> Section = new()
+    public static readonly List<string> Section = new()
     {
-        {0, "Test Cases"}
+        "Test Cases"
     };
     
-    public static readonly Dictionary<int, string> Template = new Dictionary<int, string>()
+    public static readonly List<string> Template = new()
     {
-        {0, "Exploratory Session"},
-        {1, "Test Case (Steps)"},
-        {2, "Test Case (Text)"}
+        "Exploratory Session",
+        "Test Case (Steps)",
+        "Test Case (Text)"
     };
     
-    public static readonly Dictionary<int, string> Type = new Dictionary<int, string>()
+    public static readonly List<string> Type = new()
     {
-        {0, "Acceptance"},
-        {1, "Accessibility"},
-        {2, "Automated"},
-        {3, "Compatibility"},
-        {4, "Destructive"},
-        {5, "Functional"},
-        {6, "Other"},
-        {7, "Performance"},
-        {8, "Regression"},
-        {9, "Security"},
-        {10, "Smoke & Sanity"},
-        {11, "Usability"}
+        "Acceptance",
+        "Accessibility",
+        "Automated",
+        "Compatibility",
+        "Destructive",
+        "Functional",
+        "Other",
+        "Performance",
+        "Regression",
+        "Security",
+        "Smoke & Sanity",
+        "Usability"
     };
     
-    public static readonly Dictionary<int, string> Priority = new Dictionary<int, string>()
+    public static readonly List<string> Priority = new()
     {
-        {0, "Critical"},
-        {1, "High"},
-        {2, "Medium"},
-        {3, "Low"}
+        "Critical",
+        "High",
+        "Medium",
+        "Low"
     };
     
-    public static readonly Dictionary<int, string> AutomationType = new Dictionary<int, string>()
+    public static readonly List<string> AutomationType = new()
     {
-        {0, " None"},
-        {1, " Ranorex"}
+        " None",
+        " Ranorex"
     };
 }

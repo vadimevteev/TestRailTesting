@@ -5,6 +5,7 @@ using System.Threading;
 using NUnit.Framework;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
+using TestRailAutomationTest.Page.Project.TestCase;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test;
@@ -23,10 +24,10 @@ public class CreateTestCase : BaseTest
         HomePage
             .ClickAddProjectButton();
         
-        AddProjectPage.WaitForOpen(AddProjectPage.PageName, AddProjectPage.HeaderTitleLocation);
+        CreateProjectPage.WaitForOpen(CreateProjectPage.PageName, CreateProjectPage.HeaderTitleLocation);
 
         var project = ProjectCreator.CreateRandomRequiredFields();
-        AddProjectPage
+        CreateProjectPage
             .FillAddProjectForm(project)
             .PressAcceptButton();
         ProjectsMenuPage.WaitForOpen(ProjectsMenuPage.PageName, ProjectsMenuPage.MenuProjectItemSelected);
@@ -35,13 +36,18 @@ public class CreateTestCase : BaseTest
         HomePage.WaitForOpen(HomePage.PageName, HomePage.HeaderTitleLocation);
         HomePage.OpenProject(project.Name);
         
-        OverviewPage.WaitForOpen(OverviewPage.PageName, OverviewPage.ChartLineLocation);
-        OverviewPage.OpenTestCasesPage();
+        ProjectOverviewPage.WaitForOpen(ProjectOverviewPage.PageName, ProjectOverviewPage.ChartLineLocation);
+        ProjectOverviewPage.OpenTestCasesPage();
 
-        TestCasesPage.WaitForOpen(TestCasesPage.PageName, TestCasesPage.HeaderTitleLocation);
-        TestCasesPage.AddTestCase();
+        TestCasesMenuPage.WaitForOpen(TestCasesMenuPage.PageName, TestCasesMenuPage.HeaderTitleLocation);
+        TestCasesMenuPage.AddTestCase();
         
-        AddTestCasePage.WaitForOpen(AddTestCasePage.PageName, AddTestCasePage.HeaderTitleLocation);
+        CreateTestCasePage.WaitForOpen(CreateTestCasePage.PageName, CreateTestCasePage.HeaderTitleLocation);
+        var testCase = TestCaseCreator.CreateRandomAllFields();
+        CreateTestCasePage.FillTestCaseForm(testCase);
+        CreateTestCasePage.ClickAcceptButton();
         
+        TestCaseOverViewPage.WaitForOpen(TestCaseOverviewPage.PageName, TestCaseOverviewPage.SectionLocation);
+        var actulalTest = TestCaseOverViewPage.GetTestCase();
     }
 }

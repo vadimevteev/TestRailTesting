@@ -37,6 +37,17 @@ namespace TestRailAutomationTest.Page
             Waits.WaitElementExistence(Driver,buttonLocation).Click();
         }
 
+        protected void FillInputAfterClick(By inputLocation, string? data)
+        {
+            ClickButton(inputLocation);
+            FillInput(inputLocation, data);
+        }
+
+        protected string GetTextFromElement(By elementPath)
+        {
+            return Waits.WaitElementExistence(Driver, elementPath).Text;
+        }
+
         public void WaitForOpen(string pageName, By uniqueElementLocation)
         {
             if (!IsElementExistOnPage(uniqueElementLocation))

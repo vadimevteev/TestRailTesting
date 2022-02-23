@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Bogus;
 
 namespace TestRailAutomationTest.Utils
@@ -34,6 +35,21 @@ namespace TestRailAutomationTest.Utils
         public static bool GetBool()
         {
             return Faker.Random.Bool();
+        }
+
+        public static string GetWord()
+        {
+            return Faker.Random.Word();
+        }
+
+        public static int GetRandomByte()
+        {
+            return Faker.Random.Byte();
+        }
+
+        public static string GetValueFromList(List<string> list)
+        {
+            return Faker.PickRandom(list);
         }
     }
 }

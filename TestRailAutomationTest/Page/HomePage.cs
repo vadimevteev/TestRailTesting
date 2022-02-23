@@ -13,7 +13,8 @@ namespace TestRailAutomationTest.Page
         private static readonly By UserNameLocation =
             By.XPath("//*[@id=\"navigation-user\"]/span[@class=\"navigation-username\"]");
         private static readonly By AddProjectButtonLocation = By.XPath("//a[@id=\"sidebar-projects-add\"]");
-        private const string ProjectLocation = "//a[text()='ProjectName']";
+        private const string ProjectExample = "ProjectName";
+        private const string CommonProjectLocation = "//a[text()='" + ProjectExample + "']";
 
         public HomePage(IWebDriver? driver) : base(driver)
         {
@@ -29,7 +30,7 @@ namespace TestRailAutomationTest.Page
         {
             try
             {
-                ClickButton(By.XPath(ProjectLocation.Replace("ProjectName", projectName)));
+                ClickButton(By.XPath(CommonProjectLocation.Replace(ProjectExample, projectName)));
             }
             catch (WebDriverTimeoutException)
             {

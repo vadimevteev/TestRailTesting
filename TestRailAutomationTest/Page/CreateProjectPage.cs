@@ -4,7 +4,7 @@ using TestRailAutomationTest.Model.Project.Enum;
 
 namespace TestRailAutomationTest.Page;
 
-public class AddProjectPage : BasePage
+public class CreateProjectPage : BasePage
 {
     public const string PageName = "Add project page";
     public static readonly By HeaderTitleLocation =
@@ -18,11 +18,11 @@ public class AddProjectPage : BasePage
         By.XPath("//input[@id=\"suite_mode_single_baseline\"]");
     private static readonly By MultipleModeLocation = By.XPath("//input[@id=\"suite_mode_multi\"]");
     
-    public AddProjectPage(IWebDriver? driver) : base(driver)
+    public CreateProjectPage(IWebDriver? driver) : base(driver)
     {
     }
 
-    public AddProjectPage FillAddProjectForm(Model.Project.Project project)
+    public CreateProjectPage FillAddProjectForm(Model.Project.Project project)
     {
         FillInput(NameInputLocation, project.Name);
         FillInput(AnnouncementLocation, project.Announcement);
@@ -57,7 +57,7 @@ public class AddProjectPage : BasePage
         }
     }
 
-    public AddProjectPage PressAcceptButton()
+    public CreateProjectPage PressAcceptButton()
     {
         ClickButton(AcceptButtonLocation);
         return this;

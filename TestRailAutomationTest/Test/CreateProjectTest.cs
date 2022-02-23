@@ -26,8 +26,8 @@ public class CreateProjectTest : BaseTest
         HomePage
             .ClickAddProjectButton();
         
-        AddProjectPage.WaitForOpen(AddProjectPage.PageName, AddProjectPage.HeaderTitleLocation);
-        AddProjectPage
+        CreateProjectPage.WaitForOpen(CreateProjectPage.PageName, CreateProjectPage.HeaderTitleLocation);
+        CreateProjectPage
             .FillAddProjectForm(expectedProject)
             .PressAcceptButton();
         
@@ -37,8 +37,8 @@ public class CreateProjectTest : BaseTest
         HomePage.WaitForOpen(HomePage.PageName, HomePage.HeaderTitleLocation);
         HomePage.OpenProject(expectedProject.Name);
         
-        OverviewPage.WaitForOpen(OverviewPage.PageName, OverviewPage.ChartLineLocation);
-        var actualProject = OverviewPage.GetProject();
+        ProjectOverviewPage.WaitForOpen(ProjectOverviewPage.PageName, ProjectOverviewPage.ChartLineLocation);
+        var actualProject = ProjectOverviewPage.GetProject();
         
         expectedProject.Name.Should().Be(actualProject.Name);
         ValidateAnnouncement(expectedProject, actualProject);

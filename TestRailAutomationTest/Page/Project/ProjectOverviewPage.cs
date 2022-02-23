@@ -1,23 +1,22 @@
 using OpenQA.Selenium;
-using TestRailAutomationTest.Model.Project;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page.Project;
 
-public class OverviewPage : BasePage
+public class ProjectOverviewPage : BasePage
 {
-    public const string PageName = "Project page"; 
+    public const string PageName = "Project overview page";
+    public static readonly By ChartLineLocation = By.XPath("//div[@id=\"chart-line-fc\"]");
     private static readonly By ProjectNameLocation = By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"content-header-title\")]");
     private static readonly By TestCaseTabLocation = By.XPath("//a[@id=\"navigation-suites\"]");
     private static readonly By AnnouncementLocation =
         By.XPath("//div[@id=\"content-inner\"]/div[@class=\"markdown\"]/p");
-    public static readonly By ChartLineLocation = By.XPath("//div[@id=\"chart-line-fc\"]");
 
-    public OverviewPage(IWebDriver? driver) : base(driver)
+    public ProjectOverviewPage(IWebDriver? driver) : base(driver)
     {
     }
 
-    public OverviewPage OpenTestCasesPage()
+    public ProjectOverviewPage OpenTestCasesPage()
     {
         ClickButton(TestCaseTabLocation);
         return this;

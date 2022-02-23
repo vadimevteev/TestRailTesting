@@ -5,6 +5,7 @@ using TestRailAutomationTest.Driver;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
+using TestRailAutomationTest.Page.Project.TestCase;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
@@ -17,11 +18,12 @@ namespace TestRailAutomationTest.Test
         protected List<User?> Users;
         protected LoginPage LoginPage;
         protected HomePage HomePage;
-        protected AddProjectPage AddProjectPage;
+        protected CreateProjectPage CreateProjectPage;
         protected ProjectsMenuPage ProjectsMenuPage;
-        protected OverviewPage OverviewPage;
-        protected TestCasesPage TestCasesPage;
-        protected AddTestCasePage AddTestCasePage;
+        protected ProjectOverviewPage ProjectOverviewPage;
+        protected TestCasesMenuPage TestCasesMenuPage;
+        protected CreateTestCasePage CreateTestCasePage;
+        protected TestCaseOverviewPage TestCaseOverViewPage;
 
         [SetUp]
         public void Init()
@@ -30,11 +32,12 @@ namespace TestRailAutomationTest.Test
             Users = DataReader.GetConfig().Users;
             LoginPage = new LoginPage(Driver);
             HomePage = new HomePage(Driver);
-            AddProjectPage = new AddProjectPage(Driver);
+            CreateProjectPage = new CreateProjectPage(Driver);
             ProjectsMenuPage = new ProjectsMenuPage(Driver);
-            OverviewPage = new OverviewPage(Driver);
-            TestCasesPage = new TestCasesPage(Driver);
-            AddTestCasePage = new AddTestCasePage(Driver);
+            ProjectOverviewPage = new ProjectOverviewPage(Driver);
+            TestCasesMenuPage = new TestCasesMenuPage(Driver);
+            CreateTestCasePage = new CreateTestCasePage(Driver);
+            TestCaseOverViewPage = new TestCaseOverviewPage(Driver);
         }
 
         [TearDown]
