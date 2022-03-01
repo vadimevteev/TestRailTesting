@@ -1,4 +1,4 @@
-using TestRailAutomationTest.Exception;
+using System.Linq;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Utils;
 
@@ -6,72 +6,66 @@ namespace TestRailAutomationTest.Service;
 
 public static class TestCaseCreator
 {
-    public static BaseTestCase CreateRandomAllFields()
+    public static DefaultTestCase CreateRandomRequiredFields()
     {
-        return CreateTestCase(RandomData.GetText());
-    }
-
-    public static BaseTestCase CreateRandomRequiredFields()
-    {
-        return CreateTestCase("");
-    }
-
-    private static BaseTestCase CreateTestCase(string optionalTextFieldsValue)
-    {
-        var testCase = CreateRequiredFields();
-        FillOptionalFields(testCase,optionalTextFieldsValue);
+        var testCase = new DefaultTestCase();
+        FillCommonFields(testCase, RandomData.GetValueFromList(TestCaseData.Template), true);
         return testCase;
     }
 
-    private static BaseTestCase CreateRequiredFields()
+    public static ExploratoryTestCase CreateRandomExploratoryTemplate()
     {
-        return new BaseTestCase
-        {
-            Title = RandomData.GetCompanyName(),
-            Section = RandomData.GetValueFromList(TestCaseData.Section),
-            Template = RandomData.GetValueFromList(TestCaseData.Template),
-            Type = RandomData.GetValueFromList(TestCaseData.Type),
-            Priority = RandomData.GetValueFromList(TestCaseData.Priority)
-        };
-    }
-
-    private static void FillOptionalFields(BaseTestCase baseTestCase, string optionalTextFieldsValue)
-    {
-        if (optionalTextFieldsValue == "")
-        {
-            baseTestCase.Estimate = 0;
-            baseTestCase.References = optionalTextFieldsValue;
-            baseTestCase.AutomationType = " None";
-        }
-        else
-        {
-            baseTestCase.Estimate = RandomData.GetRandomByte();
-            baseTestCase.References = RandomData.GetWord();
-            baseTestCase.AutomationType = RandomData.GetValueFromList(TestCaseData.AutomationType);
-        }
-        FillTestCaseDescription(baseTestCase, optionalTextFieldsValue);
+        var testCase = new ExploratoryTestCase();
+        FillCommonFields(testCase, TestCaseData.ExploratoryTemplate, false);
+        FillExploratoryTypeDescription(testCase);
+        return testCase;
     }
     
-    private static void FillTestCaseDescription(BaseTestCase baseTestCase, string optionalTextFieldsValue)
+    public static StepsTestCase CreateRandomStepsTemplate()
     {
-        switch (baseTestCase.Template)
-        {
-            case "Exploratory Session":
-                baseTestCase.Mission = optionalTextFieldsValue;
-                baseTestCase.Goals = optionalTextFieldsValue;
-                break;
-            case "Test Case (Steps)":
-                baseTestCase.Preconditions = optionalTextFieldsValue;
-                baseTestCase.StepDescription = optionalTextFieldsValue;
-                baseTestCase.StepExpectedResult = optionalTextFieldsValue;
-                break;
-            case "Test Case (Text)":
-                baseTestCase.Preconditions = optionalTextFieldsValue;
-                baseTestCase.Steps = optionalTextFieldsValue;
-                baseTestCase.ExpectedResult = optionalTextFieldsValue;
-                break;
-            default:
-                throw new IncorrectDataException($"{baseTestCase.Section} section type is incorrect");
-        }
+        var testCase = new StepsTestCase();
+        FillCommonFields(testCase, TestCaseData.StepsTemplate, false);
+        FillStepsTypeDescription(testCase);
+        return testCase;
+    }
+    
+    public static TextTestCase CreateRandomTextType()
+    {
+        var testCase = new TextTestCase();
+        FillCommonFields(testCase, TestCaseData.TextTemplate, false);
+        FillTextTypeDescription(testCase);
+        return testCase;
+    }
+
+    private static void FillCommonFields(BaseTestCase testCase, string template, bool isOptionalFieldsEmpty)
+    {
+        testCase.Title = RandomData.GetCompanyName();
+        testCase.Section = RandomData.GetValueFromList(TestCaseData.Section);
+        testCase.Template = template;
+        testCase.Type = RandomData.GetValueFromList(TestCaseData.Type);
+        testCase.Priority = RandomData.GetValueFromList(TestCaseData.Priority);
+        testCase.Estimate = isOptionalFieldsEmpty ? default : RandomData.GetRandomByte();
+        testCase.References = isOptionalFieldsEmpty ? string.Empty : RandomData.GetWord();
+        testCase.AutomationType = isOptionalFieldsEmpty ? TestCaseData.AutomationType.FirstOrDefault()! : RandomData.GetValueFromList(TestCaseData.AutomationType);
+    }
+
+    private static void FillExploratoryTypeDescription(ExploratoryTestCase testCase)
+    {
+        testCase.Mission = RandomData.GetText();
+        testCase.Goals = RandomData.GetText();
+    }
+
+    private static void FillTextTypeDescription(TextTestCase testCase)
+    {
+        testCase.Preconditions = RandomData.GetText();
+        testCase.Steps = RandomData.GetText();
+        testCase.ExpectedResult  = RandomData.GetText();
+    }
+
+    private static void FillStepsTypeDescription(StepsTestCase testCase)
+    {
+        testCase.Preconditions = RandomData.GetText();
+        testCase.StepDescription = RandomData.GetText();
+        testCase.StepExpectedResult = RandomData.GetText();
     }
 }

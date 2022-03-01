@@ -1,7 +1,6 @@
 using System;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
-using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Service;
 using TestRailAutomationTest.Test;
 using TestRailAutomationTest.Utils;
@@ -12,6 +11,7 @@ namespace TestRailAutomationTest.Page
     public abstract class BasePage
     {
         protected readonly IWebDriver? Driver;
+        protected const string Example = "EXAMPLE";
         public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().DefaultTimeoutSeconds);
         protected static readonly TimeSpan ReducedTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().ReducedTimeoutSeconds);
         protected static readonly By SearchButtonLocation = By.XPath("//button[contains(@class,\"loginpage-button\")]");
@@ -54,6 +54,11 @@ namespace TestRailAutomationTest.Page
             {
                 throw new PageNotOpenedException($"{pageName} was not opened");
             }
+        }
+        
+        protected static By GetElementLocation(string commonLocation, string value)
+        {
+            return By.XPath(commonLocation.Replace(Example, value));
         }
 
         public bool IsElementExistOnPage(By elementLocation)

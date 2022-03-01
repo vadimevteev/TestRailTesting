@@ -23,7 +23,7 @@ namespace TestRailAutomationTest.Test
         protected ProjectOverviewPage ProjectOverviewPage;
         protected TestCasesMenuPage TestCasesMenuPage;
         protected CreateTestCasePage CreateTestCasePage;
-        protected TestCaseOverviewPage TestCaseOverViewPage;
+        protected DefaultTestCaseOverviewPage DefaultTestCaseOverViewPage;
 
         [SetUp]
         public void Init()
@@ -37,7 +37,7 @@ namespace TestRailAutomationTest.Test
             ProjectOverviewPage = new ProjectOverviewPage(Driver);
             TestCasesMenuPage = new TestCasesMenuPage(Driver);
             CreateTestCasePage = new CreateTestCasePage(Driver);
-            TestCaseOverViewPage = new TestCaseOverviewPage(Driver);
+            DefaultTestCaseOverViewPage = new DefaultTestCaseOverviewPage(Driver);
         }
 
         [TearDown]

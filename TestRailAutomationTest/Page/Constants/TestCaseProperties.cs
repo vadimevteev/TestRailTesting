@@ -2,11 +2,17 @@ namespace TestRailAutomationTest.Page.Constants;
 
 public static class TestCaseProperties
 {
-    public const string SectionPropertyName = "section_id";
-    public const string TemplatePropertyName = "template_id";
-    public const string TestCaseTypePropertyName = "type_id";
-    public const string PriorityPropertyName = "priority_id";
-    public const string AutomationTypePropertyName = "custom_automation_type";
-    public const string ReferencesPropertyName = "refs";
-    public const string EstimatePropertyName = "estimate";
+    public const string Title = "title";
+    public const string Section = "section_id";
+    public const string Template = "template_id";
+    public const string Type = "type_id";
+    public const string Priority = "priority_id";
+    public const string AutomationType = "custom_automation_type";
+    public const string References = "refs";
+    public const string Estimate = "estimate";
+    public const string Preconditions = "preconds";
+    public const string Steps = "steps";
+    public const string ExpectedResult = "expected";
+    public const string Mission = "mission";
+    public const string Goals = "goals";
 }

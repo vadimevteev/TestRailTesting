@@ -4,6 +4,10 @@ namespace TestRailAutomationTest.Model.TestCase;
 
 public static class TestCaseData
 {
+    public const string ExploratoryTemplate = "Exploratory Session";
+    public const string StepsTemplate = "Test Case (Steps)";
+    public const string TextTemplate = "Test Case (Text)";
+    
     public static readonly List<string> Section = new()
     {
         "Test Cases"
@@ -11,9 +15,9 @@ public static class TestCaseData
     
     public static readonly List<string> Template = new()
     {
-        "Exploratory Session",
-        "Test Case (Steps)",
-        "Test Case (Text)"
+        ExploratoryTemplate,
+        StepsTemplate,
+        TextTemplate
     };
     
     public static readonly List<string> Type = new()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using NUnit.Framework;
+using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Page.Project.TestCase;
@@ -43,11 +44,11 @@ public class CreateTestCase : BaseTest
         TestCasesMenuPage.AddTestCase();
         
         CreateTestCasePage.WaitForOpen(CreateTestCasePage.PageName, CreateTestCasePage.HeaderTitleLocation);
-        var testCase = TestCaseCreator.CreateRandomAllFields();
+        var testCase = TestCaseCreator.CreateRandomRequiredFields();
         CreateTestCasePage.FillTestCaseForm(testCase);
         CreateTestCasePage.ClickAcceptButton();
         
-        TestCaseOverViewPage.WaitForOpen(TestCaseOverviewPage.PageName, TestCaseOverviewPage.SectionLocation);
-        var actulalTest = TestCaseOverViewPage.GetTestCase();
+        DefaultTestCaseOverViewPage.WaitForOpen(BaseTestCaseOverviewPage.PageName, BaseTestCaseOverviewPage.SectionLocation);
+        var actulalTest = DefaultTestCaseOverViewPage.GetTestCase();
     }
 }

@@ -1,37 +1,32 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using OpenQA.Selenium;
+using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
-using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page.Project.TestCase;
 
-public class TestCaseOverviewPage : BasePage
+public abstract class BaseTestCaseOverviewPage : BasePage
 {
     public const string PageName = "TestCase Overview Page";
-    private const string PropertyExample = "EXAMPLE";
     private static readonly By TitleLocation = By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"title\")]");
     public static readonly By SectionLocation = By.XPath("//a[@id=\"navigation-cases-section\"]");
-    private const string CommonPropertyLocation = "//table[@class=\"io\"]//td[@id=\"cell_" + PropertyExample +"\"]";
-    
-    public TestCaseOverviewPage(IWebDriver? driver) : base(driver)
+    private const string CommonPropertyLocation = $"//table[@class=\"io\"]//td[@id=\"cell_{Example}\"]";
+
+    protected BaseTestCaseOverviewPage(IWebDriver? driver) : base(driver)
     {
     }
 
-    public Model.TestCase.BaseTestCase GetTestCase()
+    protected void FillRequiredFields(BaseTestCase testCase)
     {
-        var testCase = new Model.TestCase.BaseTestCase();
         testCase.Title = GetTitle();
         testCase.Section = GetSection();
-        testCase.Type = GetPropertyValue(TestCaseProperties.TestCaseTypePropertyName);
-        testCase.Priority = GetPropertyValue(TestCaseProperties.PriorityPropertyName);
-        testCase.Estimate = ConvertTimeToMinutes(GetPropertyValue(TestCaseProperties.EstimatePropertyName));
-        testCase.References = GetPropertyValue(TestCaseProperties.ReferencesPropertyName);
-        testCase.AutomationType = GetPropertyValue(TestCaseProperties.AutomationTypePropertyName);
-        
-        return testCase;
+        testCase.Type = GetPropertyValue(TestCaseProperties.Type);
+        testCase.Priority = GetPropertyValue(TestCaseProperties.Priority);
+        testCase.Estimate = ConvertTimeToMinutes(GetPropertyValue(TestCaseProperties.Estimate));
+        testCase.References = GetPropertyValue(TestCaseProperties.References);
+        testCase.AutomationType = GetPropertyValue(TestCaseProperties.AutomationType);
     }
 
     private string GetTitle()
@@ -46,7 +41,7 @@ public class TestCaseOverviewPage : BasePage
 
     private string GetPropertyValue(string property)
     {
-        return GetTextFromElement(GetPropertyPath(property)).Split('\n').Last();
+        return GetTextFromElement(GetElementLocation(CommonPropertyLocation, property)).Split('\n').Last();
     }
     
     
@@ -72,10 +67,5 @@ public class TestCaseOverviewPage : BasePage
         }
 
         return result;
-    }
-    
-    private static By GetPropertyPath(string propertyName)
-    {
-        return By.XPath(CommonPropertyLocation.Replace(PropertyExample, propertyName));
     }
 }
