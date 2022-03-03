@@ -1,8 +1,10 @@
-namespace TestRailAutomationTest.Model.Project.Enum;
-
-public enum ProjectType
+namespace TestRailAutomationTest.Model.Project.Enum
 {
-    SingleRepositoryForAllCases,
-    SingleRepositoryWithBaselineSupport,
-    MultipleTestSuites
+
+    public enum ProjectType
+    {
+        SingleRepositoryForAllCases,
+        SingleRepositoryWithBaselineSupport,
+        MultipleTestSuites
+    }
 }

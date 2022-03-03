@@ -1,52 +1,54 @@
 using System.Collections.Generic;
 
-namespace TestRailAutomationTest.Model.TestCase;
-
-public static class TestCaseData
+namespace TestRailAutomationTest.Model.TestCase
 {
-    public const string ExploratoryTemplate = "Exploratory Session";
-    public const string StepsTemplate = "Test Case (Steps)";
-    public const string TextTemplate = "Test Case (Text)";
-    
-    public static readonly List<string> Section = new()
+
+    public static class TestCaseData
     {
-        "Test Cases"
-    };
-    
-    public static readonly List<string> Template = new()
-    {
-        ExploratoryTemplate,
-        StepsTemplate,
-        TextTemplate
-    };
-    
-    public static readonly List<string> Type = new()
-    {
-        "Acceptance",
-        "Accessibility",
-        "Automated",
-        "Compatibility",
-        "Destructive",
-        "Functional",
-        "Other",
-        "Performance",
-        "Regression",
-        "Security",
-        "Smoke & Sanity",
-        "Usability"
-    };
-    
-    public static readonly List<string> Priority = new()
-    {
-        "Critical",
-        "High",
-        "Medium",
-        "Low"
-    };
-    
-    public static readonly List<string> AutomationType = new()
-    {
-        " None",
-        " Ranorex"
-    };
+        public const string ExploratoryTemplate = "Exploratory Session";
+        public const string StepsTemplate = "Test Case (Steps)";
+        public const string TextTemplate = "Test Case (Text)";
+
+        public static readonly List<string> Section = new()
+        {
+            "Test Cases"
+        };
+
+        public static readonly List<string> Template = new()
+        {
+            ExploratoryTemplate,
+            StepsTemplate,
+            TextTemplate
+        };
+
+        public static readonly List<string> Type = new()
+        {
+            "Acceptance",
+            "Accessibility",
+            "Automated",
+            "Compatibility",
+            "Destructive",
+            "Functional",
+            "Other",
+            "Performance",
+            "Regression",
+            "Security",
+            "Smoke & Sanity",
+            "Usability"
+        };
+
+        public static readonly List<string> Priority = new()
+        {
+            "Critical",
+            "High",
+            "Medium",
+            "Low"
+        };
+
+        public static readonly List<string> AutomationType = new()
+        {
+            " None",
+            " Ranorex"
+        };
+    }
 }

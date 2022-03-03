@@ -1,22 +1,24 @@
 using System.Runtime.Serialization;
 
-namespace TestRailAutomationTest.Exception;
-
-public class IncorrectDataException : System.Exception
+namespace TestRailAutomationTest.Exception
 {
-    public IncorrectDataException()
-    {
-    }
 
-    protected IncorrectDataException(SerializationInfo info, StreamingContext context) : base(info, context)
+    public class IncorrectDataException : System.Exception
     {
-    }
+        public IncorrectDataException()
+        {
+        }
 
-    public IncorrectDataException(string? message) : base(message)
-    {
-    }
+        protected IncorrectDataException(SerializationInfo info, StreamingContext context) : base(info, context)
+        {
+        }
 
-    public IncorrectDataException(string? message, System.Exception? innerException) : base(message, innerException)
-    {
+        public IncorrectDataException(string? message) : base(message)
+        {
+        }
+
+        public IncorrectDataException(string? message, System.Exception? innerException) : base(message, innerException)
+        {
+        }
     }
 }

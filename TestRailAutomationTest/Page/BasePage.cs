@@ -26,7 +26,7 @@ namespace TestRailAutomationTest.Page
             Driver!.Url = BaseTest.LoginPageUrl;
             WaitForOpen(LoginPage.PageName, SearchButtonLocation);
         }
-
+    
         protected void FillInput(By inputLocation, string? data)
         {
             Waits.WaitElementExistence(Driver, inputLocation).SendKeys(data);

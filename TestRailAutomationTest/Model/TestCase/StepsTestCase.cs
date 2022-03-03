@@ -1,11 +1,13 @@
-namespace TestRailAutomationTest.Model.TestCase;
-
-public class StepsTestCase : BaseTestCase
+namespace TestRailAutomationTest.Model.TestCase
 {
-    public string Preconditions { get; set; }
-    
-    public string StepDescription { get; set; }
-    
-    public string StepExpectedResult { get; set; }
-    
+
+    public class StepsTestCase : BaseTestCase
+    {
+        public string? Preconditions { get; set; }
+
+        public string? StepDescription { get; set; }
+
+        public string? StepExpectedResult { get; set; }
+
+    }
 }

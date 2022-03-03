@@ -2,12 +2,14 @@ using Bogus;
 using TestRailAutomationTest.Model.Project.Enum;
 using TestRailAutomationTest.Utils;
 
-namespace TestRailAutomationTest.Model.Project;
-
-public static class ProjectData
+namespace TestRailAutomationTest.Model.Project
 {
-    public static ProjectType GetRandomProjectType()
+
+    public static class ProjectData
     {
-        return RandomData.Faker.PickRandom<ProjectType>();
+        public static ProjectType GetRandomProjectType()
+        {
+            return RandomData.Faker.PickRandom<ProjectType>();
+        }
     }
 }
