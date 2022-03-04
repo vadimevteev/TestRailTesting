@@ -3,6 +3,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Driver;
 using TestRailAutomationTest.Model;
+using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Page.Project.TestCase;
@@ -25,6 +26,8 @@ namespace TestRailAutomationTest.Test
         protected CreateTestCasePage CreateTestCasePage;
         protected DefaultTestCaseOverviewPage DefaultTestCaseOverViewPage;
         protected ExploratoryTestCaseOverviewPage ExploratoryTestCaseOverviewPage;
+        protected TextTestCasePage TextTestCasePage;
+        protected StepsTestCaseOverviewPage StepsTestCaseOverviewPage;
 
         [SetUp]
         public void Init()
@@ -40,6 +43,8 @@ namespace TestRailAutomationTest.Test
             CreateTestCasePage = new CreateTestCasePage(Driver);
             DefaultTestCaseOverViewPage = new DefaultTestCaseOverviewPage(Driver);
             ExploratoryTestCaseOverviewPage = new ExploratoryTestCaseOverviewPage(Driver);
+            TextTestCasePage = new TextTestCasePage(Driver);
+            StepsTestCaseOverviewPage = new StepsTestCaseOverviewPage(Driver);
         }
 
         [TearDown]

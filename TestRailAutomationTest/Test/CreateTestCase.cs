@@ -12,11 +12,33 @@ using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
 {
-
+    
     public class CreateTestCase : BaseTest
     {
         [Test]
         public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful()
+        {
+            test(TestCaseCreator.CreateRandomRequiredFields(), DefaultTestCaseOverViewPage);
+        }
+        
+        [Test]
+        public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful2()
+        {
+            test(TestCaseCreator.CreateRandomExploratoryTemplate(), ExploratoryTestCaseOverviewPage);
+        }
+        [Test]
+        public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful3()
+        {
+            test(TestCaseCreator.CreateRandomStepsTemplate(), StepsTestCaseOverviewPage);
+            
+        }
+        [Test]
+        public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful4()
+        {
+            test(TestCaseCreator.CreateRandomTextType(), TextTestCasePage);
+        }
+
+        public void test(BaseTestCase tc, BaseTestCaseOverviewPage bp)
         {
             LoginPage.OpenStartPage();
             LoginPage
@@ -46,15 +68,14 @@ namespace TestRailAutomationTest.Test
             TestCasesMenuPage.AddTestCase();
 
             CreateTestCasePage.WaitForOpen(CreateTestCasePage.PageName, CreateTestCasePage.HeaderTitleLocation);
-            var testCase = TestCaseCreator.CreateRandomExploratoryTemplate();
-            CreateTestCasePage.FillTestCaseForm(testCase);
+            CreateTestCasePage.FillTestCaseForm(tc);
             CreateTestCasePage.ClickAcceptButton();
 
-            DefaultTestCaseOverViewPage.WaitForOpen(BaseTestCaseOverviewPage.PageName,
+            bp.WaitForOpen(BaseTestCaseOverviewPage.PageName,
                 BaseTestCaseOverviewPage.SectionLocation);
-            var actualTest = TestCaseCreator.CreateRandomExploratoryTemplate();
+            var actualTest = bp.GetTestCase();
             actualTest.Should()
-                .BeEquivalentTo(testCase, options => options.Excluding(o => o.Template));
+                .BeEquivalentTo(tc, options => options.Excluding(o => o.Template));
         }
     }
 }

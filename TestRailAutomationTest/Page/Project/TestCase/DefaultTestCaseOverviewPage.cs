@@ -10,7 +10,7 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         {
         }
 
-        public DefaultTestCase GetTestCase()
+        public override DefaultTestCase GetTestCase()
         {
             var testCase = new DefaultTestCase();
             FillCommonFields(testCase);
@@ -18,5 +18,3 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         }
     }
 }
-
-

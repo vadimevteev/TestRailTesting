@@ -89,7 +89,7 @@ namespace TestRailAutomationTest.Page.Project
                 case TestCaseData.TextTemplate:
                     FillInputAfterClick(
                         GetElementLocation(CommonDescriptionInputLocation, TestCaseProperties.Preconditions),
-                        ((StepsTestCase) testCase).Preconditions);
+                        ((TextTestCase) testCase).Preconditions);
                     FillInputAfterClick(GetElementLocation(CommonDescriptionInputLocation, TestCaseProperties.Steps),
                         ((TextTestCase) testCase).Steps);
                     FillInputAfterClick(

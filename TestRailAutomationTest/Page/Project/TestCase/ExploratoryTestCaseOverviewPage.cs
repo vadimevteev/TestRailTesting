@@ -11,12 +11,12 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         {
         }
 
-        public ExploratoryTestCase GetTestCase()
+        public override ExploratoryTestCase GetTestCase()
         {
             var testCase = new ExploratoryTestCase();
             FillCommonFields(testCase);
-            testCase.Goals = GetDescriptionPropertyValue(TestCaseProperties.Goals);
-            testCase.Mission = GetDescriptionPropertyValue(TestCaseProperties.Mission);
+            // testCase.Goals = GetDescriptionProperty(TestCaseProperties.GoalsName);
+            // testCase.Mission = GetDescriptionProperty(TestCaseProperties.MissionName);
             return testCase;
         }
     }

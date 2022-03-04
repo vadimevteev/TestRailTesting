@@ -17,52 +17,42 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         private const string CommonPropertyLocation = $"//table[@class=\"io\"]//td[@id=\"cell_{Example}\"]";
         private const string CommonDescriptionLocation = $"//span[text()=\"{Example}\"]/../following-sibling::div//p";
 
+        public abstract BaseTestCase GetTestCase();
+        
         protected BaseTestCaseOverviewPage(IWebDriver? driver) : base(driver)
         {
         }
 
         protected void FillCommonFields(BaseTestCase testCase)
         {
-            testCase.Title = GetTitle();
-            testCase.Section = GetSection();
-            testCase.Type = GetPropertyValue(TestCaseProperties.Type);
-            testCase.Priority = GetPropertyValue(TestCaseProperties.Priority);
+            testCase.Title = GetTextFromElement(TitleLocation);
+            testCase.Section = GetTextFromElement(SectionLocation);
+            testCase.Type = GetRequiredPropertyValue(TestCaseProperties.Type);
+            testCase.Priority = GetRequiredPropertyValue(TestCaseProperties.Priority);
             FillOptionalFields(testCase);
         }
 
         private void FillOptionalFields(BaseTestCase testCase)
         {
             if (testCase is DefaultTestCase) return;
-            testCase.Estimate = ConvertTimeToMinutes(GetPropertyValue(TestCaseProperties.Estimate));
-            testCase.References = GetPropertyValue(TestCaseProperties.References);
-            testCase.AutomationType = GetPropertyValue(TestCaseProperties.AutomationType);
+            testCase.Estimate = ConvertTimeToMinutes(GetRequiredPropertyValue(TestCaseProperties.Estimate));
+            testCase.References = GetRequiredPropertyValue(TestCaseProperties.References);
+            testCase.AutomationType = " " + GetRequiredPropertyValue(TestCaseProperties.AutomationType);
         }
 
-        private string GetTitle()
-        {
-            return GetTextFromElement(TitleLocation);
-        }
-
-        private string GetSection()
-        {
-            return GetTextFromElement(SectionLocation);
-        }
-
-        private string GetPropertyValue(string property)
+        private string GetRequiredPropertyValue(string property)
         {
             return GetTextFromElement(GetElementLocation(CommonPropertyLocation, property)).Split('\n').Last();
         }
 
-        protected string GetDescriptionPropertyValue(string property)
+        protected string? GetDescriptionProperty(string value)
         {
-            try
-            {
-                return GetTextFromElement(GetElementLocation(CommonDescriptionLocation, property));
-            }
-            catch (WebDriverTimeoutException)
-            {
-                return "";
-            }
+            return GetOptionalValue(GetElementLocation(CommonDescriptionLocation, value));
+        }
+
+        protected string? GetOptionalValue(By location)
+        {
+            return IsElementExistOnPage(location) ? GetTextFromElement(location) : null;
         }
 
         private static int ConvertTimeToMinutes(string time)
