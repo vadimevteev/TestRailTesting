@@ -44,7 +44,7 @@ namespace TestRailAutomationTest.Test
             CreateTestCaseTest(TestCaseCreator.CreateRandomTextType(), TextTestCasePage);
         }
 
-        private void CreateTestCaseTest(BaseTestCase expectedTest, BaseTestCaseOverviewPage bp)
+        private void CreateTestCaseTest(BaseTestCase expectedTest, BaseTestCaseOverviewPage currentPage)
         {
             LoginPage.OpenStartPage();
             LoginPage
@@ -77,9 +77,9 @@ namespace TestRailAutomationTest.Test
             CreateTestCasePage.FillTestCaseForm(expectedTest);
             CreateTestCasePage.ClickAcceptButton();
 
-            bp.WaitForOpen(BaseTestCaseOverviewPage.PageName,
+            currentPage.WaitForOpen(BaseTestCaseOverviewPage.PageName,
                 BaseTestCaseOverviewPage.SectionLocation);
-            var actualTest = bp.GetTestCase();
+            var actualTest = currentPage.GetTestCase();
             expectedTest.Should()
                 .BeEquivalentTo(actualTest, options => options.RespectingRuntimeTypes()
                     .Excluding(o => o.Template));
