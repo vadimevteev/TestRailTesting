@@ -21,10 +21,9 @@ namespace TestRailAutomationTest.Page.Project
         {
         }
 
-        public ProjectOverviewPage OpenTestCasesPage()
+        public void OpenTestCasesPage()
         {
             ClickButton(TestCaseTabLocation);
-            return this;
         }
 
         public Model.Project.Project GetProject()

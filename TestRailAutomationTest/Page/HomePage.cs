@@ -4,7 +4,6 @@ using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page
 {
-
     public class HomePage : BasePage
     {
         public const string PageName = "Home page";
@@ -20,10 +19,9 @@ namespace TestRailAutomationTest.Page
         {
         }
         
-        public HomePage ClickAddProjectButton()
+        public void ClickAddProjectButton()
         {
             ClickButton(AddProjectButtonLocation);
-            return this;
         }
 
         public void OpenProject(string projectName)

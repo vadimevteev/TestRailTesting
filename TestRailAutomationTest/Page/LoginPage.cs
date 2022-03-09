@@ -4,7 +4,6 @@ using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page
 {
-
     public class LoginPage : BasePage
     {
         public const string PageName = "Login page";

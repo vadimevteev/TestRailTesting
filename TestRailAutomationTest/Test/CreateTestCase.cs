@@ -1,7 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading;
 using FluentAssertions;
 using NUnit.Framework;
 using TestRailAutomationTest.Model.TestCase;
@@ -12,33 +9,42 @@ using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
 {
-    
     public class CreateTestCase : BaseTest
     {
-        [Test]
-        public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful()
+        [Test, Description(
+             "Create test case with required fields should be successful, " +
+             "test case with required fields should be created")]
+        public void CreateTestCase_WithRequiredFields_ShouldBeSuccessful()
         {
-            test(TestCaseCreator.CreateRandomRequiredFields(), DefaultTestCaseOverViewPage);
+            CreateTestCaseTest(TestCaseCreator.CreateRandomRequiredFields(), DefaultTestCaseOverViewPage);
         }
         
-        [Test]
-        public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful2()
+        [Test, Description(
+             "Create test case with all fields with exploratory template should be successful, " +
+             "test case with all current fields should be created")]
+        public void CreateTestCase_WithExploratoryTemplateAndAllFields_ShouldBeSuccessful()
         {
-            test(TestCaseCreator.CreateRandomExploratoryTemplate(), ExploratoryTestCaseOverviewPage);
+            CreateTestCaseTest(TestCaseCreator.CreateRandomExploratoryTemplate(), ExploratoryTestCaseOverviewPage);
         }
-        [Test]
-        public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful3()
+        
+        [Test, Description(
+             "Create test case with all fields with steps template should be successful, " +
+             "test case with all current fields should be created")]
+        public void CreateTestCase_WithStepsTemplateAndAllFields_ShouldBeSuccessful()
         {
-            test(TestCaseCreator.CreateRandomStepsTemplate(), StepsTestCaseOverviewPage);
+            CreateTestCaseTest(TestCaseCreator.CreateRandomStepsTemplate(), StepsTestCaseOverviewPage);
             
         }
-        [Test]
-        public void CreateTestCase_WithRequiredAndAllFields_ShouldBeSuccessful4()
+        
+        [Test, Description(
+             "Create test case with all fields with text template should be successful, " +
+             "test case with all current fields should be created")]
+        public void CreateTestCase_WithTextTemplateAndAllFields_ShouldBeSuccessful()
         {
-            test(TestCaseCreator.CreateRandomTextType(), TextTestCasePage);
+            CreateTestCaseTest(TestCaseCreator.CreateRandomTextType(), TextTestCasePage);
         }
 
-        public void test(BaseTestCase tc, BaseTestCaseOverviewPage bp)
+        private void CreateTestCaseTest(BaseTestCase expectedTest, BaseTestCaseOverviewPage bp)
         {
             LoginPage.OpenStartPage();
             LoginPage
@@ -68,14 +74,15 @@ namespace TestRailAutomationTest.Test
             TestCasesMenuPage.AddTestCase();
 
             CreateTestCasePage.WaitForOpen(CreateTestCasePage.PageName, CreateTestCasePage.HeaderTitleLocation);
-            CreateTestCasePage.FillTestCaseForm(tc);
+            CreateTestCasePage.FillTestCaseForm(expectedTest);
             CreateTestCasePage.ClickAcceptButton();
 
             bp.WaitForOpen(BaseTestCaseOverviewPage.PageName,
                 BaseTestCaseOverviewPage.SectionLocation);
             var actualTest = bp.GetTestCase();
-            actualTest.Should()
-                .BeEquivalentTo(tc, options => options.Excluding(o => o.Template));
+            expectedTest.Should()
+                .BeEquivalentTo(actualTest, options => options.RespectingRuntimeTypes()
+                    .Excluding(o => o.Template));
         }
     }
 }

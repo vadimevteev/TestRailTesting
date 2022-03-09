@@ -2,7 +2,6 @@ using OpenQA.Selenium;
 
 namespace TestRailAutomationTest.Page
 {
-
     public class ProjectsMenuPage : BasePage
     {
         public const string PageName = "Projects overview page";
@@ -15,10 +14,9 @@ namespace TestRailAutomationTest.Page
         {
         }
 
-        public ProjectsMenuPage OpenHomePage()
+        public void OpenHomePage()
         {
             ClickButton(HomePageLinkLocation);
-            return this;
         }
     }
 }

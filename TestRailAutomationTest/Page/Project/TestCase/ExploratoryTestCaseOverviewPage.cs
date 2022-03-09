@@ -15,8 +15,8 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         {
             var testCase = new ExploratoryTestCase();
             FillCommonFields(testCase);
-            // testCase.Goals = GetDescriptionProperty(TestCaseProperties.GoalsName);
-            // testCase.Mission = GetDescriptionProperty(TestCaseProperties.MissionName);
+            testCase.Goals = GetDescriptionProperty(TestCaseProperties.GoalsName);
+            testCase.Mission = GetDescriptionProperty(TestCaseProperties.MissionName);
             return testCase;
         }
     }

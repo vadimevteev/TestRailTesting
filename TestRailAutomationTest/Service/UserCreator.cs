@@ -7,7 +7,7 @@ namespace TestRailAutomationTest.Service
     {
         public static User CreateRandom()
         {
-            return new User()
+            return new User
             {
                 Email = RandomData.GetEmail(),
                 Name = RandomData.GetName(),

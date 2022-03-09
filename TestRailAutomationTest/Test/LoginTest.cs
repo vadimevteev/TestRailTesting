@@ -4,7 +4,6 @@ using FluentAssertions.Execution;
 using NUnit.Framework;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Constants;
-using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test

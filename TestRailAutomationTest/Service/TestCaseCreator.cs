@@ -1,10 +1,8 @@
-using System.Linq;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Service
 {
-
     public static class TestCaseCreator
     {
         public static DefaultTestCase CreateRandomRequiredFields()

@@ -4,7 +4,6 @@ using TestRailAutomationTest.Model.Project.Enum;
 
 namespace TestRailAutomationTest.Page
 {
-
     public class CreateProjectPage : BasePage
     {
         public const string PageName = "Add project page";
@@ -62,10 +61,9 @@ namespace TestRailAutomationTest.Page
             }
         }
 
-        public CreateProjectPage PressAcceptButton()
+        public void PressAcceptButton()
         {
             ClickButton(AcceptButtonLocation);
-            return this;
         }
     }
 }
