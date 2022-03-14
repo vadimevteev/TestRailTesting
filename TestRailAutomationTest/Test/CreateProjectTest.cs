@@ -9,7 +9,6 @@ using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
 {
-
     public class CreateProjectTest : BaseTest
     {
         private static IEnumerable<Project> Projects => new[]

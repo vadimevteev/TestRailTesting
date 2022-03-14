@@ -2,7 +2,6 @@ using System.Collections.Generic;
 
 namespace TestRailAutomationTest.Model
 {
-
     public class Config
     {
         public string AppUrl { get; set; }

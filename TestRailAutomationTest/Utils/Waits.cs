@@ -6,7 +6,6 @@ using TestRailAutomationTest.Page;
 
 namespace TestRailAutomationTest.Utils
 {
-
     public static class Waits
     {
         public static IWebElement WaitElementExistence(IWebDriver? driver, By elementPath)

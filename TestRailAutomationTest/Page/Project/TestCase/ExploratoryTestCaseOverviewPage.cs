@@ -4,7 +4,6 @@ using TestRailAutomationTest.Page.Constants;
 
 namespace TestRailAutomationTest.Page.Project.TestCase
 {
-    
     public class ExploratoryTestCaseOverviewPage : BaseTestCaseOverviewPage
     {
         public ExploratoryTestCaseOverviewPage(IWebDriver? driver) : base(driver)

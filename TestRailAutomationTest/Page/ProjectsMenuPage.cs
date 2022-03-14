@@ -14,9 +14,6 @@ namespace TestRailAutomationTest.Page
         {
         }
 
-        public void OpenHomePage()
-        {
-            ClickButton(HomePageLinkLocation);
-        }
+        public void OpenHomePage() => ClickButton(HomePageLinkLocation);
     }
 }

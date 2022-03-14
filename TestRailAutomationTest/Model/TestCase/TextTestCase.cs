@@ -1,6 +1,5 @@
 namespace TestRailAutomationTest.Model.TestCase
 {
-
     public class TextTestCase : BaseTestCase
     {
         public string? Preconditions { get; set; }

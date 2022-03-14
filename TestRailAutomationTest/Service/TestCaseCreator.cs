@@ -15,8 +15,7 @@ namespace TestRailAutomationTest.Service
         public static ExploratoryTestCase CreateRandomExploratoryTemplate()
         {
             var testCase = new ExploratoryTestCase();
-            FillRequiredFields(testCase, TestCaseData.ExploratoryTemplate);
-            FillOptionalFields(testCase);
+            FillCommonFields(testCase, TestCaseData.ExploratoryTemplate);
             FillExploratoryTypeDescription(testCase);
             return testCase;
         }
@@ -24,8 +23,7 @@ namespace TestRailAutomationTest.Service
         public static StepsTestCase CreateRandomStepsTemplate()
         {
             var testCase = new StepsTestCase();
-            FillRequiredFields(testCase, TestCaseData.StepsTemplate);
-            FillOptionalFields(testCase);
+            FillCommonFields(testCase, TestCaseData.StepsTemplate);
             FillStepsTypeDescription(testCase);
             return testCase;
         }
@@ -33,16 +31,21 @@ namespace TestRailAutomationTest.Service
         public static TextTestCase CreateRandomTextType()
         {
             var testCase = new TextTestCase();
-            FillRequiredFields(testCase, TestCaseData.TextTemplate);
-            FillOptionalFields(testCase);
+            FillCommonFields(testCase, TestCaseData.TextTemplate);
             FillTextTypeDescription(testCase);
             return testCase;
+        }
+
+        private static void FillCommonFields(BaseTestCase testCase, string template)
+        {
+            FillRequiredFields(testCase, template);
+            FillOptionalFields(testCase);
         }
 
         private static void FillRequiredFields(BaseTestCase testCase, string template)
         {
             testCase.Title = RandomData.GetCompanyName();
-            testCase.Section = RandomData.GetValueFromList(TestCaseData.Section);
+            testCase.Section = TestCaseData.Section;
             testCase.Template = template;
             testCase.Type = RandomData.GetValueFromList(TestCaseData.Type);
             testCase.Priority = RandomData.GetValueFromList(TestCaseData.Priority);

@@ -5,7 +5,6 @@ using TestRailAutomationTest.Model;
 
 namespace TestRailAutomationTest.Service
 {
-
     public static class DataReader
     {
         private const string SettingsPath = @"Resources\appsettings.json";

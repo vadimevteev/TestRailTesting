@@ -10,7 +10,6 @@ namespace TestRailAutomationTest.Page
 
         public static readonly By HeaderTitleLocation =
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'Add Project')]");
-
         private static readonly By NameInputLocation = By.XPath("//input[@id=\"name\"]");
         private static readonly By AnnouncementLocation = By.XPath("//textarea[@id=\"announcement\"]");
         private static readonly By AcceptButtonLocation = By.XPath("//button[@id=\"accept\"]");
@@ -61,9 +60,6 @@ namespace TestRailAutomationTest.Page
             }
         }
 
-        public void PressAcceptButton()
-        {
-            ClickButton(AcceptButtonLocation);
-        }
+        public void PressAcceptButton() => ClickButton(AcceptButtonLocation);
     }
 }

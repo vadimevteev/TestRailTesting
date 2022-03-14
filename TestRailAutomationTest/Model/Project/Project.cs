@@ -2,7 +2,6 @@ using TestRailAutomationTest.Model.Project.Enum;
 
 namespace TestRailAutomationTest.Model.Project
 {
-
     public class Project
     {
         public string Name { get; set; }

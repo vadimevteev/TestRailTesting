@@ -11,7 +11,6 @@ using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test
 {
-
     public abstract class BaseTest
     {
         public static readonly string LoginPageUrl = DataReader.GetConfig().AppUrl;

@@ -3,17 +3,13 @@ using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page.Project
 {
-
     public class ProjectOverviewPage : BasePage
     {
         public const string PageName = "Project overview page";
         public static readonly By ChartLineLocation = By.XPath("//div[@id=\"chart-line-fc\"]");
-
         private static readonly By ProjectNameLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"content-header-title\")]");
-
         private static readonly By TestCaseTabLocation = By.XPath("//a[@id=\"navigation-suites\"]");
-
         private static readonly By AnnouncementLocation =
             By.XPath("//div[@id=\"content-inner\"]/div[@class=\"markdown\"]/p");
 
@@ -21,10 +17,7 @@ namespace TestRailAutomationTest.Page.Project
         {
         }
 
-        public void OpenTestCasesPage()
-        {
-            ClickButton(TestCaseTabLocation);
-        }
+        public void OpenTestCasesPage() => ClickButton(TestCaseTabLocation);
 
         public Model.Project.Project GetProject()
         {
@@ -36,15 +29,9 @@ namespace TestRailAutomationTest.Page.Project
             };
         }
 
-        private string GetProjectName()
-        {
-            return Waits.WaitElementExistence(Driver, ProjectNameLocation).Text;
-        }
+        private string GetProjectName() => Waits.WaitElementExistence(Driver, ProjectNameLocation).Text;
 
-        private bool IsShownAnnouncement()
-        {
-            return IsElementExistOnPage(AnnouncementLocation, ReducedTimeout);
-        }
+        private bool IsShownAnnouncement() => IsElementExistOnPage(AnnouncementLocation, ReducedTimeout);
 
         private string GetProjectAnnouncement()
         {

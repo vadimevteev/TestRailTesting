@@ -19,10 +19,7 @@ namespace TestRailAutomationTest.Page
         {
         }
         
-        public void ClickAddProjectButton()
-        {
-            ClickButton(AddProjectButtonLocation);
-        }
+        public void ClickAddProjectButton() => ClickButton(AddProjectButtonLocation);
 
         public void OpenProject(string projectName)
         {
@@ -36,9 +33,6 @@ namespace TestRailAutomationTest.Page
             }
         }
 
-        public string GetCurrentUserName()
-        {
-            return Waits.WaitElementExistence(Driver, UserNameLocation).Text;
-        }
+        public string GetCurrentUserName() => Waits.WaitElementExistence(Driver, UserNameLocation).Text;
     }
 }

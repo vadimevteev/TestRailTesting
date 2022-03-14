@@ -1,6 +1,5 @@
 namespace TestRailAutomationTest.Page.Constants
 {
-
     public static class TestCaseProperties
     {
         public const string PreconditionsName = "Preconditions";

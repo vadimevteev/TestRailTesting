@@ -6,7 +6,6 @@ using TestRailAutomationTest.Page.Constants;
 
 namespace TestRailAutomationTest.Page.Project
 {
-
     public class CreateTestCasePage : BasePage
     {
         public const string PageName = "Add test case page";
@@ -107,15 +106,10 @@ namespace TestRailAutomationTest.Page.Project
             ClickButton(FindPropertyValue(propertyName, value));
         }
 
-        private static By FindPropertyValue(string propertyName, string value)
-        {
-            return By.XPath(CommonPropertyValueLocation.Replace(Example, propertyName)
+        private static By FindPropertyValue(string propertyName, string value) 
+            => By.XPath(CommonPropertyValueLocation.Replace(Example, propertyName)
                 .Replace(PropertyValueExample, value));
-        }
 
-        public void ClickAcceptButton()
-        {
-            ClickButton(AcceptButtonLocation);
-        }
+        public void ClickAcceptButton() => ClickButton(AcceptButtonLocation);
     }
 }

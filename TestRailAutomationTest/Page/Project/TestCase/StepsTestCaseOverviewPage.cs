@@ -4,7 +4,6 @@ using TestRailAutomationTest.Page.Constants;
 
 namespace TestRailAutomationTest.Page.Project.TestCase
 {
-    
     public class StepsTestCaseOverviewPage : BaseTestCaseOverviewPage
     {
         private static readonly By StepDescriptionLocation = By.XPath("//div[contains(@class,\"hidden-vertical\")]//p");

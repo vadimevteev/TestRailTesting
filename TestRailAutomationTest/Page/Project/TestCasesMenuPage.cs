@@ -2,7 +2,6 @@ using OpenQA.Selenium;
 
 namespace TestRailAutomationTest.Page.Project
 {
-
     public class TestCasesMenuPage : BasePage
     {
         public const string PageName = "Test Cases page";
@@ -16,9 +15,6 @@ namespace TestRailAutomationTest.Page.Project
         {
         }
 
-        public void AddTestCase()
-        {
-            ClickButton(AddTestCaseButtonLocation);
-        }
+        public void AddTestCase() => ClickButton(AddTestCaseButtonLocation);
     }
 }

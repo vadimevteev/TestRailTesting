@@ -1,6 +1,5 @@
 namespace TestRailAutomationTest.Model.TestCase
 {
-
     public class ExploratoryTestCase : BaseTestCase
     {
         public string? Mission { get; set; }

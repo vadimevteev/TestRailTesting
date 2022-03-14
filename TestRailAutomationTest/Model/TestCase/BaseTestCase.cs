@@ -1,6 +1,5 @@
 namespace TestRailAutomationTest.Model.TestCase
 {
-
     public abstract class BaseTestCase
     {
         public string Title { get; set; }
@@ -18,6 +17,5 @@ namespace TestRailAutomationTest.Model.TestCase
         public string? References { get; set; }
 
         public string? AutomationType { get; set; }
-
     }
 }
