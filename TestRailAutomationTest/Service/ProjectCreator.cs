@@ -1,5 +1,5 @@
-using TestRailAutomationTest.Model.Project;
-using TestRailAutomationTest.Model.Project.Enum;
+using TestRailAutomationTest.Model.ProjectModel;
+using TestRailAutomationTest.Model.ProjectModel.Enum;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Service

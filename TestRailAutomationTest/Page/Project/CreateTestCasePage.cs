@@ -25,7 +25,7 @@ namespace TestRailAutomationTest.Page.Project
             By.XPath("//td[@class=\"step-content\"]//div[@placeholder=\"Step Description\"]");
         private static readonly By StepExpectedResultInputLocation =
             By.XPath("//td[@class=\"step-content\"]//div[@placeholder=\"Expected Result\"]");
-        private static readonly By AcceptButtonLocation = By.XPath("//button[@id=\"accept\"]");
+        private static readonly By AcceptButtonLocation = By.Id("accept");
 
         public CreateTestCasePage(IWebDriver? driver) : base(driver)
         {
@@ -55,7 +55,11 @@ namespace TestRailAutomationTest.Page.Project
 
         private void FillOptionalFields(BaseTestCase testCase)
         {
-            if (testCase is DefaultTestCase) return;
+            if (testCase is DefaultTestCase)
+            {
+                return;
+            }
+            
             FillInputAfterClick(GetElementLocation(CommonInputLocation, TestCaseProperties.Estimate),
                 testCase.Estimate.ToString());
             FillInputAfterClick(GetElementLocation(CommonInputLocation, TestCaseProperties.References),

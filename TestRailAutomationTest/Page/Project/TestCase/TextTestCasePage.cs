@@ -6,18 +6,20 @@ namespace TestRailAutomationTest.Page.Project.TestCase
 {
     public class TextTestCasePage : BaseTestCaseOverviewPage
     {
-        public TextTestCasePage(IWebDriver? driver) : base(driver)
+        private readonly TextTestCase _testCase;
+        
+        public TextTestCasePage(IWebDriver? driver, TextTestCase testCase) : base(driver)
         {
+            _testCase = testCase;
         }
 
         public override TextTestCase GetTestCase()
         {
-            var testCase = new TextTestCase();
-            FillCommonFields(testCase);
-            testCase.Preconditions = GetDescriptionProperty(TestCaseProperties.PreconditionsName);
-            testCase.Steps = GetDescriptionProperty(TestCaseProperties.StepsName);
-            testCase.ExpectedResult = GetDescriptionProperty(TestCaseProperties.ExpectedResultName);
-            return testCase;
+            FillCommonFields(_testCase);
+            _testCase.Preconditions = GetDescriptionProperty(TestCaseProperties.PreconditionsName);
+            _testCase.Steps = GetDescriptionProperty(TestCaseProperties.StepsName);
+            _testCase.ExpectedResult = GetDescriptionProperty(TestCaseProperties.ExpectedResultName);
+            return _testCase;
         }
     }
 }

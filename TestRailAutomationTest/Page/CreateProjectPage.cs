@@ -1,6 +1,6 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
-using TestRailAutomationTest.Model.Project.Enum;
+using TestRailAutomationTest.Model.ProjectModel.Enum;
 
 namespace TestRailAutomationTest.Page
 {
@@ -10,22 +10,20 @@ namespace TestRailAutomationTest.Page
 
         public static readonly By HeaderTitleLocation =
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'Add Project')]");
-        private static readonly By NameInputLocation = By.XPath("//input[@id=\"name\"]");
-        private static readonly By AnnouncementLocation = By.XPath("//textarea[@id=\"announcement\"]");
-        private static readonly By AcceptButtonLocation = By.XPath("//button[@id=\"accept\"]");
-        private static readonly By ShowAnnouncementCheckMarkLocation = By.XPath("//input[@id=\"show_announcement\"]");
-        private static readonly By SingleSuiteModeLocation = By.XPath("//input[@id=\"suite_mode_single\"]");
-
+        private static readonly By NameInputLocation = By.Id("name");
+        private static readonly By AnnouncementLocation = By.Id("announcement");
+        private static readonly By AcceptButtonLocation = By.Id("accept");
+        private static readonly By ShowAnnouncementCheckMarkLocation = By.Id("show_announcement");
+        private static readonly By SingleSuiteModeLocation = By.Id("suite_mode_single");
         private static readonly By SingleBaseLineSuiteModeLocation =
-            By.XPath("//input[@id=\"suite_mode_single_baseline\"]");
-
-        private static readonly By MultipleModeLocation = By.XPath("//input[@id=\"suite_mode_multi\"]");
+            By.Id("suite_mode_single_baseline");
+        private static readonly By MultipleModeLocation = By.Id("suite_mode_multi");
 
         public CreateProjectPage(IWebDriver? driver) : base(driver)
         {
         }
 
-        public CreateProjectPage FillAddProjectForm(Model.Project.Project project)
+        public CreateProjectPage FillAddProjectForm(Model.ProjectModel.Project project)
         {
             FillInput(NameInputLocation, project.Name);
             FillInput(AnnouncementLocation, project.Announcement);

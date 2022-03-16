@@ -5,15 +5,17 @@ namespace TestRailAutomationTest.Page.Project.TestCase
 {
     public class DefaultTestCaseOverviewPage : BaseTestCaseOverviewPage
     {
-        public DefaultTestCaseOverviewPage(IWebDriver? driver) : base(driver)
+        private readonly DefaultTestCase _testCase;
+        
+        public DefaultTestCaseOverviewPage(IWebDriver? driver, DefaultTestCase testCase) : base(driver)
         {
+            _testCase = testCase;
         }
 
         public override DefaultTestCase GetTestCase()
         {
-            var testCase = new DefaultTestCase();
-            FillCommonFields(testCase);
-            return testCase;
+            FillCommonFields(_testCase);
+            return _testCase;
         }
     }
 }

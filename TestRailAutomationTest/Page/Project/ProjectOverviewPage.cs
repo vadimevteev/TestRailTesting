@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using TestRailAutomationTest.Model.ProjectModel;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page.Project
@@ -6,10 +7,10 @@ namespace TestRailAutomationTest.Page.Project
     public class ProjectOverviewPage : BasePage
     {
         public const string PageName = "Project overview page";
-        public static readonly By ChartLineLocation = By.XPath("//div[@id=\"chart-line-fc\"]");
+        public static readonly By ChartLineLocation = By.Id("chart-line-fc");
         private static readonly By ProjectNameLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"content-header-title\")]");
-        private static readonly By TestCaseTabLocation = By.XPath("//a[@id=\"navigation-suites\"]");
+        private static readonly By TestCaseTabLocation = By.Id("navigation-suites");
         private static readonly By AnnouncementLocation =
             By.XPath("//div[@id=\"content-inner\"]/div[@class=\"markdown\"]/p");
 
@@ -19,9 +20,9 @@ namespace TestRailAutomationTest.Page.Project
 
         public void OpenTestCasesPage() => ClickButton(TestCaseTabLocation);
 
-        public Model.Project.Project GetProject()
+        public Model.ProjectModel.Project GetProject()
         {
-            return new Model.Project.Project
+            return new Model.ProjectModel.Project()    
             {
                 Name = GetProjectName(),
                 Announcement = GetProjectAnnouncement(),

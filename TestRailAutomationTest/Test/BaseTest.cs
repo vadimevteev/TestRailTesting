@@ -40,10 +40,10 @@ namespace TestRailAutomationTest.Test
             ProjectOverviewPage = new ProjectOverviewPage(Driver);
             TestCasesMenuPage = new TestCasesMenuPage(Driver);
             CreateTestCasePage = new CreateTestCasePage(Driver);
-            DefaultTestCaseOverViewPage = new DefaultTestCaseOverviewPage(Driver);
-            ExploratoryTestCaseOverviewPage = new ExploratoryTestCaseOverviewPage(Driver);
-            TextTestCasePage = new TextTestCasePage(Driver);
-            StepsTestCaseOverviewPage = new StepsTestCaseOverviewPage(Driver);
+            DefaultTestCaseOverViewPage = new DefaultTestCaseOverviewPage(Driver, new DefaultTestCase());
+            ExploratoryTestCaseOverviewPage = new ExploratoryTestCaseOverviewPage(Driver, new ExploratoryTestCase());
+            TextTestCasePage = new TextTestCasePage(Driver, new TextTestCase());
+            StepsTestCaseOverviewPage = new StepsTestCaseOverviewPage(Driver, new StepsTestCase());
         }
 
         [TearDown]

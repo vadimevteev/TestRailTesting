@@ -7,8 +7,8 @@ namespace TestRailAutomationTest.Page
     public class LoginPage : BasePage
     {
         public const string PageName = "Login page";
-        private static readonly By EmailInputLocation = By.XPath("//*[@id=\"name\"]");
-        private static readonly By PasswordInputLocation = By.XPath("//*[@id=\"password\"]");
+        private static readonly By EmailInputLocation = By.Id("name");
+        private static readonly By PasswordInputLocation = By.Id("password");
         private static readonly By ErrorMessageLocation = By.XPath("//*[@id=\"content\"]//div[@class=\"error-text\"]");
 
         public LoginPage(IWebDriver? driver) : base(driver)

@@ -1,7 +1,7 @@
-using TestRailAutomationTest.Model.Project.Enum;
+using TestRailAutomationTest.Model.ProjectModel.Enum;
 using TestRailAutomationTest.Utils;
 
-namespace TestRailAutomationTest.Model.Project
+namespace TestRailAutomationTest.Model.ProjectModel
 {
     public static class ProjectData
     {

@@ -12,11 +12,9 @@ namespace TestRailAutomationTest.Page.Project.TestCase
     public abstract class BaseTestCaseOverviewPage : BasePage
     {
         public const string PageName = "TestCase Overview Page";
-
         private static readonly By TitleLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"title\")]");
-
-        public static readonly By SectionLocation = By.XPath("//a[@id=\"navigation-cases-section\"]");
+        public static readonly By SectionLocation = By.Id("navigation-cases-section");
         private const string CommonPropertyLocation = $"//table[@class=\"io\"]//td[@id=\"cell_{Example}\"]";
         private const string CommonDescriptionLocation = $"//span[text()=\"{Example}\"]/../following-sibling::div//p";
 
@@ -35,12 +33,14 @@ namespace TestRailAutomationTest.Page.Project.TestCase
             FillOptionalFields(testCase);
         }
 
+        
         private void FillOptionalFields(BaseTestCase testCase)
         {
             if (testCase is DefaultTestCase) return;
             testCase.Estimate =
                 TestCaseHelper.ConvertTimeToMinutes(GetRequiredPropertyValue(TestCaseProperties.Estimate));
             testCase.References = GetRequiredPropertyValue(TestCaseProperties.References);
+            //DEV_NOTE: Space is needed because on site this element has it
             testCase.AutomationType = " " + GetRequiredPropertyValue(TestCaseProperties.AutomationType);
         }
 

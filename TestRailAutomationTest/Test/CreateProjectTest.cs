@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
-using TestRailAutomationTest.Model.Project;
+using TestRailAutomationTest.Model.ProjectModel;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Service;

@@ -8,8 +8,7 @@ namespace TestRailAutomationTest.Page.Project
 
         public static readonly By HeaderTitleLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(text(),'Test Cases')]");
-
-        private static readonly By AddTestCaseButtonLocation = By.XPath("//a[@id=\"sidebar-cases-add\"]");
+        private static readonly By AddTestCaseButtonLocation = By.Id("sidebar-cases-add");
 
         public TestCasesMenuPage(IWebDriver? driver) : base(driver)
         {

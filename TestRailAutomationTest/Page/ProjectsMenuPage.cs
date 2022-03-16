@@ -5,8 +5,7 @@ namespace TestRailAutomationTest.Page
     public class ProjectsMenuPage : BasePage
     {
         public const string PageName = "Projects overview page";
-        private static readonly By HomePageLinkLocation = By.XPath("//a[@id=\"navigation-dashboard\"]");
-
+        private static readonly By HomePageLinkLocation = By.Id("navigation-dashboard");
         public static readonly By MenuProjectItemSelected =
             By.XPath("//a[@id=\"navigation-sub-projects\"]/ancestor::li[contains(@class,\"menu-item-selected\")]");
 

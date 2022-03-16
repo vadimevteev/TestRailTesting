@@ -1,6 +1,6 @@
-using TestRailAutomationTest.Model.Project.Enum;
+using TestRailAutomationTest.Model.ProjectModel.Enum;
 
-namespace TestRailAutomationTest.Model.Project
+namespace TestRailAutomationTest.Model.ProjectModel
 {
     public class Project
     {

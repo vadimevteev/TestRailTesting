@@ -1,4 +1,4 @@
-namespace TestRailAutomationTest.Model.Project.Enum
+namespace TestRailAutomationTest.Model.ProjectModel.Enum
 {
     public enum ProjectType
     {
