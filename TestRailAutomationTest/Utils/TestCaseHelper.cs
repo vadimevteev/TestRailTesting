@@ -6,6 +6,8 @@ namespace TestRailAutomationTest.Utils
 {
     public static class TestCaseHelper
     {
+        private const int SecondsInMinute = 60;
+        
         public static int ConvertTimeToMinutes(string time)
         {
             const string pattern = @"[0-9]+";
@@ -18,7 +20,7 @@ namespace TestRailAutomationTest.Utils
             var result = 0;
             if (time.Contains("hour"))
             {
-                result = timeMeasurements.FirstOrDefault() * 60;
+                result = timeMeasurements.FirstOrDefault() * SecondsInMinute;
             }
 
             if (time.Contains("minute"))

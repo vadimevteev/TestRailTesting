@@ -1,11 +1,8 @@
-using System.Linq;
 using FluentAssertions;
 using NUnit.Framework;
-using TestRailAutomationTest.Model.TestCase;
-using TestRailAutomationTest.Page;
-using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Page.Project.TestCase;
 using TestRailAutomationTest.Service;
+using TestRailAutomationTest.Steps;
 
 namespace TestRailAutomationTest.Test
 {
@@ -16,7 +13,17 @@ namespace TestRailAutomationTest.Test
              "test case with required fields should be created")]
         public void CreateTestCase_WithRequiredFields_ShouldBeSuccessful()
         {
-            CreateTestCaseTest(TestCaseCreator.CreateRandomRequiredFields(), DefaultTestCaseOverViewPage);
+            LoginSteps.Login(LoginPage, Users);
+            var project = ProjectCreator.CreateRandomRequiredFields();
+            ProjectSteps.CreateProject(HomePage, CreateProjectPage, ProjectsMenuPage, project);
+            ProjectSteps.OpenProject(HomePage, project);
+            var expectedTest = TestCaseCreator.CreateRandomRequiredFields();
+            TestCaseSteps.CreateTestCase(ProjectOverviewPage,TestCasesMenuPage,CreateTestCasePage,expectedTest);
+            DefaultTestCaseOverViewPage.WaitForOpen(BaseTestCaseOverviewPage.PageName,
+                BaseTestCaseOverviewPage.SectionLocation);
+            var actualTest = DefaultTestCaseOverViewPage.GetTestCase();
+            expectedTest.Should()
+                .BeEquivalentTo(actualTest, options => options.Excluding(o => o.Template));
         }
         
         [Test, Description(
@@ -24,7 +31,17 @@ namespace TestRailAutomationTest.Test
              "test case with all current fields should be created")]
         public void CreateTestCase_WithExploratoryTemplateAndAllFields_ShouldBeSuccessful()
         {
-            CreateTestCaseTest(TestCaseCreator.CreateRandomExploratoryTemplate(), ExploratoryTestCaseOverviewPage);
+            LoginSteps.Login(LoginPage, Users);
+            var project = ProjectCreator.CreateRandomRequiredFields();
+            ProjectSteps.CreateProject(HomePage, CreateProjectPage, ProjectsMenuPage, project);
+            ProjectSteps.OpenProject(HomePage, project);
+            var expectedTest = TestCaseCreator.CreateRandomExploratoryTemplate();
+            TestCaseSteps.CreateTestCase(ProjectOverviewPage,TestCasesMenuPage,CreateTestCasePage,expectedTest);
+            ExploratoryTestCaseOverviewPage.WaitForOpen(BaseTestCaseOverviewPage.PageName,
+                BaseTestCaseOverviewPage.SectionLocation);
+            var actualTest = ExploratoryTestCaseOverviewPage.GetTestCase();
+            expectedTest.Should()
+                .BeEquivalentTo(actualTest, options => options.Excluding(o => o.Template));
         }
         
         [Test, Description(
@@ -32,8 +49,17 @@ namespace TestRailAutomationTest.Test
              "test case with all current fields should be created")]
         public void CreateTestCase_WithStepsTemplateAndAllFields_ShouldBeSuccessful()
         {
-            CreateTestCaseTest(TestCaseCreator.CreateRandomStepsTemplate(), StepsTestCaseOverviewPage);
-            
+            LoginSteps.Login(LoginPage, Users);
+            var project = ProjectCreator.CreateRandomRequiredFields();
+            ProjectSteps.CreateProject(HomePage, CreateProjectPage, ProjectsMenuPage, project);
+            ProjectSteps.OpenProject(HomePage, project);
+            var expectedTest = TestCaseCreator.CreateRandomStepsTemplate();
+            TestCaseSteps.CreateTestCase(ProjectOverviewPage,TestCasesMenuPage,CreateTestCasePage,expectedTest);
+            StepsTestCaseOverviewPage.WaitForOpen(BaseTestCaseOverviewPage.PageName,
+                BaseTestCaseOverviewPage.SectionLocation);
+            var actualTest = StepsTestCaseOverviewPage.GetTestCase();
+            expectedTest.Should()
+                .BeEquivalentTo(actualTest, options => options.Excluding(o => o.Template));
         }
         
         [Test, Description(
@@ -41,48 +67,17 @@ namespace TestRailAutomationTest.Test
              "test case with all current fields should be created")]
         public void CreateTestCase_WithTextTemplateAndAllFields_ShouldBeSuccessful()
         {
-            CreateTestCaseTest(TestCaseCreator.CreateRandomTextType(), TextTestCasePage);
-        }
-
-        private void CreateTestCaseTest(BaseTestCase expectedTest, BaseTestCaseOverviewPage currentPage)
-        {
-            LoginPage.OpenStartPage();
-            LoginPage
-                .FillLoginForm(Users.FirstOrDefault()!)
-                .PressFindButton();
-
-            HomePage.WaitForOpen(HomePage.PageName, HomePage.HeaderTitleLocation);
-            HomePage
-                .ClickAddProjectButton();
-
-            CreateProjectPage.WaitForOpen(CreateProjectPage.PageName, CreateProjectPage.HeaderTitleLocation);
-
+            LoginSteps.Login(LoginPage, Users);
             var project = ProjectCreator.CreateRandomRequiredFields();
-            CreateProjectPage
-                .FillAddProjectForm(project)
-                .PressAcceptButton();
-            ProjectsMenuPage.WaitForOpen(ProjectsMenuPage.PageName, ProjectsMenuPage.MenuProjectItemSelected);
-            ProjectsMenuPage.OpenHomePage();
-
-            HomePage.WaitForOpen(HomePage.PageName, HomePage.HeaderTitleLocation);
-            HomePage.OpenProject(project.Name);
-
-            ProjectOverviewPage.WaitForOpen(ProjectOverviewPage.PageName, ProjectOverviewPage.ChartLineLocation);
-            ProjectOverviewPage.OpenTestCasesPage();
-
-            TestCasesMenuPage.WaitForOpen(TestCasesMenuPage.PageName, TestCasesMenuPage.HeaderTitleLocation);
-            TestCasesMenuPage.AddTestCase();
-
-            CreateTestCasePage.WaitForOpen(CreateTestCasePage.PageName, CreateTestCasePage.HeaderTitleLocation);
-            CreateTestCasePage.FillTestCaseForm(expectedTest);
-            CreateTestCasePage.ClickAcceptButton();
-
-            currentPage.WaitForOpen(BaseTestCaseOverviewPage.PageName,
+            ProjectSteps.CreateProject(HomePage, CreateProjectPage, ProjectsMenuPage, project);
+            ProjectSteps.OpenProject(HomePage, project);
+            var expectedTest = TestCaseCreator.CreateRandomTextType();
+            TestCaseSteps.CreateTestCase(ProjectOverviewPage,TestCasesMenuPage,CreateTestCasePage,expectedTest);
+            TextTestCasePage.WaitForOpen(BaseTestCaseOverviewPage.PageName,
                 BaseTestCaseOverviewPage.SectionLocation);
-            var actualTest = currentPage.GetTestCase();
+            var actualTest = TextTestCasePage.GetTestCase();
             expectedTest.Should()
-                .BeEquivalentTo(actualTest, options => options.RespectingRuntimeTypes()
-                    .Excluding(o => o.Template));
+                .BeEquivalentTo(actualTest, options => options.Excluding(o => o.Template));
         }
     }
 }

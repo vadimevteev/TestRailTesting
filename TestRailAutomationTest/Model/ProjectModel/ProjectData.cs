@@ -1,5 +1,5 @@
 using TestRailAutomationTest.Model.ProjectModel.Enum;
-using TestRailAutomationTest.Utils;
+using static TestRailAutomationTest.Utils.RandomData;
 
 namespace TestRailAutomationTest.Model.ProjectModel
 {
@@ -7,7 +7,7 @@ namespace TestRailAutomationTest.Model.ProjectModel
     {
         public static ProjectType GetRandomProjectType()
         {
-            return RandomData.Faker.PickRandom<ProjectType>();
+            return Faker.PickRandom<ProjectType>();
         }
     }
 }

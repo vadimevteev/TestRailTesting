@@ -54,7 +54,7 @@ namespace TestRailAutomationTest.Page
                     ClickButton(MultipleModeLocation);
                     break;
                 default:
-                    throw new IncorrectDataException("Incorrect project type");
+                    throw new IncorrectDataException($"Project type {projectType.ToString()} doesn't exist");
             }
         }
 
