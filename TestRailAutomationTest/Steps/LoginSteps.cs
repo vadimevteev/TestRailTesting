@@ -1,17 +1,24 @@
-using System.Collections.Generic;
-using System.Linq;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Page;
 
 namespace TestRailAutomationTest.Steps
 {
-    public static class LoginSteps
+    public class LoginSteps
     {
-        public static void Login(LoginPage loginPage, IEnumerable<User?> users)
+        private readonly LoginPage _loginPage;
+        private readonly User _user;
+        
+        public LoginSteps(LoginPage loginPage, User user)
         {
-            loginPage.OpenStartPage();
-            loginPage
-                .FillLoginForm(users.FirstOrDefault()!)
+            _loginPage = loginPage;
+            _user = user;
+        }
+
+        public void Login()
+        {
+            _loginPage.OpenStartPage();
+            _loginPage
+                .FillLoginForm(_user)
                 .PressFindButton();
         }
     }
