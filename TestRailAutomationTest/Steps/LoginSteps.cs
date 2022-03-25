@@ -6,19 +6,17 @@ namespace TestRailAutomationTest.Steps
     public class LoginSteps
     {
         private readonly LoginPage _loginPage;
-        private readonly User _user;
-        
-        public LoginSteps(LoginPage loginPage, User user)
+
+        public LoginSteps(LoginPage loginPage)
         {
             _loginPage = loginPage;
-            _user = user;
         }
 
-        public void Login()
+        public void Login(User user)
         {
             _loginPage.OpenStartPage();
             _loginPage
-                .FillLoginForm(_user)
+                .FillLoginForm(user)
                 .PressFindButton();
         }
     }

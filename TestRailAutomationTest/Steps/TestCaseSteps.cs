@@ -10,26 +10,24 @@ namespace TestRailAutomationTest.Steps
         private readonly TestCasesMenuPage _testCasesMenuPage;
         private readonly CreateTestCasePage _createTestCasePage;
         private readonly BaseTestCaseOverviewPage _overviewPage;
-        private readonly BaseTestCase _testCase;
 
         public TestCaseSteps(ProjectOverviewPage projectOverviewPage, TestCasesMenuPage testCasesMenuPage, CreateTestCasePage createTestCasePage, 
-            BaseTestCaseOverviewPage overviewPage, BaseTestCase baseTestCase)
+            BaseTestCaseOverviewPage overviewPage)
         {
             _projectOverviewPage = projectOverviewPage;
             _testCasesMenuPage = testCasesMenuPage;
             _createTestCasePage = createTestCasePage;
-            _testCase = baseTestCase;
             _overviewPage = overviewPage;
         }
 
-        public void CreateTestCase()
+        public void CreateTestCase(BaseTestCase testCase)
         {
             _projectOverviewPage.WaitForOpen(ProjectOverviewPage.PageName, ProjectOverviewPage.ChartLineLocation);
             _projectOverviewPage.OpenTestCasesPage();
             _testCasesMenuPage.WaitForOpen(TestCasesMenuPage.PageName, TestCasesMenuPage.HeaderTitleLocation);
             _testCasesMenuPage.AddTestCase();
             _createTestCasePage.WaitForOpen(CreateTestCasePage.PageName, CreateTestCasePage.HeaderTitleLocation);
-            _createTestCasePage.FillTestCaseForm(_testCase);
+            _createTestCasePage.FillTestCaseForm(testCase);
             _createTestCasePage.ClickAcceptButton();
         }
 

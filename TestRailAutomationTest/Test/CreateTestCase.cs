@@ -11,12 +11,12 @@ namespace TestRailAutomationTest.Test
         [SetUp]
         public void SetUp()
         {
-            LoginSteps loginSteps = new(LoginPage, Users.FirstOrDefault()!);
+            LoginSteps loginSteps = new(LoginPage);
             var project = ProjectCreator.CreateRandomRequiredFields();
-            ProjectSteps projectSteps = new(HomePage, CreateProjectPage, ProjectsMenuPage, project);
-            loginSteps.Login();
-            projectSteps.CreateProject();
-            projectSteps.OpenProject();
+            ProjectSteps projectSteps = new(HomePage, CreateProjectPage, ProjectsMenuPage);
+            loginSteps.Login(Users.FirstOrDefault()!);
+            projectSteps.CreateProject(project);
+            projectSteps.OpenProject(project);
         }
         
         [Test, Description(
@@ -26,9 +26,9 @@ namespace TestRailAutomationTest.Test
         {
             var expectedTest = TestCaseCreator.CreateRandomRequiredFields();
             TestCaseSteps testCaseSteps =
-                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, DefaultTestCaseOverViewPage, expectedTest);
+                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, DefaultTestCaseOverViewPage);
             
-            testCaseSteps.CreateTestCase();
+            testCaseSteps.CreateTestCase(expectedTest);
             var actualTest = testCaseSteps.GetActualTestCase();
             
             expectedTest.Should()
@@ -43,9 +43,9 @@ namespace TestRailAutomationTest.Test
         {
             var expectedTest = TestCaseCreator.CreateRandomExploratoryTemplate();
             TestCaseSteps testCaseSteps =
-                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, ExploratoryTestCaseOverviewPage, expectedTest);
+                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, ExploratoryTestCaseOverviewPage);
             
-            testCaseSteps.CreateTestCase();
+            testCaseSteps.CreateTestCase(expectedTest);
             var actualTest = testCaseSteps.GetActualTestCase();
             
             expectedTest.Should()
@@ -60,9 +60,9 @@ namespace TestRailAutomationTest.Test
         {
             var expectedTest = TestCaseCreator.CreateRandomStepsTemplate();
             TestCaseSteps testCaseSteps =
-                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, StepsTestCaseOverviewPage, expectedTest);
+                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, StepsTestCaseOverviewPage);
             
-            testCaseSteps.CreateTestCase();
+            testCaseSteps.CreateTestCase(expectedTest);
             var actualTest = testCaseSteps.GetActualTestCase();
             
             expectedTest.Should()
@@ -77,9 +77,9 @@ namespace TestRailAutomationTest.Test
         {
             var expectedTest = TestCaseCreator.CreateRandomTextType();
             TestCaseSteps testCaseSteps =
-                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, TextTestCasePage, expectedTest);
+                new(ProjectOverviewPage, TestCasesMenuPage, CreateTestCasePage, TextTestCasePage);
             
-            testCaseSteps.CreateTestCase();
+            testCaseSteps.CreateTestCase(expectedTest);
             var actualTest = testCaseSteps.GetActualTestCase();
             
             expectedTest.Should()
