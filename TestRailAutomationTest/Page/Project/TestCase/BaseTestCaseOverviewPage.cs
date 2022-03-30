@@ -1,6 +1,4 @@
-using System.Collections.Generic;
 using System.Linq;
-using System.Text.RegularExpressions;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
@@ -15,7 +13,7 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         private static readonly By TitleLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"title\")]");
         public static readonly By SectionLocation = By.Id("navigation-cases-section");
-        private const string CommonPropertyLocation = $"//table[@class=\"io\"]//td[@id=\"cell_{Example}\"]";
+        private const string CommonPropertyId = $"cell_{Example}";
         private const string CommonDescriptionLocation = $"//span[text()=\"{Example}\"]/../following-sibling::div//p";
 
         public abstract BaseTestCase GetTestCase();
@@ -45,10 +43,10 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         }
 
         private string GetRequiredPropertyValue(string property)
-            => GetTextFromElement(GetElementLocation(CommonPropertyLocation, property)).Split('\n').Last();
+            => GetTextFromElement(By.Id(ReplaceValue(CommonPropertyId, property))).Split('\n').Last();
 
         protected string? GetDescriptionProperty(string value)
-            => GetOptionalValue(GetElementLocation(CommonDescriptionLocation, value));
+            => GetOptionalValue(By.XPath(ReplaceValue(CommonDescriptionLocation, value)));
 
         protected string? GetOptionalValue(By location)
             => IsElementExistOnPage(location) ? GetTextFromElement(location) : null;
