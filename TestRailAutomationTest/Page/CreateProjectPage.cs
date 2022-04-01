@@ -1,6 +1,7 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Model.ProjectModel.Enum;
+using TestRailAutomationTest.Wrapper;
 
 namespace TestRailAutomationTest.Page
 {
@@ -10,8 +11,8 @@ namespace TestRailAutomationTest.Page
 
         public static readonly By HeaderTitleLocation =
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'Add Project')]");
-        private static readonly By NameInputLocation = By.Id("name");
-        private static readonly By AnnouncementLocation = By.Id("announcement");
+        private const string NameInputId = "name";
+        private const string AnnouncementInputId = "announcement";
         private static readonly By AcceptButtonLocation = By.Id("accept");
         private static readonly By ShowAnnouncementCheckMarkLocation = By.Id("show_announcement");
         private static readonly By SingleSuiteModeLocation = By.Id("suite_mode_single");
@@ -25,8 +26,8 @@ namespace TestRailAutomationTest.Page
 
         public CreateProjectPage FillAddProjectForm(Model.ProjectModel.Project project)
         {
-            FillInput(NameInputLocation, project.Name);
-            FillInput(AnnouncementLocation, project.Announcement);
+            new Input(Driver,NameInputId).SetValue(project.Name);
+            new Input(Driver,AnnouncementInputId).SetValue(project.Announcement);
             FillShowAnnouncementCheckMark(project.IsAnnouncementVisible);
             SelectProjectType(project.ProjectType);
             return this;

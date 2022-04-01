@@ -1,14 +1,15 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Utils;
+using TestRailAutomationTest.Wrapper;
 
 namespace TestRailAutomationTest.Page
 {
     public class LoginPage : BasePage
     {
         public const string PageName = "Login page";
-        private static readonly By EmailInputLocation = By.Id("name");
-        private static readonly By PasswordInputLocation = By.Id("password");
+        private const string EmailInputId = "name";
+        private const string PasswordInputId = "password";
         private static readonly By ErrorMessageLocation = By.XPath("//*[@id=\"content\"]//div[@class=\"error-text\"]");
 
         public LoginPage(IWebDriver? driver) : base(driver)
@@ -17,8 +18,8 @@ namespace TestRailAutomationTest.Page
 
         public LoginPage FillLoginForm(User user)
         {
-            FillInput(EmailInputLocation, user.Email);
-            FillInput(PasswordInputLocation, user.Password);
+            new Input(Driver,EmailInputId).SetValue(user.Email);
+            new Input(Driver,PasswordInputId).SetValue(user.Password);
             return this;
         }
 
