@@ -1,6 +1,7 @@
 using System.Linq;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.Wrapper;
@@ -28,11 +29,11 @@ namespace TestRailAutomationTest.Page.Project
 
         public void FillTestCaseForm(BaseTestCase testCase)
         {
-            new Input(Driver, TestCaseProperties.Title).Click().SetValue(testCase.Title);
-            new DropDown(Driver,TestCaseProperties.Template).SelectValue(testCase.Template);
+            new Input(Driver, TestCaseProperties.Title,"Title").Click().SetValue(testCase.Title);
+            new DropDown(Driver,TestCaseProperties.Template,"Template" ).SelectValue(testCase.Template);
             ChooseType(testCase);
-            new DropDown(Driver,TestCaseProperties.Section).SelectValue(testCase.Section);
-            new DropDown(Driver,TestCaseProperties.Priority).SelectValue(testCase.Priority);
+            new DropDown(Driver,TestCaseProperties.Section, "Section").SelectValue(testCase.Section);
+            new DropDown(Driver,TestCaseProperties.Priority, "Priority").SelectValue(testCase.Priority);
             FillOptionalFields(testCase);
         }
 
@@ -40,7 +41,7 @@ namespace TestRailAutomationTest.Page.Project
         {
             try
             {
-                new DropDown(Driver,TestCaseProperties.Type).SelectValue(testCase.Type);
+                new DropDown(Driver,TestCaseProperties.Type, "Type").SelectValue(testCase.Type);
             }
             catch (StaleElementReferenceException)
             {
@@ -55,9 +56,9 @@ namespace TestRailAutomationTest.Page.Project
                 return;
             }
             
-            new Input(Driver, TestCaseProperties.Estimate).Click().SetValue(testCase.Estimate.ToString());
-            new Input(Driver, TestCaseProperties.References).Click().SetValue(testCase.References);
-            new DropDown(Driver,TestCaseProperties.AutomationType)
+            new Input(Driver, TestCaseProperties.Estimate, "Estimate").Click().SetValue(testCase.Estimate.ToString());
+            new Input(Driver, TestCaseProperties.References, "References").Click().SetValue(testCase.References);
+            new DropDown(Driver,TestCaseProperties.AutomationType, "Automation type")
                 .SelectValue(testCase.AutomationType ?? TestCaseData.AutomationType.FirstOrDefault()!);
             FillDescription(testCase);
         }
@@ -67,26 +68,28 @@ namespace TestRailAutomationTest.Page.Project
             switch (testCase.Template)
             {
                 case TestCaseData.ExploratoryTemplate:
-                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Mission))
+                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Mission), "Mission")
                         .Click().SetValue(((ExploratoryTestCase) testCase).Mission);
-                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Goals))
+                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Goals), "Goals")
                         .Click().SetValue(((ExploratoryTestCase) testCase).Goals);
                     break;
 
                 case TestCaseData.StepsTemplate:
-                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Preconditions))
+                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Preconditions), "Preconditions")
                         .Click().SetValue(((StepsTestCase) testCase).Preconditions);
                     ClickButton(AddTestCaseButton);
                     FillInputAfterClick(StepDescriptionInputLocation, ((StepsTestCase) testCase).StepDescription);
+                    Logging.LogInputValue("Step description", ((StepsTestCase) testCase).StepDescription);
                     FillInputAfterClick(StepExpectedResultInputLocation, ((StepsTestCase) testCase).StepExpectedResult);
+                    Logging.LogInputValue("Expected result", ((StepsTestCase) testCase).StepExpectedResult);
                     break;
 
                 case TestCaseData.TextTemplate:
-                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Preconditions))
+                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Preconditions), "Preconditions")
                         .Click().SetValue(((TextTestCase) testCase).Preconditions);
-                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Steps))
+                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.Steps), "Steps")
                         .Click().SetValue(((TextTestCase) testCase).Steps);
-                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.ExpectedResult))
+                    new Input(Driver, ReplaceValue(CommonDescriptionId, TestCaseProperties.ExpectedResult), "Expected result")
                         .Click().SetValue(((TextTestCase) testCase).ExpectedResult);    
                     break;
                 default:
@@ -94,6 +97,10 @@ namespace TestRailAutomationTest.Page.Project
             }
         }
 
-        public void ClickAcceptButton() => ClickButton(AcceptButtonLocation);
+        public void ClickAcceptButton()
+        {
+            ClickButton(AcceptButtonLocation);
+            Logging.LogButtonClick("Add test case");
+        }
     }
 }

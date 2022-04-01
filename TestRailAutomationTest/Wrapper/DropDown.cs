@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Wrapper
@@ -7,7 +8,7 @@ namespace TestRailAutomationTest.Wrapper
     {
         private const string CommonPropertyId = $"{Example}_chzn";
 
-        public DropDown(IWebDriver? driver, string elementPartId) : base(driver, CommonPropertyId.Replace(Example,elementPartId))
+        public DropDown(IWebDriver? driver, string elementPartId,string name) : base(driver, CommonPropertyId.Replace(Example,elementPartId), name)
         {
         }
 
@@ -16,6 +17,7 @@ namespace TestRailAutomationTest.Wrapper
             var valueXpath = $"//div[@id=\"{ElementId.Criteria[1..]}\"]//li[contains(text(),\"{value}\")]";
             Waits.WaitElementExistence(Driver, ElementId).Click();
             Waits.WaitElementExistence(Driver, By.XPath(valueXpath)).Click();
+            Logging.LogDropDownSelect(Name, value);
         }
     }
 }

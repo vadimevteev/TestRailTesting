@@ -1,6 +1,7 @@
 using System;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Service;
 using TestRailAutomationTest.Test;
 using TestRailAutomationTest.Utils;
@@ -28,7 +29,11 @@ namespace TestRailAutomationTest.Page
 
         private void FillInput(By path, string? data) => Waits.WaitElementExistence(Driver, path).SendKeys(data);
 
-        protected void ClickButton(By buttonLocation) => Waits.WaitElementExistence(Driver,buttonLocation).Click();
+        protected void ClickButton(By buttonLocation)
+        {
+            Waits.WaitElementExistence(Driver,buttonLocation).Click();
+            
+        } 
 
         protected void FillInputAfterClick(By path, string? data)
         {
@@ -42,8 +47,9 @@ namespace TestRailAutomationTest.Page
         {
             if (!IsElementExistOnPage(uniqueElementLocation))
             {
-                throw new PageNotOpenedException($"{pageName} was not opened");
+                throw new PageNotOpenedException($"\"{pageName}\" was not opened");
             }
+            Logging.Logger.Info($"Page \"{pageName}\" - opened");
         }
         
         protected static string ReplaceValue(string commonValue, string value) => commonValue.Replace(Example, value);

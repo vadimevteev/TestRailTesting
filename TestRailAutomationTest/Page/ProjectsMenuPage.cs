@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using TestRailAutomationTest.Logger;
 
 namespace TestRailAutomationTest.Page
 {
@@ -13,6 +14,10 @@ namespace TestRailAutomationTest.Page
         {
         }
 
-        public void OpenHomePage() => ClickButton(HomePageLinkLocation);
+        public void OpenHomePage()
+        {
+            ClickButton(HomePageLinkLocation);
+            Logging.LogButtonClick("Dashboard");
+        }
     }
 }

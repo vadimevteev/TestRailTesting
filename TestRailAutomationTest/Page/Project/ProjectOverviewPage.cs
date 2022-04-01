@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.ProjectModel;
 using TestRailAutomationTest.Utils;
 
@@ -18,7 +19,11 @@ namespace TestRailAutomationTest.Page.Project
         {
         }
 
-        public void OpenTestCasesPage() => ClickButton(TestCaseTabLocation);
+        public void OpenTestCasesPage()
+        {
+            ClickButton(TestCaseTabLocation);
+            Logging.LogButtonClick("Test cases");
+        } 
 
         public Model.ProjectModel.Project GetProject()
         {

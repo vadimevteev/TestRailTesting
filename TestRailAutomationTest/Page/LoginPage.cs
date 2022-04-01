@@ -1,4 +1,5 @@
 using OpenQA.Selenium;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.Wrapper;
@@ -18,14 +19,15 @@ namespace TestRailAutomationTest.Page
 
         public LoginPage FillLoginForm(User user)
         {
-            new Input(Driver,EmailInputId).SetValue(user.Email);
-            new Input(Driver,PasswordInputId).SetValue(user.Password);
+            new Input(Driver,EmailInputId, "Email").SetValue(user.Email);
+            new Input(Driver,PasswordInputId,"Password" ).SetValue(user.Password);
             return this;
         }
 
         public LoginPage PressFindButton()
         {
             ClickButton(SearchButtonLocation);
+            Logging.LogButtonClick("Login");
             return this;
         }
 

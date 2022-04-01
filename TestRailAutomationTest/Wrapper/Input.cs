@@ -1,15 +1,20 @@
 using OpenQA.Selenium;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Wrapper
 {
     public class Input : BaseWrapper
     {
-        public Input(IWebDriver? driver, string idName) : base(driver, idName)
+        public Input(IWebDriver? driver, string idName, string name) : base(driver, idName, name)
         {
         }
 
-        public void SetValue(string? value) => Waits.WaitElementExistence(Driver, ElementId).SendKeys(value);
+        public void SetValue(string? value)
+        {
+            Waits.WaitElementExistence(Driver, ElementId).SendKeys(value);
+            Logging.LogInputValue(Name, value);
+        } 
 
         public Input Click()
         {

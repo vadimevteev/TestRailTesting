@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.ProjectModel.Enum;
 using TestRailAutomationTest.Wrapper;
 
@@ -26,8 +27,8 @@ namespace TestRailAutomationTest.Page
 
         public CreateProjectPage FillAddProjectForm(Model.ProjectModel.Project project)
         {
-            new Input(Driver,NameInputId).SetValue(project.Name);
-            new Input(Driver,AnnouncementInputId).SetValue(project.Announcement);
+            new Input(Driver,NameInputId,"Name" ).SetValue(project.Name);
+            new Input(Driver,AnnouncementInputId, "Announcement").SetValue(project.Announcement);
             FillShowAnnouncementCheckMark(project.IsAnnouncementVisible);
             SelectProjectType(project.ProjectType);
             return this;
@@ -38,6 +39,7 @@ namespace TestRailAutomationTest.Page
             if (isTickTheCheckMark)
             {
                 ClickButton(ShowAnnouncementCheckMarkLocation);
+                Logging.LogButtonClick("Show Announcement checkmark");
             }
         }
 
@@ -47,18 +49,27 @@ namespace TestRailAutomationTest.Page
             {
                 case ProjectType.SingleRepositoryForAllCases:
                     ClickButton(SingleSuiteModeLocation);
+                    Logging.LogButtonClick("Single suite mode");
                     break;
                 case ProjectType.SingleRepositoryWithBaselineSupport:
                     ClickButton(SingleBaseLineSuiteModeLocation);
+                    Logging.LogButtonClick("Single repository with baseline mode");
                     break;
                 case ProjectType.MultipleTestSuites:
                     ClickButton(MultipleModeLocation);
+                    Logging.LogButtonClick("Multiple mode");
                     break;
                 default:
-                    throw new IncorrectDataException($"Project type {projectType} doesn't exist");
+                    var message = $"Project type {projectType} doesn't exist";
+                    Logging.Logger.Error(message);
+                    throw new IncorrectDataException(message);
             }
         }
 
-        public void PressAcceptButton() => ClickButton(AcceptButtonLocation);
+        public void PressAcceptButton()
+        { 
+            ClickButton(AcceptButtonLocation);
+            Logging.LogButtonClick("Add project");
+        } 
     }
 }

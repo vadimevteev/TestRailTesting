@@ -1,5 +1,6 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page
@@ -18,18 +19,25 @@ namespace TestRailAutomationTest.Page
         public HomePage(IWebDriver? driver) : base(driver)
         {
         }
-        
-        public void ClickAddProjectButton() => ClickButton(AddProjectButtonLocation);
+
+        public void ClickAddProjectButton()
+        {
+            ClickButton(AddProjectButtonLocation);
+            Logging.LogButtonClick("Add project");
+        }
 
         public void OpenProject(string projectName)
         {
             try
             {
                 ClickButton(By.XPath(CommonProjectLocation.Replace(ProjectExample, projectName)));
+                Logging.LogButtonClick(projectName);
             }
-            catch (WebDriverTimeoutException)
+            catch (WebDriverTimeoutException ex)
             {
-                throw new IncorrectDataException($"Project {projectName} doesn't exist");
+                var message = $"Incorrect project {projectName}";
+                Logging.Logger.Error(message, ex);
+                throw new IncorrectDataException(message);
             }
         }
 
