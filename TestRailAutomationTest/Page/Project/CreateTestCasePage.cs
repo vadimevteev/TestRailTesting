@@ -4,6 +4,7 @@ using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
+using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.Wrapper;
 
 namespace TestRailAutomationTest.Page.Project
@@ -79,9 +80,9 @@ namespace TestRailAutomationTest.Page.Project
                         .Click().SetValue(((StepsTestCase) testCase).Preconditions);
                     ClickButton(AddTestCaseButton);
                     FillInputAfterClick(StepDescriptionInputLocation, ((StepsTestCase) testCase).StepDescription);
-                    Logging.LogInputValue("Step description", ((StepsTestCase) testCase).StepDescription);
+                    LoggerHelper.LogInputValue("Step description", ((StepsTestCase) testCase).StepDescription);
                     FillInputAfterClick(StepExpectedResultInputLocation, ((StepsTestCase) testCase).StepExpectedResult);
-                    Logging.LogInputValue("Expected result", ((StepsTestCase) testCase).StepExpectedResult);
+                    LoggerHelper.LogInputValue("Expected result", ((StepsTestCase) testCase).StepExpectedResult);
                     break;
 
                 case TestCaseData.TextTemplate:
@@ -100,7 +101,7 @@ namespace TestRailAutomationTest.Page.Project
         public void ClickAcceptButton()
         {
             ClickButton(AcceptButtonLocation);
-            Logging.LogButtonClick("Add test case");
+            LoggerHelper.LogButtonClick("Add test case");
         }
     }
 }

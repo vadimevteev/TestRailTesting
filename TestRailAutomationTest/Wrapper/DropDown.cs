@@ -1,5 +1,4 @@
 using OpenQA.Selenium;
-using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Wrapper
@@ -17,7 +16,7 @@ namespace TestRailAutomationTest.Wrapper
             var valueXpath = $"//div[@id=\"{ElementId.Criteria[1..]}\"]//li[contains(text(),\"{value}\")]";
             Waits.WaitElementExistence(Driver, ElementId).Click();
             Waits.WaitElementExistence(Driver, By.XPath(valueXpath)).Click();
-            Logging.LogDropDownSelect(Name, value);
+            LoggerHelper.LogDropDownSelect(Name, value);
         }
     }
 }

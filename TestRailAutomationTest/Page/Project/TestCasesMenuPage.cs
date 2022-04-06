@@ -1,5 +1,5 @@
 using OpenQA.Selenium;
-using TestRailAutomationTest.Logger;
+using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Page.Project
 {
@@ -18,7 +18,7 @@ namespace TestRailAutomationTest.Page.Project
         public void AddTestCase()
         {
             ClickButton(AddTestCaseButtonLocation);
-            Logging.LogButtonClick("Add test case");
+            LoggerHelper.LogButtonClick("Add test case");
         }
     }
 }

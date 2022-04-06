@@ -29,11 +29,7 @@ namespace TestRailAutomationTest.Page
 
         private void FillInput(By path, string? data) => Waits.WaitElementExistence(Driver, path).SendKeys(data);
 
-        protected void ClickButton(By buttonLocation)
-        {
-            Waits.WaitElementExistence(Driver,buttonLocation).Click();
-            
-        } 
+        protected void ClickButton(By buttonLocation) => Waits.WaitElementExistence(Driver,buttonLocation).Click();
 
         protected void FillInputAfterClick(By path, string? data)
         {
@@ -49,7 +45,7 @@ namespace TestRailAutomationTest.Page
             {
                 throw new PageNotOpenedException($"\"{pageName}\" was not opened");
             }
-            Logging.Logger.Info($"Page \"{pageName}\" - opened");
+            LoggerSingleton.GetLogger().Info($"Page \"{pageName}\" - opened");
         }
         
         protected static string ReplaceValue(string commonValue, string value) => commonValue.Replace(Example, value);

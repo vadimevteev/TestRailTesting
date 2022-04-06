@@ -1,5 +1,4 @@
 using OpenQA.Selenium;
-using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.Wrapper
@@ -13,7 +12,7 @@ namespace TestRailAutomationTest.Wrapper
         public void SetValue(string? value)
         {
             Waits.WaitElementExistence(Driver, ElementId).SendKeys(value);
-            Logging.LogInputValue(Name, value);
+            LoggerHelper.LogInputValue(Name, value);
         } 
 
         public Input Click()

@@ -2,6 +2,7 @@ using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.ProjectModel.Enum;
+using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.Wrapper;
 
 namespace TestRailAutomationTest.Page
@@ -39,7 +40,7 @@ namespace TestRailAutomationTest.Page
             if (isTickTheCheckMark)
             {
                 ClickButton(ShowAnnouncementCheckMarkLocation);
-                Logging.LogButtonClick("Show Announcement checkmark");
+                LoggerHelper.LogButtonClick("Show Announcement checkmark");
             }
         }
 
@@ -49,19 +50,19 @@ namespace TestRailAutomationTest.Page
             {
                 case ProjectType.SingleRepositoryForAllCases:
                     ClickButton(SingleSuiteModeLocation);
-                    Logging.LogButtonClick("Single suite mode");
+                    LoggerHelper.LogButtonClick("Single suite mode");
                     break;
                 case ProjectType.SingleRepositoryWithBaselineSupport:
                     ClickButton(SingleBaseLineSuiteModeLocation);
-                    Logging.LogButtonClick("Single repository with baseline mode");
+                    LoggerHelper.LogButtonClick("Single repository with baseline mode");
                     break;
                 case ProjectType.MultipleTestSuites:
                     ClickButton(MultipleModeLocation);
-                    Logging.LogButtonClick("Multiple mode");
+                    LoggerHelper.LogButtonClick("Multiple mode");
                     break;
                 default:
                     var message = $"Project type {projectType} doesn't exist";
-                    Logging.Logger.Error(message);
+                    LoggerSingleton.GetLogger().Error(message);
                     throw new IncorrectDataException(message);
             }
         }
@@ -69,7 +70,7 @@ namespace TestRailAutomationTest.Page
         public void PressAcceptButton()
         { 
             ClickButton(AcceptButtonLocation);
-            Logging.LogButtonClick("Add project");
+            LoggerHelper.LogButtonClick("Add project");
         } 
     }
 }

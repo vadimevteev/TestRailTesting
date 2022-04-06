@@ -23,7 +23,7 @@ namespace TestRailAutomationTest.Page
         public void ClickAddProjectButton()
         {
             ClickButton(AddProjectButtonLocation);
-            Logging.LogButtonClick("Add project");
+            LoggerHelper.LogButtonClick("Add project");
         }
 
         public void OpenProject(string projectName)
@@ -31,12 +31,12 @@ namespace TestRailAutomationTest.Page
             try
             {
                 ClickButton(By.XPath(CommonProjectLocation.Replace(ProjectExample, projectName)));
-                Logging.LogButtonClick(projectName);
+                LoggerHelper.LogButtonClick(projectName);
             }
             catch (WebDriverTimeoutException ex)
             {
                 var message = $"Incorrect project {projectName}";
-                Logging.Logger.Error(message, ex);
+                LoggerSingleton.GetLogger().Error(message, ex);
                 throw new IncorrectDataException(message);
             }
         }

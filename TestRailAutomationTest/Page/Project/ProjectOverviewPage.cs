@@ -22,7 +22,7 @@ namespace TestRailAutomationTest.Page.Project
         public void OpenTestCasesPage()
         {
             ClickButton(TestCaseTabLocation);
-            Logging.LogButtonClick("Test cases");
+            LoggerHelper.LogButtonClick("Test cases");
         } 
 
         public Model.ProjectModel.Project GetProject()

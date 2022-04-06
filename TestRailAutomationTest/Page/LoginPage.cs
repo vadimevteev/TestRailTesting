@@ -1,5 +1,4 @@
 using OpenQA.Selenium;
-using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.Wrapper;
@@ -27,7 +26,7 @@ namespace TestRailAutomationTest.Page
         public LoginPage PressFindButton()
         {
             ClickButton(SearchButtonLocation);
-            Logging.LogButtonClick("Login");
+            LoggerHelper.LogButtonClick("Login");
             return this;
         }
 
