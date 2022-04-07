@@ -7,6 +7,7 @@ using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
 using TestRailAutomationTest.Page.Project.TestCase;
+using TestRailAutomationTest.Page.Project.TestCase.CreateTestCasePage;
 using TestRailAutomationTest.Service;
 
 namespace TestRailAutomationTest.Test

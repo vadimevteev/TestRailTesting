@@ -3,7 +3,8 @@ using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.ProjectModel.Enum;
 using TestRailAutomationTest.Utils;
-using TestRailAutomationTest.Wrapper;
+using TestRailAutomationTest.WebElement.Service;
+using TestRailAutomationTest.WebElement.Wrapper;
 
 namespace TestRailAutomationTest.Page
 {
@@ -15,12 +16,16 @@ namespace TestRailAutomationTest.Page
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'Add Project')]");
         private const string NameInputId = "name";
         private const string AnnouncementInputId = "announcement";
-        private static readonly By AcceptButtonLocation = By.Id("accept");
+        private const string AcceptButtonId = "accept";
         private static readonly By ShowAnnouncementCheckMarkLocation = By.Id("show_announcement");
         private static readonly By SingleSuiteModeLocation = By.Id("suite_mode_single");
         private static readonly By SingleBaseLineSuiteModeLocation =
             By.Id("suite_mode_single_baseline");
         private static readonly By MultipleModeLocation = By.Id("suite_mode_multi");
+
+        private Button AcceptAddingButton => new(Driver, AcceptButtonId, "Add project");
+        private Input NameInput => new(Driver, NameInputId, "Name");
+        private Textarea AnnouncementInput => new(Driver, WrapperHelper.BuildIdXpath(AnnouncementInputId), "Announcement");
 
         public CreateProjectPage(IWebDriver? driver) : base(driver)
         {
@@ -28,8 +33,8 @@ namespace TestRailAutomationTest.Page
 
         public CreateProjectPage FillAddProjectForm(Model.ProjectModel.Project project)
         {
-            new Input(Driver,NameInputId,"Name" ).SetValue(project.Name);
-            new Input(Driver,AnnouncementInputId, "Announcement").SetValue(project.Announcement);
+            NameInput.SetValue(project.Name);
+            AnnouncementInput.SetValue(project.Announcement);
             FillShowAnnouncementCheckMark(project.IsAnnouncementVisible);
             SelectProjectType(project.ProjectType);
             return this;
@@ -67,10 +72,6 @@ namespace TestRailAutomationTest.Page
             }
         }
 
-        public void PressAcceptButton()
-        { 
-            ClickButton(AcceptButtonLocation);
-            LoggerHelper.LogButtonClick("Add project");
-        } 
+        public void PressAcceptButton() => AcceptAddingButton.Click();
     }
 }

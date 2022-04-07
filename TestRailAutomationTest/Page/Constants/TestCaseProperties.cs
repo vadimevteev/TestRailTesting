@@ -7,6 +7,8 @@ namespace TestRailAutomationTest.Page.Constants
         public const string ExpectedResultName = "Expected Result";
         public const string MissionName = "Mission";
         public const string GoalsName = "Goals";
+        public const string StepDescriptionName = "Step Description";
+        public const string StepExpectedResultName = "Expected Result";
         
         public const string Title = "title";
         public const string Section = "section_id";

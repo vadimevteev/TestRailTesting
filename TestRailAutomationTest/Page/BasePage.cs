@@ -14,7 +14,7 @@ namespace TestRailAutomationTest.Page
         protected const string Example = "EXAMPLE";
         public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().DefaultTimeoutSeconds);
         protected static readonly TimeSpan ReducedTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().ReducedTimeoutSeconds);
-        protected static readonly By SearchButtonLocation = By.XPath("//button[contains(@class,\"loginpage-button\")]");
+        protected const string LogInButtonId = "button_primary";
         
         protected BasePage(IWebDriver? driver)
         {
@@ -24,7 +24,7 @@ namespace TestRailAutomationTest.Page
         public void OpenStartPage()
         {
             Driver!.Url = BaseTest.LoginPageUrl;
-            WaitForOpen(LoginPage.PageName, SearchButtonLocation);
+            WaitForOpen(LoginPage.PageName, By.Id(LogInButtonId));
         }
 
         private void FillInput(By path, string? data) => Waits.WaitElementExistence(Driver, path).SendKeys(data);

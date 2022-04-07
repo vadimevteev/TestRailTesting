@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Utils;
-using TestRailAutomationTest.Wrapper;
+using TestRailAutomationTest.WebElement.Wrapper;
 
 namespace TestRailAutomationTest.Page
 {
@@ -12,21 +12,24 @@ namespace TestRailAutomationTest.Page
         private const string PasswordInputId = "password";
         private static readonly By ErrorMessageLocation = By.XPath("//*[@id=\"content\"]//div[@class=\"error-text\"]");
 
+        private Button SearchButton => new(Driver, LogInButtonId, "Log In");
+        private Input EmailInput => new(Driver, EmailInputId, "Email");
+        private Input PasswordInput => new(Driver, PasswordInputId, "Password");
+
         public LoginPage(IWebDriver? driver) : base(driver)
         {
         }
 
         public LoginPage FillLoginForm(User user)
         {
-            new Input(Driver,EmailInputId, "Email").SetValue(user.Email);
-            new Input(Driver,PasswordInputId,"Password" ).SetValue(user.Password);
+            EmailInput.SetValue(user.Email);
+            PasswordInput.SetValue(user.Password);
             return this;
         }
 
         public LoginPage PressFindButton()
         {
-            ClickButton(SearchButtonLocation);
-            LoggerHelper.LogButtonClick("Login");
+            SearchButton.Click();
             return this;
         }
 
