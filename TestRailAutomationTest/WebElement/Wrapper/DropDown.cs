@@ -7,6 +7,8 @@ namespace TestRailAutomationTest.WebElement.Wrapper
     public class DropDown : BaseWrapper
     {
         private readonly string _label;
+
+        private string ChooseValue(string value) => $"//div[@id=\"{_label}_chzn\"]//li[contains(text(),\"{value}\")]";
         
         public DropDown(IWebDriver? driver, string label, string name) : base(driver, WrapperHelper.BuildDropDownXPath(label), name)
         {
@@ -15,9 +17,8 @@ namespace TestRailAutomationTest.WebElement.Wrapper
 
         public void SelectValue(string value)
         {
-            var valueXpath = $"//div[@id=\"{_label}_chzn\"]//li[contains(text(),\"{value}\")]";
             Waits.WaitElementExistence(Driver, ElementPath).Click();
-            Waits.WaitElementExistence(Driver, By.XPath(valueXpath)).Click();
+            Waits.WaitElementExistence(Driver, By.XPath(ChooseValue(value))).Click();
             LoggerHelper.LogDropDownSelect(Name, value);
         }
     }
