@@ -4,7 +4,7 @@ using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.WebElement.Service;
 using TestRailAutomationTest.WebElement.Wrapper;
 
-namespace TestRailAutomationTest.Page.Project.TestCase.CreateTestCasePage.Section;
+namespace TestRailAutomationTest.Page.TestCase.CreateTestCasePage.Section;
 
 public class ExploratorySection
 {

@@ -11,7 +11,7 @@ namespace TestRailAutomationTest.Page
     public abstract class BasePage
     {
         protected readonly IWebDriver? Driver;
-        protected const string Example = "EXAMPLE";
+        protected const string Label = "LABEL";
         public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().DefaultTimeoutSeconds);
         protected static readonly TimeSpan ReducedTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().ReducedTimeoutSeconds);
         protected const string LogInButtonId = "button_primary";
@@ -27,16 +27,6 @@ namespace TestRailAutomationTest.Page
             WaitForOpen(LoginPage.PageName, By.Id(LogInButtonId));
         }
 
-        private void FillInput(By path, string? data) => Waits.WaitElementExistence(Driver, path).SendKeys(data);
-
-        protected void ClickButton(By buttonLocation) => Waits.WaitElementExistence(Driver,buttonLocation).Click();
-
-        protected void FillInputAfterClick(By path, string? data)
-        {
-            ClickButton(path);
-            FillInput(path, data);
-        }
-        
         protected string GetTextFromElement(By elementPath) => Waits.WaitElementExistence(Driver, elementPath).Text;
 
         public void WaitForOpen(string pageName, By uniqueElementLocation)
@@ -48,7 +38,7 @@ namespace TestRailAutomationTest.Page
             LoggerSingleton.GetLogger().Info($"Page \"{pageName}\" - opened");
         }
         
-        protected static string ReplaceValue(string commonValue, string value) => commonValue.Replace(Example, value);
+        protected static string ReplaceValue(string commonValue, string value) => commonValue.Replace(Label, value);
 
         public bool IsElementExistOnPage(By elementLocation) => IsElementExistOnPage(elementLocation, DefaultTimeout);
 

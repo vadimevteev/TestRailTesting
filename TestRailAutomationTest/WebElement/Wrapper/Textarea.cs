@@ -13,12 +13,6 @@ public class Textarea : BaseWrapper
     {
         Waits.WaitElementExistence(Driver, ElementPath).SendKeys(value);
         LoggerHelper.LogInputValue(Name, value);
-    } 
-
-    public Textarea Click()
-    {
-        Waits.WaitElementExistence(Driver, ElementPath).Click();
-        return this;
     }
 
     public void SetValueAfterClick(string? value)

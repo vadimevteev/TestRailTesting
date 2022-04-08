@@ -1,7 +1,7 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Model.TestCase;
 
-namespace TestRailAutomationTest.Page.Project.TestCase
+namespace TestRailAutomationTest.Page.TestCase
 {
     public class DefaultTestCaseOverviewPage : BaseTestCaseOverviewPage
     {

@@ -4,7 +4,7 @@ using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.Utils;
 
-namespace TestRailAutomationTest.Page.Project.TestCase
+namespace TestRailAutomationTest.Page.TestCase
 {
 
     public abstract class BaseTestCaseOverviewPage : BasePage
@@ -13,8 +13,8 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         private static readonly By TitleLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"title\")]");
         public static readonly By SectionLocation = By.Id("navigation-cases-section");
-        private const string CommonPropertyId = $"cell_{Example}";
-        private const string CommonDescriptionLocation = $"//span[text()=\"{Example}\"]/../following-sibling::div//p";
+        private const string CommonPropertyId = $"cell_{Label}";
+        private const string CommonDescriptionLocation = $"//span[text()=\"{Label}\"]/../following-sibling::div//p";
 
         public abstract BaseTestCase GetTestCase();
 

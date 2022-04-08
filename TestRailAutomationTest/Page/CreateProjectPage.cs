@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.ProjectModel.Enum;
-using TestRailAutomationTest.Utils;
+using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.WebElement.Service;
 using TestRailAutomationTest.WebElement.Wrapper;
 
@@ -14,18 +14,14 @@ namespace TestRailAutomationTest.Page
 
         public static readonly By HeaderTitleLocation =
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'Add Project')]");
-        private const string NameInputId = "name";
-        private const string AnnouncementInputId = "announcement";
-        private const string AcceptButtonId = "accept";
-        private static readonly By ShowAnnouncementCheckMarkLocation = By.Id("show_announcement");
-        private static readonly By SingleSuiteModeLocation = By.Id("suite_mode_single");
-        private static readonly By SingleBaseLineSuiteModeLocation =
-            By.Id("suite_mode_single_baseline");
-        private static readonly By MultipleModeLocation = By.Id("suite_mode_multi");
 
-        private Button AcceptAddingButton => new(Driver, AcceptButtonId, "Add project");
-        private Input NameInput => new(Driver, NameInputId, "Name");
-        private Textarea AnnouncementInput => new(Driver, WrapperHelper.BuildIdXpath(AnnouncementInputId), "Announcement");
+        private Button AcceptAddingButton => new(Driver, ProjectProperties.AcceptButtonId, "Add project");
+        private Input NameInput => new(Driver, ProjectProperties.NameInputId, "Name");
+        private Textarea AnnouncementInput => new(Driver, WrapperHelper.BuildIdXpath(ProjectProperties.AnnouncementInputId), "Announcement");
+        private Checkmark ShowAnnouncementCheckmark => new(Driver, ProjectProperties.ShowAnnouncementCheckmarkId, "Show announcement");
+        private Radio SingleModeRadio => new(Driver, ProjectProperties.SingleSuiteModeId, "Single suite mode");
+        private Radio SingleBaseLineRadio => new(Driver, ProjectProperties.SingleBaseLineSuiteModeId, "Single baseline suite mode");
+        private Radio MultipleModeRadio => new(Driver, ProjectProperties.MultipleModeId, "Multiple suite mode");
 
         public CreateProjectPage(IWebDriver? driver) : base(driver)
         {
@@ -44,8 +40,7 @@ namespace TestRailAutomationTest.Page
         {
             if (isTickTheCheckMark)
             {
-                ClickButton(ShowAnnouncementCheckMarkLocation);
-                LoggerHelper.LogButtonClick("Show Announcement checkmark");
+                ShowAnnouncementCheckmark.Click();
             }
         }
 
@@ -54,16 +49,13 @@ namespace TestRailAutomationTest.Page
             switch (projectType)
             {
                 case ProjectType.SingleRepositoryForAllCases:
-                    ClickButton(SingleSuiteModeLocation);
-                    LoggerHelper.LogButtonClick("Single suite mode");
+                    SingleModeRadio.Click();
                     break;
                 case ProjectType.SingleRepositoryWithBaselineSupport:
-                    ClickButton(SingleBaseLineSuiteModeLocation);
-                    LoggerHelper.LogButtonClick("Single repository with baseline mode");
+                    SingleBaseLineRadio.Click();
                     break;
                 case ProjectType.MultipleTestSuites:
-                    ClickButton(MultipleModeLocation);
-                    LoggerHelper.LogButtonClick("Multiple mode");
+                    MultipleModeRadio.Click();
                     break;
                 default:
                     var message = $"Project type {projectType} doesn't exist";

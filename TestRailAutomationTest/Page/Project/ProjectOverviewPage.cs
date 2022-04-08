@@ -1,6 +1,4 @@
 using OpenQA.Selenium;
-using TestRailAutomationTest.Logger;
-using TestRailAutomationTest.Model.ProjectModel;
 using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.WebElement.Wrapper;
 
@@ -12,9 +10,9 @@ namespace TestRailAutomationTest.Page.Project
         public static readonly By ChartLineLocation = By.Id("chart-line-fc");
         private static readonly By ProjectNameLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"content-header-title\")]");
-        private const string TestCaseTabId = "navigation-suites";
         private static readonly By AnnouncementLocation =
             By.XPath("//div[@id=\"content-inner\"]/div[@class=\"markdown\"]/p");
+        private const string TestCaseTabId = "navigation-suites";
 
         private Button TestCasesButton => new(Driver, TestCaseTabId, "Test Cases");
 

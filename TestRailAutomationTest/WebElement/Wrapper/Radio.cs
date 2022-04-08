@@ -4,15 +4,15 @@ using TestRailAutomationTest.WebElement.Service;
 
 namespace TestRailAutomationTest.WebElement.Wrapper;
 
-public class ButtonLink : BaseWrapper
+public class Radio : BaseWrapper
 {
-    public ButtonLink(IWebDriver? driver, string xpath, string name) : base(driver, xpath, name)
+    public Radio(IWebDriver? driver, string id, string name) : base(driver, WrapperHelper.BuildIdXpath(id), name)
     {
     }
-
+    
     public void Click()
     {
         Waits.WaitElementExistence(Driver, ElementPath).Click();
-        LoggerHelper.LogButtonLinkClick(Name);
+        LoggerHelper.LogRadioClick(Name);
     }
 }

@@ -6,7 +6,8 @@ namespace TestRailAutomationTest.WebElement.Wrapper
 {
     public class DropDown : BaseWrapper
     {
-        private string _label;
+        private readonly string _label;
+        
         public DropDown(IWebDriver? driver, string label, string name) : base(driver, WrapperHelper.BuildDropDownXPath(label), name)
         {
             _label = label;

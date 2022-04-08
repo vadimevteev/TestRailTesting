@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
 
-namespace TestRailAutomationTest.Page.Project.TestCase
+namespace TestRailAutomationTest.Page.TestCase
 {
     public class TextTestCasePage : BaseTestCaseOverviewPage
     {

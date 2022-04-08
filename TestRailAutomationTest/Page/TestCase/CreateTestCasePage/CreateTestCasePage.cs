@@ -1,12 +1,13 @@
 using System.Linq;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
+using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
-using TestRailAutomationTest.Page.Project.TestCase.CreateTestCasePage.Section;
+using TestRailAutomationTest.Page.TestCase.CreateTestCasePage.Section;
 using TestRailAutomationTest.WebElement.Wrapper;
 
-namespace TestRailAutomationTest.Page.Project.TestCase.CreateTestCasePage
+namespace TestRailAutomationTest.Page.TestCase.CreateTestCasePage
 {
     public class CreateTestCasePage : BasePage
     {
@@ -84,7 +85,9 @@ namespace TestRailAutomationTest.Page.Project.TestCase.CreateTestCasePage
                     SectionText.FillSteps(testCase);
                     break;
                 default:
-                    throw new IncorrectDataException($"{testCase.Template} type is incorrect");
+                    var message = $"{testCase.Template} type is incorrect";
+                    LoggerSingleton.GetLogger().Error(message);
+                    throw new IncorrectDataException(message);
             }
         }
 

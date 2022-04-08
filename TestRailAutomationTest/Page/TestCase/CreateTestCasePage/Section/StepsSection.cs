@@ -1,11 +1,10 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
-using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.WebElement.Service;
 using TestRailAutomationTest.WebElement.Wrapper;
 
-namespace TestRailAutomationTest.Page.Project.TestCase.CreateTestCasePage.Section;
+namespace TestRailAutomationTest.Page.TestCase.CreateTestCasePage.Section;
 
 public class StepsSection
 {

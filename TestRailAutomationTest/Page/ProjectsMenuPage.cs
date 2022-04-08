@@ -1,5 +1,4 @@
 using OpenQA.Selenium;
-using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.WebElement.Wrapper;
 
 namespace TestRailAutomationTest.Page
