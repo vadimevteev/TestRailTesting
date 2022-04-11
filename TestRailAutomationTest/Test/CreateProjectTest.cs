@@ -11,17 +11,13 @@ namespace TestRailAutomationTest.Test
 {
     public class CreateProjectTest : BaseTest
     {
-        private LoginSteps? _loginSteps;
-        private ProjectSteps? _projectSteps;
         private static IEnumerable<Project> Projects => new[]
             {ProjectCreator.CreateRandomRequiredFields(), ProjectCreator.CreateRandomWithAllFields()};
         
         [SetUp]
         public void SetUp()
         {
-            _loginSteps = new LoginSteps(LoginPage);
-            _projectSteps = new ProjectSteps(HomePage, CreateProjectPage, ProjectsMenuPage, ProjectOverviewPage);
-            _loginSteps.Login(Users.FirstOrDefault()!);
+            LoginSteps.Login(Users.FirstOrDefault()!);
         }
 
         [TestCaseSource(nameof(Projects)), Description(
@@ -29,9 +25,9 @@ namespace TestRailAutomationTest.Test
              "project with with requried/all fields should be created")]
         public void CreateProject_WithRequiredAndAllFields_ShouldBeSuccessful(Project expectedProject)
         {
-            _projectSteps!.CreateProject(expectedProject);
-            _projectSteps.OpenProject(expectedProject);
-            var actualProject = _projectSteps.GetActualProject();
+            ProjectSteps.CreateProject(expectedProject);
+            ProjectSteps.OpenProject(expectedProject);
+            var actualProject = ProjectSteps.GetActualProject();
 
             expectedProject.Name.Should().Be(actualProject.Name);
             ProjectHelper.ValidateAnnouncement(expectedProject, actualProject);

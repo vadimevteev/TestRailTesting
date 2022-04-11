@@ -11,12 +11,10 @@ namespace TestRailAutomationTest.Test
         [SetUp]
         public void SetUp()
         {
-            LoginSteps loginSteps = new(LoginPage);
             var project = ProjectCreator.CreateRandomRequiredFields();
-            ProjectSteps projectSteps = new(HomePage, CreateProjectPage, ProjectsMenuPage);
-            loginSteps.Login(Users.FirstOrDefault()!);
-            projectSteps.CreateProject(project);
-            projectSteps.OpenProject(project);
+            LoginSteps.Login(Users.FirstOrDefault()!);
+            ProjectSteps.CreateProject(project);
+            ProjectSteps.OpenProject(project);
         }
         
         [Test, Description(
