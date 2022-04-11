@@ -1,9 +1,10 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Utils;
+using TestRailAutomationTest.WebElement.Utils;
 
 namespace TestRailAutomationTest.WebElement.Wrapper;
 
-public class ButtonLink : BaseWrapper
+public class ButtonLink : BaseElementWrapper
 {
     public ButtonLink(IWebDriver? driver, string xpath, string name) : base(driver, xpath, name)
     {
@@ -12,6 +13,6 @@ public class ButtonLink : BaseWrapper
     public void Click()
     {
         Element.Click();
-        LoggerHelper.LogButtonLinkClick(Name);
+        ActionsLogger.LogButtonLinkClick(Name);
     }
 }

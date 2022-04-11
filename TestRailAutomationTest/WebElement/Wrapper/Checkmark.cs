@@ -1,18 +1,19 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.WebElement.Service;
+using TestRailAutomationTest.WebElement.Utils;
 
 namespace TestRailAutomationTest.WebElement.Wrapper;
 
-public class Checkmark : BaseWrapper
+public class Checkmark : BaseElementWrapper
 {
-    public Checkmark(IWebDriver? driver, string id, string name) : base(driver, WrapperHelper.BuildIdXpath(id), name)
+    public Checkmark(IWebDriver? driver, string id, string name) : base(driver, SearchStrategy.Id(id), name)
     {
     }
     
     public void Click()
     {
         Element.Click();
-        LoggerHelper.LogCheckboxClick(Name);
+        ActionsLogger.LogCheckboxClick(Name);
     }
 }

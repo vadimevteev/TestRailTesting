@@ -1,9 +1,9 @@
 using log4net;
 using TestRailAutomationTest.Logger;
 
-namespace TestRailAutomationTest.Utils
+namespace TestRailAutomationTest.WebElement.Utils
 {
-    public static class LoggerHelper
+    public static class ActionsLogger
     {
         private static readonly ILog? Logger = LoggerSingleton.GetLogger();
         

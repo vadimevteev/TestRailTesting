@@ -16,7 +16,7 @@ namespace TestRailAutomationTest.Page
 
         private Button AcceptAddingButton => new(Driver, ProjectProperties.AcceptButtonId, "Add project");
         private Input NameInput => new(Driver, ProjectProperties.NameInputId, "Name");
-        private Textarea AnnouncementInput => new(Driver, WrapperHelper.BuildIdXpath(ProjectProperties.AnnouncementInputId), "Announcement");
+        private Textarea AnnouncementInput => new(Driver, SearchStrategy.Id(ProjectProperties.AnnouncementInputId), "Announcement");
         private Checkmark ShowAnnouncementCheckmark => new(Driver, ProjectProperties.ShowAnnouncementCheckmarkId, "Show announcement");
         private Radio SingleModeRadio => new(Driver, ProjectProperties.SingleSuiteModeId, "Single suite mode");
         private Radio SingleBaseLineRadio => new(Driver, ProjectProperties.SingleBaseLineSuiteModeId, "Single baseline suite mode");

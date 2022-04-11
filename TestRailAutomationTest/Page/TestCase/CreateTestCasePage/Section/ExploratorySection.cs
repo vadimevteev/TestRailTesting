@@ -15,10 +15,10 @@ public class ExploratorySection
         _driver = driver;
     }
 
-    private Textarea MissionArea => new(_driver, WrapperHelper.BuildTextAreaXpath(TestCaseProperties.Mission),
+    private Textarea MissionArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Mission),
         TestCaseProperties.Mission);
 
-    private Textarea GoalsArea => new(_driver, WrapperHelper.BuildTextAreaXpath(TestCaseProperties.Goals),
+    private Textarea GoalsArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Goals),
         TestCaseProperties.Goals);
 
     public void FillSteps(BaseTestCase testCase)

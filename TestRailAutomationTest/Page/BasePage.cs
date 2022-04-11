@@ -11,7 +11,6 @@ namespace TestRailAutomationTest.Page
     public abstract class BasePage
     {
         protected readonly IWebDriver? Driver;
-        protected const string Label = "LABEL";
         public static readonly TimeSpan DefaultTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().DefaultTimeoutSeconds);
         protected static readonly TimeSpan ReducedTimeout = TimeSpan.FromSeconds(DataReader.GetConfig().ReducedTimeoutSeconds);
         protected const string LogInButtonId = "button_primary";
@@ -37,8 +36,6 @@ namespace TestRailAutomationTest.Page
             }
             LoggerSingleton.GetLogger().Info($"Page \"{pageName}\" - open");
         }
-        
-        protected static string ReplaceValue(string commonValue, string value) => commonValue.Replace(Label, value);
 
         public bool IsElementExistOnPage(By elementLocation) => IsElementExistOnPage(elementLocation, DefaultTimeout);
 

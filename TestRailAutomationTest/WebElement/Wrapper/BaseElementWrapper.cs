@@ -3,7 +3,7 @@ using TestRailAutomationTest.Utils;
 
 namespace TestRailAutomationTest.WebElement.Wrapper
 {
-    public abstract class BaseWrapper
+    public abstract class BaseElementWrapper
     {
         private readonly By _elementPath;
         protected readonly IWebDriver? Driver;
@@ -11,7 +11,7 @@ namespace TestRailAutomationTest.WebElement.Wrapper
 
         protected IWebElement Element => Waits.WaitElementExistence(Driver, _elementPath);
         
-        protected BaseWrapper(IWebDriver? driver, string elementPath, string name)
+        protected BaseElementWrapper(IWebDriver? driver, string elementPath, string name)
         {
             _elementPath = By.XPath(elementPath);
             Driver = driver;

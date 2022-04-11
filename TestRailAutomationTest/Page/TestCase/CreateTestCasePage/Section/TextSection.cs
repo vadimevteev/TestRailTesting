@@ -15,11 +15,11 @@ public class TextSection
         _driver = driver;
     }
 
-    private Textarea PreconditionsArea => new(_driver, WrapperHelper.BuildTextAreaXpath(TestCaseProperties.Preconditions),
+    private Textarea PreconditionsArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Preconditions),
         TestCaseProperties.Preconditions);
-    private Textarea StepsArea => new(_driver, WrapperHelper.BuildTextAreaXpath(TestCaseProperties.Steps),
+    private Textarea StepsArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Steps),
         TestCaseProperties.Steps);
-    private Textarea ExpectedResultArea => new(_driver, WrapperHelper.BuildTextAreaXpath(TestCaseProperties.ExpectedResult),
+    private Textarea ExpectedResultArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.ExpectedResult),
         TestCaseProperties.ExpectedResult);
     
 

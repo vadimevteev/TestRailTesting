@@ -5,7 +5,6 @@ using NUnit.Framework;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.Service;
-using TestRailAutomationTest.Steps;
 
 namespace TestRailAutomationTest.Test
 {

@@ -1,9 +1,10 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Utils;
+using TestRailAutomationTest.WebElement.Utils;
 
 namespace TestRailAutomationTest.WebElement.Wrapper;
 
-public class Textarea : BaseWrapper
+public class Textarea : BaseElementWrapper
 {
     public Textarea(IWebDriver? driver, string xpath, string name) : base(driver, xpath, name)
     {
@@ -12,7 +13,7 @@ public class Textarea : BaseWrapper
     public void SetValue(string? value)
     {
         Element.SendKeys(value);
-        LoggerHelper.LogInputValue(Name, value);
+        ActionsLogger.LogInputValue(Name, value);
     }
 
     public void SetValueAfterClick(string? value)

@@ -6,6 +6,7 @@ using TestRailAutomationTest.Model.ProjectModel;
 using TestRailAutomationTest.Service;
 using TestRailAutomationTest.Steps;
 using TestRailAutomationTest.Utils;
+using TestRailAutomationTest.Utils.Project.Assertions;
 
 namespace TestRailAutomationTest.Test
 {

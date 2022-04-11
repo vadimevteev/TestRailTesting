@@ -1,11 +1,10 @@
 using FluentAssertions;
-using TestRailAutomationTest.Model.ProjectModel;
 
-namespace TestRailAutomationTest.Utils;
+namespace TestRailAutomationTest.Utils.Project.Assertions;
 
 public static class ProjectHelper
 {
-    public static void ValidateAnnouncement(Project expectedProject, Project actualProject)
+    public static void ValidateAnnouncement(Model.ProjectModel.Project expectedProject, Model.ProjectModel.Project actualProject)
     {
         if (expectedProject.IsAnnouncementVisible)
         {

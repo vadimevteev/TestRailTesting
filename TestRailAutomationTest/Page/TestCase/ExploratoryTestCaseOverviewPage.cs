@@ -16,8 +16,8 @@ namespace TestRailAutomationTest.Page.TestCase
         public override ExploratoryTestCase GetTestCase()
         {
             FillCommonFields(_testCase);
-            _testCase.Goals = GetDescriptionProperty(TestCaseProperties.GoalsName);
-            _testCase.Mission = GetDescriptionProperty(TestCaseProperties.MissionName);
+            _testCase.Goals = GetOptionalPropertyValue(TestCaseProperties.GoalsName);
+            _testCase.Mission = GetOptionalPropertyValue(TestCaseProperties.MissionName);
             return _testCase;
         }
     }

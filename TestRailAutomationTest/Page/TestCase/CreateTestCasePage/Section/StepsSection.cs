@@ -17,7 +17,7 @@ public class StepsSection
     }
 
     private static string BuildStepTextAreaXpath(string label) => $"//td[@class=\"step-content\"]//div[@placeholder=\"{label}\"]";
-    private Textarea PreconditionsArea(string label) => new(_driver, WrapperHelper.BuildTextAreaXpath(label), label);
+    private Textarea PreconditionsArea(string label) => new(_driver, SearchStrategy.TextareaXpath(label), label);
     private ButtonLink AddStepButton => new(_driver, AddTestCaseButtonPath, "Add Step");
     private Textarea DescriptionArea => new(_driver, BuildStepTextAreaXpath(TestCaseProperties.StepDescriptionName), TestCaseProperties.StepDescriptionName);
     private Textarea ExpectedResultArea => new(_driver, BuildStepTextAreaXpath(TestCaseProperties.StepExpectedResultName), TestCaseProperties.StepExpectedResultName);
