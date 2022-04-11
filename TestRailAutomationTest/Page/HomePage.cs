@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
-using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Utils;
 using TestRailAutomationTest.WebElement.Wrapper;
 
@@ -16,7 +15,8 @@ namespace TestRailAutomationTest.Page
         private const string AddProjectButtonId = "sidebar-projects-add";
 
         private Button AddProjectButton => new(Driver, AddProjectButtonId, "Add project");
-        private ButtonLink ProjectLink(string projectName) => new(Driver, $"//a[text()=\"{projectName}\"]", projectName);
+        private static string ProjectLinkXPath(string projectName) => $"//a[text()=\"{projectName}\"]";
+        private ButtonLink ProjectLink(string projectName) => new(Driver, ProjectLinkXPath(projectName), projectName);
 
         public HomePage(IWebDriver? driver) : base(driver)
         {
@@ -30,11 +30,9 @@ namespace TestRailAutomationTest.Page
             {
                 ProjectLink(projectName).Click();
             }
-            catch (WebDriverTimeoutException ex)
+            catch (WebDriverTimeoutException)
             {
-                var message = $"Incorrect project {projectName}";
-                LoggerSingleton.GetLogger().Error(message, ex);
-                throw new IncorrectDataException(message);
+                throw new IncorrectDataException($"Incorrect project {projectName}");
             }
         }
 

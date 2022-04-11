@@ -11,13 +11,19 @@ namespace TestRailAutomationTest.Test
 {
     public class LoginTest : BaseTest
     {
+        private LoginSteps? _loginSteps;
+
+        [SetUp]
+        public void SetUp()
+        {
+            _loginSteps = new LoginSteps(LoginPage);
+        }
         
         [Test, Description("Login with valid credentials should be successful, " +
                            "home page should be opened with correct user account")]
         public void Login_WithValidCredentials_ShouldBeSuccessful()
         {
-            LoginSteps loginSteps = new(LoginPage);
-            loginSteps.Login(Users.FirstOrDefault()!);
+            _loginSteps!.Login(Users.FirstOrDefault()!);
             
             using (new AssertionScope())
             {
@@ -30,9 +36,9 @@ namespace TestRailAutomationTest.Test
                            + "home page shouldn`t be opened and error message should be shown")]
         public void Login_WithInvalidCredentials_ShouldBeFailed()
         {
-            LoginSteps loginSteps = new(LoginPage);
             var user = UserCreator.CreateRandom();
-            loginSteps.Login(user);
+            
+            _loginSteps!.Login(user);
             var actualErrorMessage = LoginPage.GetErrorMessageText();
             using (new AssertionScope())
             {

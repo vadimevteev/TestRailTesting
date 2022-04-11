@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Utils;
-using TestRailAutomationTest.WebElement.Service;
 
 namespace TestRailAutomationTest.WebElement.Wrapper;
 
@@ -12,7 +11,7 @@ public class ButtonLink : BaseWrapper
 
     public void Click()
     {
-        Waits.WaitElementExistence(Driver, ElementPath).Click();
+        Element.Click();
         LoggerHelper.LogButtonLinkClick(Name);
     }
 }

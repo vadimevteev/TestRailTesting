@@ -1,7 +1,6 @@
 using System.Linq;
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
-using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.Page.TestCase.CreateTestCasePage.Section;
@@ -85,9 +84,7 @@ namespace TestRailAutomationTest.Page.TestCase.CreateTestCasePage
                     SectionText.FillSteps(testCase);
                     break;
                 default:
-                    var message = $"{testCase.Template} type is incorrect";
-                    LoggerSingleton.GetLogger().Error(message);
-                    throw new IncorrectDataException(message);
+                    throw new IncorrectDataException($"{testCase.Template} type is incorrect");
             }
         }
 

@@ -12,7 +12,7 @@ public class Button : BaseWrapper
 
     public void Click()
     {
-        Waits.WaitElementExistence(Driver, ElementPath).Click();
+        Element.Click();
         LoggerHelper.LogButtonClick(Name);
     }
 }

@@ -17,7 +17,7 @@ namespace TestRailAutomationTest.WebElement.Wrapper
 
         public void SelectValue(string value)
         {
-            Waits.WaitElementExistence(Driver, ElementPath).Click();
+            Element.Click();
             Waits.WaitElementExistence(Driver, By.XPath(ChooseValue(value))).Click();
             LoggerHelper.LogDropDownSelect(Name, value);
         }

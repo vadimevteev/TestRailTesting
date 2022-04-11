@@ -33,9 +33,9 @@ namespace TestRailAutomationTest.Page
         {
             if (!IsElementExistOnPage(uniqueElementLocation))
             {
-                throw new PageNotOpenedException($"\"{pageName}\" was not opened");
+                throw new PageNotOpenedException($"\"{pageName}\" isn't open");
             }
-            LoggerSingleton.GetLogger().Info($"Page \"{pageName}\" - opened");
+            LoggerSingleton.GetLogger().Info($"Page \"{pageName}\" - open");
         }
         
         protected static string ReplaceValue(string commonValue, string value) => commonValue.Replace(Label, value);

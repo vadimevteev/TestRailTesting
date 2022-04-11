@@ -1,6 +1,5 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
-using TestRailAutomationTest.Logger;
 using TestRailAutomationTest.Model.ProjectModel.Enum;
 using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.WebElement.Service;
@@ -58,9 +57,7 @@ namespace TestRailAutomationTest.Page
                     MultipleModeRadio.Click();
                     break;
                 default:
-                    var message = $"Project type {projectType} doesn't exist";
-                    LoggerSingleton.GetLogger().Error(message);
-                    throw new IncorrectDataException(message);
+                    throw new IncorrectDataException($"Project type {projectType} doesn't exist");
             }
         }
 

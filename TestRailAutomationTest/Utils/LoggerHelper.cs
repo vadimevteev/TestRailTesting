@@ -34,7 +34,7 @@ namespace TestRailAutomationTest.Utils
         
         public static void LogRadioClick(string name)
         {
-            Logger?.Info($"Link \"{name}\" - open");
+            Logger?.Info($"Type \"{name}\" - select");
         }
     }
 }
