@@ -4,7 +4,7 @@ using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.Utils;
 
-namespace TestRailAutomationTest.Page.Project.TestCase
+namespace TestRailAutomationTest.Page.TestCase
 {
 
     public abstract class BaseTestCaseOverviewPage : BasePage
@@ -13,8 +13,8 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         private static readonly By TitleLocation =
             By.XPath("//div[@id=\"content-header\"]//div[contains(@class,\"title\")]");
         public static readonly By SectionLocation = By.Id("navigation-cases-section");
-        private const string CommonPropertyId = $"cell_{Example}";
-        private const string CommonDescriptionLocation = $"//span[text()=\"{Example}\"]/../following-sibling::div//p";
+        private static string RequiredPropertyId(string label) => $"cell_{label}";
+        private static string OptionalPropertyXpath(string label) => $"//span[text()=\"{label}\"]/../following-sibling::div//p";
 
         public abstract BaseTestCase GetTestCase();
 
@@ -43,12 +43,12 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         }
 
         private string GetRequiredPropertyValue(string property)
-            => GetTextFromElement(By.Id(ReplaceValue(CommonPropertyId, property))).Split('\n').Last();
+            => GetTextFromElement(By.Id(RequiredPropertyId(property))).Split('\n').Last();
 
-        protected string? GetDescriptionProperty(string value)
-            => GetOptionalValue(By.XPath(ReplaceValue(CommonDescriptionLocation, value)));
+        protected string? GetOptionalPropertyValue(string propertyName)
+            => GetOptionalPropertyValueByXpath(By.XPath(OptionalPropertyXpath(propertyName)));
 
-        protected string? GetOptionalValue(By location)
+        protected string? GetOptionalPropertyValueByXpath(By location)
             => IsElementExistOnPage(location) ? GetTextFromElement(location) : null;
     }
 }

@@ -1,6 +1,7 @@
 using OpenQA.Selenium;
 using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Utils;
+using TestRailAutomationTest.WebElement.Wrapper;
 
 namespace TestRailAutomationTest.Page
 {
@@ -11,25 +12,27 @@ namespace TestRailAutomationTest.Page
             By.XPath("//*[@id=\"content-header\"]//div[contains(text(),'All Projects')]");
         private static readonly By UserNameLocation =
             By.XPath("//*[@id=\"navigation-user\"]/span[@class=\"navigation-username\"]");
-        private static readonly By AddProjectButtonLocation = By.Id("sidebar-projects-add");
-        private const string ProjectExample = "ProjectName";
-        private const string CommonProjectLocation = $"//a[text()='{ProjectExample}']";
+        private const string AddProjectButtonId = "sidebar-projects-add";
+
+        private Button AddProjectButton => new(Driver, AddProjectButtonId, "Add project");
+        private static string ProjectLinkXPath(string projectName) => $"//a[text()=\"{projectName}\"]";
+        private ButtonLink ProjectLink(string projectName) => new(Driver, ProjectLinkXPath(projectName), projectName);
 
         public HomePage(IWebDriver? driver) : base(driver)
         {
         }
-        
-        public void ClickAddProjectButton() => ClickButton(AddProjectButtonLocation);
+
+        public void ClickAddProjectButton() => AddProjectButton.Click();
 
         public void OpenProject(string projectName)
         {
             try
             {
-                ClickButton(By.XPath(CommonProjectLocation.Replace(ProjectExample, projectName)));
+                ProjectLink(projectName).Click();
             }
             catch (WebDriverTimeoutException)
             {
-                throw new IncorrectDataException($"Project {projectName} doesn't exist");
+                throw new IncorrectDataException($"Incorrect project {projectName}");
             }
         }
 

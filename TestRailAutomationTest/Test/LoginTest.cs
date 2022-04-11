@@ -10,15 +10,12 @@ namespace TestRailAutomationTest.Test
 {
     public class LoginTest : BaseTest
     {
-        
         [Test, Description("Login with valid credentials should be successful, " +
                            "home page should be opened with correct user account")]
         public void Login_WithValidCredentials_ShouldBeSuccessful()
         {
-            LoginPage.OpenStartPage();
-            LoginPage
-                .FillLoginForm(Users.FirstOrDefault()!)
-                .PressFindButton();
+            LoginSteps.Login(Users.FirstOrDefault()!);
+            
             using (new AssertionScope())
             {
                 HomePage.IsElementExistOnPage(HomePage.HeaderTitleLocation).Should().BeTrue();
@@ -31,11 +28,9 @@ namespace TestRailAutomationTest.Test
         public void Login_WithInvalidCredentials_ShouldBeFailed()
         {
             var user = UserCreator.CreateRandom();
-            LoginPage.OpenStartPage();
-            var actualErrorMessage = LoginPage
-                .FillLoginForm(user)
-                .PressFindButton()
-                .GetErrorMessageText();
+            
+            LoginSteps.Login(user);
+            var actualErrorMessage = LoginPage.GetErrorMessageText();
             using (new AssertionScope())
             {
                 HomePage.IsElementExistOnPage(HomePage.HeaderTitleLocation).Should().BeFalse();

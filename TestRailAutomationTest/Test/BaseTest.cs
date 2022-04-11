@@ -6,15 +6,17 @@ using TestRailAutomationTest.Model;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page;
 using TestRailAutomationTest.Page.Project;
-using TestRailAutomationTest.Page.Project.TestCase;
+using TestRailAutomationTest.Page.TestCase;
+using TestRailAutomationTest.Page.TestCase.CreateTestCasePage;
 using TestRailAutomationTest.Service;
+using TestRailAutomationTest.Steps;
 
 namespace TestRailAutomationTest.Test
 {
     public abstract class BaseTest
     {
         public static readonly string LoginPageUrl = DataReader.GetConfig().AppUrl;
-        protected IWebDriver? Driver;
+        private IWebDriver? Driver;
         protected List<User?> Users;
         protected LoginPage LoginPage;
         protected HomePage HomePage;
@@ -27,6 +29,8 @@ namespace TestRailAutomationTest.Test
         protected ExploratoryTestCaseOverviewPage ExploratoryTestCaseOverviewPage;
         protected TextTestCasePage TextTestCasePage;
         protected StepsTestCaseOverviewPage StepsTestCaseOverviewPage;
+        protected LoginSteps LoginSteps;
+        protected ProjectSteps ProjectSteps;
 
         [SetUp]
         public void Init()
@@ -44,6 +48,8 @@ namespace TestRailAutomationTest.Test
             ExploratoryTestCaseOverviewPage = new ExploratoryTestCaseOverviewPage(Driver, new ExploratoryTestCase());
             TextTestCasePage = new TextTestCasePage(Driver, new TextTestCase());
             StepsTestCaseOverviewPage = new StepsTestCaseOverviewPage(Driver, new StepsTestCase());
+            LoginSteps = new LoginSteps(LoginPage);
+            ProjectSteps = new ProjectSteps(HomePage, CreateProjectPage, ProjectsMenuPage, ProjectOverviewPage);
         }
 
         [TearDown]

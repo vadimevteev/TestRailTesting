@@ -2,7 +2,7 @@ using OpenQA.Selenium;
 using TestRailAutomationTest.Model.TestCase;
 using TestRailAutomationTest.Page.Constants;
 
-namespace TestRailAutomationTest.Page.Project.TestCase
+namespace TestRailAutomationTest.Page.TestCase
 {
     public class TextTestCasePage : BaseTestCaseOverviewPage
     {
@@ -16,9 +16,9 @@ namespace TestRailAutomationTest.Page.Project.TestCase
         public override TextTestCase GetTestCase()
         {
             FillCommonFields(_testCase);
-            _testCase.Preconditions = GetDescriptionProperty(TestCaseProperties.PreconditionsName);
-            _testCase.Steps = GetDescriptionProperty(TestCaseProperties.StepsName);
-            _testCase.ExpectedResult = GetDescriptionProperty(TestCaseProperties.ExpectedResultName);
+            _testCase.Preconditions = GetOptionalPropertyValue(TestCaseProperties.PreconditionsName);
+            _testCase.Steps = GetOptionalPropertyValue(TestCaseProperties.StepsName);
+            _testCase.ExpectedResult = GetOptionalPropertyValue(TestCaseProperties.ExpectedResultName);
             return _testCase;
         }
     }
