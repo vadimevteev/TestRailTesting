@@ -4,26 +4,27 @@ using TestRailAutomationTest.Page.Constants;
 using TestRailAutomationTest.WebElement.Service;
 using TestRailAutomationTest.WebElement.Wrapper;
 
-namespace TestRailAutomationTest.Page.TestCase.CreateTestCasePage.Section;
-
-public class ExploratorySection
+namespace TestRailAutomationTest.Page.TestCase.CreateTestCasePage.Section
 {
-    private readonly IWebDriver? _driver;
-
-    public ExploratorySection(IWebDriver? driver)
+    public class ExploratorySection
     {
-        _driver = driver;
-    }
+        private readonly IWebDriver? _driver;
 
-    private Textarea MissionArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Mission),
-        TestCaseProperties.Mission);
+        public ExploratorySection(IWebDriver? driver)
+        {
+            _driver = driver;
+        }
 
-    private Textarea GoalsArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Goals),
-        TestCaseProperties.Goals);
+        private Textarea MissionArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Mission),
+            TestCaseProperties.Mission);
 
-    public void FillSteps(BaseTestCase testCase)
-    {
-        MissionArea.SetValueAfterClick(((ExploratoryTestCase)testCase).Mission);
-        GoalsArea.SetValueAfterClick(((ExploratoryTestCase)testCase).Goals);
+        private Textarea GoalsArea => new(_driver, SearchStrategy.TextareaXpath(TestCaseProperties.Goals),
+            TestCaseProperties.Goals);
+
+        public void FillSteps(BaseTestCase testCase)
+        {
+            MissionArea.SetValueAfterClick(((ExploratoryTestCase) testCase).Mission);
+            GoalsArea.SetValueAfterClick(((ExploratoryTestCase) testCase).Goals);
+        }
     }
 }

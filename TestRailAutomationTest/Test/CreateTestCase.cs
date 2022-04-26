@@ -4,6 +4,7 @@ using FluentAssertions;
 using NUnit.Framework;
 using RestSharp;
 using RestSharp.Authenticators;
+using TestRailAutomationTest.Client;
 using TestRailAutomationTest.Service;
 using TestRailAutomationTest.Steps;
 
@@ -14,33 +15,14 @@ namespace TestRailAutomationTest.Test
         [SetUp]
         public void SetUp()
         {
-            var client = new RestClient("https://vadimevteev2.testrail.io");
-            client.Authenticator = new HttpBasicAuthenticator("vadimevteev0@gmail.com", "TSuq9PBxv0Rqd.KF9rEB");
-            var request = new RestRequest("index.php?/api/v2/add_project", Method.Post);
-            request.AddHeader("Content-Type", "application/json");
-            var project = ProjectCreator.CreateRandomWithAllFields();
-            request.AddBody(project);
-            var projectContent = client.Execute(request).Content;
+            var client = new WebClient(DataReader.GetConfig().AppUrl);
+            var project = ProjectCreator.CreateRandomRequiredFields();
+            client.Login(Users.FirstOrDefault()!);
+            ProjectService.CreateProject(client, project);
             LoginSteps.Login(Users.FirstOrDefault()!);
             ProjectSteps.OpenProject(project);
-            Console.WriteLine(projectContent);
         }
 
-        [Test]
-        public void Test()
-        {
-            var client = new RestClient("https://vadimevteev2.testrail.io");
-            client.Authenticator = new HttpBasicAuthenticator("vadimevteev0@gmail.com", "TSuq9PBxv0Rqd.KF9rEB");
-            var request = new RestRequest("index.php?/api/v2/add_project", Method.Post);
-            request.AddHeader("Content-Type", "application/json");
-            var project = ProjectCreator.CreateRandomWithAllFields();
-            request.AddBody(project);
-            var projectContent = client.Execute(request).Content;
-            LoginSteps.Login(Users.FirstOrDefault()!);
-            ProjectSteps.OpenProject(project);
-            Console.WriteLine(projectContent);
-        }
-        
         [Test, Description(
              "Create test case with required fields should be successful, " +
              "test case with required fields should be created")]

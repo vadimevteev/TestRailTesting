@@ -1,18 +1,20 @@
 using FluentAssertions;
 
-namespace TestRailAutomationTest.Utils.Project.Assertions;
-
-public static class ProjectHelper
+namespace TestRailAutomationTest.Utils.Project.Assertions
 {
-    public static void ValidateAnnouncement(Model.ProjectModel.Project expectedProject, Model.ProjectModel.Project actualProject)
+    public static class ProjectHelper
     {
-        if (expectedProject.IsAnnouncementVisible)
+        public static void ValidateAnnouncement(Model.ProjectModel.Project expectedProject,
+            Model.ProjectModel.Project actualProject)
         {
-            expectedProject.Announcement.Should().Be(actualProject.Announcement);
-        }
-        else
-        {
-            actualProject.IsAnnouncementVisible.Should().BeFalse();
+            if (expectedProject.IsAnnouncementVisible)
+            {
+                expectedProject.Announcement.Should().Be(actualProject.Announcement);
+            }
+            else
+            {
+                actualProject.IsAnnouncementVisible.Should().BeFalse();
+            }
         }
     }
 }
