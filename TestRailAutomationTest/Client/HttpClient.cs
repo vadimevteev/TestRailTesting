@@ -1,15 +1,16 @@
-using System;
+using System.Threading.Tasks;
 using RestSharp;
 using RestSharp.Authenticators;
 using TestRailAutomationTest.Model;
+using TestRailAutomationTest.Model.ProjectModel;
 
 namespace TestRailAutomationTest.Client
 {
-    public class WebClient
+    public class HttpClient
     {
         private readonly RestClient _client;
 
-        public WebClient(string url)
+        public HttpClient(string url)
         {
             _client = new RestClient(url);
         }
@@ -19,9 +20,9 @@ namespace TestRailAutomationTest.Client
             _client.Authenticator = new HttpBasicAuthenticator(user.Email, user.Password);
         }
 
-        public void SendRequest(RestRequest request)
+        public async Task<RestResponse<Project>> SendRequest(RestRequest request)
         {
-            _client.Execute(request);
+            return await _client.ExecuteAsync<Project>(request);
         }
     }
 }

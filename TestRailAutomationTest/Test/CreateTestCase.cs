@@ -13,12 +13,12 @@ namespace TestRailAutomationTest.Test
     public class CreateTestCase : BaseTest
     {
         [SetUp]
-        public void SetUp()
+        public async void SetUp()
         {
-            var client = new WebClient(DataReader.GetConfig().AppUrl);
+            var client = new HttpClient(DataReader.GetConfig().AppUrl);
             var project = ProjectCreator.CreateRandomRequiredFields();
             client.Login(Users.FirstOrDefault()!);
-            ProjectService.CreateProject(client, project);
+            await ProjectService.CreateProject(client, project);
             LoginSteps.Login(Users.FirstOrDefault()!);
             ProjectSteps.OpenProject(project);
         }

@@ -2,7 +2,6 @@ using System.Runtime.Serialization;
 
 namespace TestRailAutomationTest.Exception
 {
-
     public class IncorrectDataException : System.Exception
     {
         public IncorrectDataException()

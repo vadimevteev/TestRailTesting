@@ -1,20 +1,31 @@
 using System.Net;
+using System.Threading.Tasks;
 using RestSharp;
+using TestRailAutomationTest.Client;
+using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Model.ProjectModel;
-using WebClient = TestRailAutomationTest.Client.WebClient;
+using TestRailAutomationTest.Service.ConstantsAPI;
+using static TestRailAutomationTest.Service.ConstantsAPI.EndPoints;
 
 namespace TestRailAutomationTest.Service
 {
     public static class ProjectService
     {
-        private const string AddProjectRequest = "index.php?/api/v2/add_project";
+        private const string AddProjectRequest = Prefix + Api + Version + AddProject;
         
-        public static void CreateProject(WebClient client, Project project)
+        public static async Task<Project> CreateProject(HttpClient client, Project project)
         {
             var request = new RestRequest(AddProjectRequest, Method.Post)
-                .AddHeader("Content-Type", "application/json")
+                .AddHeader(Headers.ContentType, ContentTypes.ApplicationJson)
                 .AddBody(project);
-            client.SendRequest(request);
+            
+            var response = await client.SendRequest(request);
+            if (response.StatusCode != HttpStatusCode.OK)
+            {
+                throw new ClientRequestException("Request status code is not ok!");
+            }
+
+            return response.Data!;
         }
     }
 }
