@@ -20,9 +20,9 @@ namespace TestRailAutomationTest.Client
             _client.Authenticator = new HttpBasicAuthenticator(user.Email, user.Password);
         }
 
-        public async Task<RestResponse<Project>> SendRequest(RestRequest request)
+        public async Task<RestResponse<T>> SendRequest<T>(RestRequest request)
         {
-            return await _client.ExecuteAsync<Project>(request);
+            return await _client.ExecuteAsync<T>(request);
         }
     }
 }

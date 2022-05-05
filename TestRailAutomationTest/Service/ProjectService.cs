@@ -11,21 +11,22 @@ namespace TestRailAutomationTest.Service
 {
     public static class ProjectService
     {
-        private const string AddProjectRequest = Prefix + Api + Version + AddProject;
+        private const string AddProjectRequest = $"{Prefix}{Api}{Version}{AddProject}";
         
-        public static async Task<Project> CreateProject(HttpClient client, Project project)
+        public static Task<RestResponse<Project>> CreateProject(HttpClient client, Project project)
         {
             var request = new RestRequest(AddProjectRequest, Method.Post)
                 .AddHeader(Headers.ContentType, ContentTypes.ApplicationJson)
                 .AddBody(project);
-            
-            var response = await client.SendRequest(request);
+            return client.SendRequest<Project>(request);
+        }
+
+        public static void CheckResponseStatusCode<T>(RestResponse<T> response)
+        {
             if (response.StatusCode != HttpStatusCode.OK)
             {
-                throw new ClientRequestException("Request status code is not ok!");
+                throw new HttpStatusCodeException("Request status code is not ok!");
             }
-
-            return response.Data!;
         }
     }
 }

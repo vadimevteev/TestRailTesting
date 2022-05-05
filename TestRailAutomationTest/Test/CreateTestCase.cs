@@ -1,10 +1,13 @@
 using System;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
 using RestSharp;
 using RestSharp.Authenticators;
 using TestRailAutomationTest.Client;
+using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Service;
 using TestRailAutomationTest.Steps;
 
@@ -13,14 +16,15 @@ namespace TestRailAutomationTest.Test
     public class CreateTestCase : BaseTest
     {
         [SetUp]
-        public async void SetUp()
+        public async Task SetUp()
         {
             var client = new HttpClient(DataReader.GetConfig().AppUrl);
-            var project = ProjectCreator.CreateRandomRequiredFields();
             client.Login(Users.FirstOrDefault()!);
-            await ProjectService.CreateProject(client, project);
+            var responseTask = ProjectService.CreateProject(client, ProjectCreator.CreateRandomRequiredFields());
             LoginSteps.Login(Users.FirstOrDefault()!);
-            ProjectSteps.OpenProject(project);
+            var response = await responseTask;
+            ProjectService.CheckResponseStatusCode(response);
+            ProjectSteps.OpenProject(response.Data!);
         }
 
         [Test, Description(
