@@ -1,6 +1,13 @@
+using System;
 using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
 using FluentAssertions;
 using NUnit.Framework;
+using RestSharp;
+using RestSharp.Authenticators;
+using TestRailAutomationTest.Client;
+using TestRailAutomationTest.Exception;
 using TestRailAutomationTest.Service;
 using TestRailAutomationTest.Steps;
 
@@ -9,14 +16,17 @@ namespace TestRailAutomationTest.Test
     public class CreateTestCase : BaseTest
     {
         [SetUp]
-        public void SetUp()
+        public async Task SetUp()
         {
-            var project = ProjectCreator.CreateRandomRequiredFields();
+            var client = new HttpClient(DataReader.GetConfig().AppUrl);
+            client.Login(Users.FirstOrDefault()!);
+            var responseTask = ProjectService.CreateProject(client, ProjectCreator.CreateRandomRequiredFields());
             LoginSteps.Login(Users.FirstOrDefault()!);
-            ProjectSteps.CreateProject(project);
-            ProjectSteps.OpenProject(project);
+            var response = await responseTask;
+            ProjectService.CheckResponseStatusCode(response);
+            ProjectSteps.OpenProject(response.Data!);
         }
-        
+
         [Test, Description(
              "Create test case with required fields should be successful, " +
              "test case with required fields should be created")]
